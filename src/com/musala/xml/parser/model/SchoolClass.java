@@ -1,4 +1,4 @@
-package com.musala.xml.model;
+package com.musala.xml.parser.model;
 
 import java.util.List;
 
@@ -11,14 +11,6 @@ public class SchoolClass {
     private String teacherReference;
     private List<String> studentsReference;
 
-    public String getTeacherReference() {
-        return teacherReference;
-    }
-
-    public List<String> getStudentsReference() {
-        return this.studentsReference;
-    }
-
     @XmlElement(name = "studentReference")
     public void setStudentsReference(List<String> studentsReference) {
         this.studentsReference = studentsReference;
@@ -27,6 +19,14 @@ public class SchoolClass {
     @XmlElement(name = "teacherReference")
     public void setTeacherReference(String teacherReference) {
         this.teacherReference = teacherReference;
+    }
+
+    public List<String> getStudentsReference() {
+        return studentsReference;
+    }
+
+    public String getTeacherReference() {
+        return teacherReference;
     }
 
 }

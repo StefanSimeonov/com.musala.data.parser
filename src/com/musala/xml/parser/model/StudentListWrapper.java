@@ -1,4 +1,4 @@
-package com.musala.xml.model;
+package com.musala.xml.parser.model;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ public class StudentListWrapper {
 
     private List<Student> student;
 
-    public List<Student> getStudent() {
-        return student;
-    }
-
     public void setStudent(List<Student> student) {
         this.student = student;
+    }
+
+    public List<Student> getStudent() {
+        return student;
     }
 
 }
