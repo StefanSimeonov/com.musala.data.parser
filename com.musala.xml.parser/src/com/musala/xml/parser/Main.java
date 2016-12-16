@@ -2,21 +2,14 @@ package com.musala.xml.parser;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import com.musala.xml.parser.model.School;
-import com.musala.xml.parser.model.SchoolClass;
 import com.musala.xml.parser.model.Student;
-import com.musala.xml.parser.model.StudentListWrapper;
 import com.musala.xml.parser.model.Teacher;
 
 public class Main {
