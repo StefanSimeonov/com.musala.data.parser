@@ -26,7 +26,6 @@ public class Main {
         Unmarshaller jaxbUnmarsheller = jaxb.createUnmarshaller();
         School mySchool = (School) jaxbUnmarsheller.unmarshal(configFile);
         Print(mySchool,args[1]);
-        
     }
 
     private static void Print(School myschool,String outputName) throws IOException  {
@@ -37,7 +36,7 @@ PrintWriter writer=new PrintWriter(outputName,"UTF-8");
         writer.printf("The school name is: %s!%n There %s %d school classes.%n", myschool.getName(),
                 numberOfClasses > 1 ? "are" : "is", numberOfClasses);
         printClassesData(myschool, numberOfClasses,writer);
-
+writer.close();
     }
 
     private static void printClassesData(School myschool, int numberOfClasses,PrintWriter writer) {
