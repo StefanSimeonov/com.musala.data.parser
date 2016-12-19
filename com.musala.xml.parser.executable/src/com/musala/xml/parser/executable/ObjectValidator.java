@@ -6,7 +6,7 @@ public class ObjectValidator {
 
     }
 
-    public static void CheckIfObjectIsNull(Object obj, String message){
+    public static void CheckIfObjectIsNull (Object obj, String message)throws NullPointerException{
         if(obj==null){
             throw new NullPointerException(message);
         }
