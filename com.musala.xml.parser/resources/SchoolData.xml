@@ -1,0 +1,30 @@
+
+<school name="Hristo Botev">
+   <students>
+      <student referenceNumber="1">
+         <name>Ivan</name>
+         <age>23</age>
+         <facultyNumber>15500</facultyNumber>
+      </student>
+      <student referenceNumber="2">
+         <name>Pesho</name>
+         <age>21</age>
+         <facultyNumber>15501</facultyNumber>
+      </student>
+   </students>
+   <teachers>
+      <teacher referenceNumber="T_1">
+         <name>Iordanka Atanasova</name>
+         <age>45</age>
+      </teacher>
+      <teacher referenceNumber="T_2">
+         <name>Penka Ilarionova</name>
+         <age>45</age>
+      </teacher>
+   </teachers>
+   <schoolClass>
+      <teacherReference>T_1</teacherReference>
+      <studentReference>1</studentReference>
+      <studentReference>2</studentReference>
+   </schoolClass>
+</school>
