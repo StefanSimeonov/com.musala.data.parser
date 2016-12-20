@@ -1,4 +1,4 @@
-package com.musala.xml.model.executable;
+package com.musala.xml.parser.executable.model;
 
 import java.util.List;
 
@@ -13,6 +13,18 @@ public class School {
     private TeacherListWrapper teachers;
     private List<SchoolClass> schoolClasses;
     private String name;
+
+    public School(StudentListWrapper students, TeacherListWrapper teachers, List<SchoolClass> schoolClasses,
+            String name) {
+        setName(name);
+        setSchoolClasses(schoolClasses);
+        setStudents(students);
+        setTeachers(teachers);
+    }
+
+    public School() {
+
+    }
 
     @XmlAttribute(name = "name")
     public void setName(String name) {

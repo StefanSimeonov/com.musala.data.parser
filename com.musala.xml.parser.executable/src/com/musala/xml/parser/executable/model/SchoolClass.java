@@ -1,16 +1,24 @@
-package com.musala.xml.model.executable;
+package com.musala.xml.parser.executable.model;
 
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlRootElement(name = "schoolClass")
 public class SchoolClass {
 
     private String teacherReference;
     private List<String> studentsReference;
+
+    public SchoolClass(String teacherReference, List<String> studentsReference) {
+        setTeacherReference(teacherReference);
+        setStudentsReference(studentsReference);
+    }
+
+    public SchoolClass() {
+
+    }
 
     @XmlElement(name = "studentReference")
     public void setStudentsReference(List<String> studentsReference) {
