@@ -27,8 +27,8 @@ public class Main {
     private static void Print(School myschool) {
 
         int numberOfClasses = myschool.getSchoolClasses().size();
-        System.out.printf("The school name is: %s!%n There %s %d school classes.%n", myschool.getName(),
-                numberOfClasses > 1 ? "are" : "is", numberOfClasses);
+        System.out.printf("The school name is: %s!%n There %s %d school class%s.%n", myschool.getName(),
+                numberOfClasses > 1 ? "are" : "is", numberOfClasses, numberOfClasses == 1 ? "" : "es");
         printClassesData(myschool, numberOfClasses);
 
     }
@@ -42,19 +42,20 @@ public class Main {
 
     private static void printStudents(School myschool, int currentClassNum) {
         String classNum = turnClassNumberIntoText(currentClassNum).toString();
-        System.out.printf("The %s class have %d students: %n", classNum,
+        System.out.printf("The %s class has %d students: %n", classNum,
                 myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().size());
         for (int j = 0; j < myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().size(); j++) {
-            String currentReference = myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().get(j);
-            Student currentStudent = (Student) searchObjectByReference(currentReference, myschool, "Student");
+            String currentStudentReference = myschool.getSchoolClasses().get(currentClassNum).getStudentsReference()
+                    .get(j);
+            Student currentStudent = (Student) searchObjectByReference(currentStudentReference, myschool, "Student");
             System.out.printf("%s is %d years old with fac. number %s.%n", currentStudent.getName(),
                     currentStudent.getAge(), currentStudent.getFacultyNumber());
         }
     }
 
     private static void printTeacher(School myschool, int currentClassNum) {
-        String currentTeacherReference = myschool.getSchoolClasses().get(currentClassNum).getTeacherReference();
-        Teacher currentTeacher = (Teacher) searchObjectByReference(currentTeacherReference, myschool, "Teacher");
+        Teacher currentTeacher = (Teacher) searchObjectByReference(
+                myschool.getSchoolClasses().get(currentClassNum).getTeacherReference(), myschool, "Teacher");
         System.out.printf("The teacher of the class is %s- %d years old", currentTeacher.getName(),
                 currentTeacher.getAge());
     }
@@ -63,12 +64,12 @@ public class Main {
         switch (typeOfPerson) {
             case Constants.STUDENT_AS_STRING:
                 List<Student> students = myschool.getStudents().getStudent();
-              for (int i = 0; i < students.size(); i++) {
-                if(objectReference.equals(students.get(i).getReferenceNumber())){
-                    return students.get(i);
+                for (int i = 0; i < students.size(); i++) {
+                    if (objectReference.equals(students.get(i).getReferenceNumber())) {
+                        return students.get(i);
+                    }
                 }
-            }
-return null;
+                return null;
             case Constants.TEACHER_AS_STRING: {
                 List<Teacher> teachers = myschool.getTeachers().getTeacher();
                 for (int i = 0; i < teachers.size(); i++) {
@@ -82,16 +83,7 @@ return null;
 
         return null;
     }
-//private static Object getObjectsList(Object list,String objectReference){// this class couldnt work because we dont have wrapping interface Referencable for Teachers and Students with reference prop.
-// ArrayList<Referencable> theList=(ArrayList<Referencable>) list;
-//    for (int i = 0; i < theList.size(); i++) {
-//        if(objectReference.equals(theList.get(i).getReference())){
-//            return  theList.get(i);
-//        }
-//    }
-//    return null;
-// 
-//}
+
     private static ClassNumberText turnClassNumberIntoText(int numberOfClass) {
         ClassNumberText word;
         switch (numberOfClass) {

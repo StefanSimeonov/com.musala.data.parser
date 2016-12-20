@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlSeeAlso({Student.class})
+@XmlSeeAlso({Student.class,Teacher.class})
 public abstract class SchoolObject {
     String name;
     int age;

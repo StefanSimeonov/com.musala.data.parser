@@ -159,8 +159,8 @@ public class Main {
     private static void Print(School myschool, PrintWriter writer, TreeMap<String, String> keyValuePair,
             PrintWriter keyValueWriter) {
         int numberOfClasses = myschool.getSchoolClasses().size();
-        writer.printf("The school name is: %s!%nThere %s %d school classes.%n", myschool.getName(),
-                numberOfClasses > 1 ? "are" : "is", numberOfClasses);
+        writer.printf("The school name is: %s!%nThere %s %d school class%s.%n", myschool.getName(),
+                numberOfClasses > 1 ? "are" : "is", numberOfClasses,numberOfClasses==1?"":"es");
         printClassesData(myschool, numberOfClasses, writer, keyValuePair);
         writer.close();
         KeyValueFilePrint(keyValuePair, keyValueWriter);
@@ -179,7 +179,7 @@ public class Main {
     private static void printObject(School myschool, int currentClassNum, PrintWriter writer,
             TreeMap<String, String> keyValuePair, String typeOfObject) {
         String classNum = turnClassNumberIntoText(currentClassNum).toString();
-        writer.printf("The %s class have %d %s: %n", classNum,
+        writer.printf("The %s class has %d %s: %n", classNum,
                 myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().size(), typeOfObject);
         for (int schoolObject = 0; schoolObject < (typeOfObject.equals("Student")
                 ? myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().size()
