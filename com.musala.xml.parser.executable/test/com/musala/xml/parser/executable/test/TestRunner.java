@@ -1,4 +1,4 @@
-package Test;
+package com.musala.xml.parser.executable.test;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -13,7 +13,7 @@ public class TestRunner {
             String failureMehod=failure.getTestHeader();
             System.out.println("The test method is:" + failureMehod.substring(0, failureMehod.indexOf('(')));
             System.out.println(failure.getMessage());
-      System.out.println("---------------------------------");
+      System.out.println("-----------------------------------------------------");
         }
 if(result.wasSuccessful()){
     System.out.println("All tests are passed");

@@ -15,6 +15,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import com.musala.xml.parser.executable.helpers.ObjectValidator;
+import com.musala.xml.parser.executable.helpers.WrongStringInputException;
 import com.musala.xml.parser.executable.model.School;
 import com.musala.xml.parser.executable.model.SchoolObject;
 import com.musala.xml.parser.executable.model.Student;
@@ -22,37 +24,49 @@ import com.musala.xml.parser.executable.model.Teacher;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, WrongStringInputException {
 
-        File configFile = null;
+        File configFile = new File(args[0]);
         try {
-            configFile = new File(args[0]);
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
+            ObjectValidator.checkIfFileExists(configFile, "The file is not exists");
+        } catch (FileNotFoundException e) {
+            log(e.getMessage());
+            throw new FileNotFoundException();// rethrow for the unit test's testIfFileIsFound() mehtod
         }
 
         JAXBContext jaxb = null;
         Unmarshaller jaxbUnmarsheller = null;
+
         try {
             jaxb = JAXBContext.newInstance(School.class, Student.class);
             jaxbUnmarsheller = jaxb.createUnmarshaller();
         } catch (JAXBException ex) {
-            System.err.println(ex.getMessage());
+            log("Something wrong with jaxb creation");
         }
 
-        School mySchool = null;
+        School mySchool = new School();
         try {
+            ObjectValidator.checkForCast(mySchool, jaxbUnmarsheller.unmarshal(configFile), "Wrong casting");
             mySchool = (School) jaxbUnmarsheller.unmarshal(configFile);
-        } catch (NullPointerException ex) {
-            System.err.println("The school is empty");
-        } catch (JAXBException ex) {
-            System.err.println(ex.getMessage());
+        } catch (JAXBException e) {
+            log("Something wrong with jaxb creation");
+        } catch (ClassCastException ex) {
+            log(ex.getMessage());
         }
+
+        try {
+            ObjectValidator.checkIfStringMatch(args[1], Constants.TEXT_OUTPUT_FILE_STRING_PATTERN);
+        } catch (WrongStringInputException e) {
+            log(e.getMessage());
+            throw new WrongStringInputException();// rethrow for the unit test's testCheckIfStringMatch() method
+        }
+
         String propertyFileOutputName = args[1].substring(0, args[1].indexOf('.'))
                 + Constants.PROPERTY_FILE_STRING_EXTENTION;
 
         PrintWriter writer = null;
         PrintWriter keyValueWriter = null;
+
         try {
             writer = new PrintWriter(args[1], "UTF-8");
             keyValueWriter = new PrintWriter(propertyFileOutputName);
@@ -140,6 +154,10 @@ public class Main {
         }
     }
 
+    public static void log(String text) {
+        System.out.println(text);
+    }
+
     protected static void keyValueFilePrint(TreeMap<String, String> keyValuePair, PrintWriter keyValueWriter) {
         Iterator<Entry<String, String>> itr = keyValuePair.entrySet().iterator();
         try {
@@ -154,6 +172,11 @@ public class Main {
 
     protected static void Print(School myschool, PrintWriter writer, TreeMap<String, String> keyValuePair,
             PrintWriter keyValueWriter) {
+        try {
+            ObjectValidator.checkIfObjectIsNull(myschool, "The School is empty");
+        } catch (NullPointerException e) {
+            log(e.getMessage());
+        }
         int numberOfClasses = myschool.getSchoolClasses().size();
         writer.printf("The school name is: %s!%nThere %s %d school class%s.%n", myschool.getName(),
                 numberOfClasses > 1 ? "are" : "is", numberOfClasses, numberOfClasses == 1 ? "" : "es");
@@ -174,6 +197,13 @@ public class Main {
     protected static void printObject(School myschool, int currentClassNum, PrintWriter writer,
             TreeMap<String, String> keyValuePair, String typeOfObject) {
         String classNum = turnClassNumberIntoText(currentClassNum).toString();
+        try {
+            List<String> arr = myschool.getSchoolClasses().get(currentClassNum).getStudentsReference();
+            ObjectValidator.checkIfObjectIsNull(arr, "There arent any students in this class");
+        } catch (NullPointerException e) {
+            log(e.getMessage());
+        }
+
         writer.printf("The %s class has %d %s: %n", classNum,
                 myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().size(), typeOfObject);
         for (int schoolObject = 0; schoolObject < (typeOfObject.equals("Student")
@@ -186,12 +216,15 @@ public class Main {
             } else {
                 currentReference = myschool.getSchoolClasses().get(currentClassNum).getTeacherReference();
             }
-            SchoolObject currentObject = null;
+
+            SchoolObject currentObject = searchObjectByReference(currentReference, myschool, typeOfObject);
             try {
-                currentObject = searchObjectByReference(currentReference, myschool, typeOfObject);
-            } catch (NullPointerException ex) {
-                System.out.println("There isnt any student with this reference number");
+                ObjectValidator.checkIfObjectIsNull(currentReference,
+                        "There isnt any student with this reference number");
+            } catch (NullPointerException e) {
+                log(e.getMessage());
             }
+
             writer.printf("%s is %d years old ", currentObject.getName().toString(), currentObject.getAge());
             if (currentObject instanceof Student) {
                 writer.printf("with fac. number %d.%n", ((Student) currentObject).getFacultyNumber());
@@ -200,8 +233,8 @@ public class Main {
         }
     }
 
-    protected static SchoolObject searchObjectByReference(String objectReference, School myschool,
-            String typeOfPerson) {
+    protected static SchoolObject searchObjectByReference(String objectReference, School myschool, String typeOfPerson)
+            throws NullPointerException {
         switch (typeOfPerson) {
             case Constants.STUDENT_AS_STRING:
                 List<Student> students = myschool.getStudents().getStudent();
@@ -209,6 +242,7 @@ public class Main {
 
             case Constants.TEACHER_AS_STRING: {
                 List<Teacher> teachers = myschool.getTeachers().getTeacher();
+                ObjectValidator.checkIfObjectIsNull(teachers, "There isnt any teachers in the school");
                 return checkReferenceExistence(teachers, objectReference);
             }
         }
@@ -216,6 +250,7 @@ public class Main {
     }
 
     protected static SchoolObject checkReferenceExistence(Object ListOfObjects, String objectReference) {
+        ObjectValidator.checkIfObjectIsNull(objectReference, "The object reference is null");
         @SuppressWarnings("unchecked")
         List<SchoolObject> checkList = (List<SchoolObject>) ListOfObjects;
         for (int i = 0; i < checkList.size(); i++) {
