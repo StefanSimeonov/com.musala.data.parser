@@ -15,7 +15,6 @@ import com.musala.xml.parser.model.Teacher;
 public class Main {
 
     public static void main(String[] args) throws IOException, JAXBException {
-
         ClassLoader classload = Main.class.getClassLoader();
         File configFile = new File(classload.getResource(Constants.XML_INTERNAL_FILE_PATH).getFile());
         JAXBContext jaxb = JAXBContext.newInstance(School.class);
@@ -24,8 +23,7 @@ public class Main {
         Print(mySchool);
     }
 
-    private static void Print(School myschool) {
-
+    protected static void Print(School myschool) {
         int numberOfClasses = myschool.getSchoolClasses().size();
         System.out.printf("The school name is: %s!%n There %s %d school class%s.%n", myschool.getName(),
                 numberOfClasses > 1 ? "are" : "is", numberOfClasses, numberOfClasses == 1 ? "" : "es");
@@ -33,14 +31,14 @@ public class Main {
 
     }
 
-    private static void printClassesData(School myschool, int numberOfClasses) {
+    protected static void printClassesData(School myschool, int numberOfClasses) {
         for (int currentClassNum = 0; currentClassNum < numberOfClasses; currentClassNum++) {
             printStudents(myschool, currentClassNum);
             printTeacher(myschool, currentClassNum);
         }
     }
 
-    private static void printStudents(School myschool, int currentClassNum) {
+    protected static void printStudents(School myschool, int currentClassNum) {
         String classNum = turnClassNumberIntoText(currentClassNum).toString();
         System.out.printf("The %s class has %d students: %n", classNum,
                 myschool.getSchoolClasses().get(currentClassNum).getStudentsReference().size());
@@ -52,15 +50,15 @@ public class Main {
                     currentStudent.getAge(), currentStudent.getFacultyNumber());
         }
     }
-
-    private static void printTeacher(School myschool, int currentClassNum) {
+    
+    protected static void printTeacher(School myschool, int currentClassNum) {
         Teacher currentTeacher = (Teacher) searchObjectByReference(
                 myschool.getSchoolClasses().get(currentClassNum).getTeacherReference(), myschool, "Teacher");
         System.out.printf("The teacher of the class is %s- %d years old", currentTeacher.getName(),
                 currentTeacher.getAge());
     }
 
-    private static Object searchObjectByReference(String objectReference, School myschool, String typeOfPerson) {
+    protected static Object searchObjectByReference(String objectReference, School myschool, String typeOfPerson) {
         switch (typeOfPerson) {
             case Constants.STUDENT_AS_STRING:
                 List<Student> students = myschool.getStudents().getStudent();
@@ -84,7 +82,7 @@ public class Main {
         return null;
     }
 
-    private static ClassNumberText turnClassNumberIntoText(int numberOfClass) {
+    protected static ClassNumberText turnClassNumberIntoText(int numberOfClass) {
         ClassNumberText word;
         switch (numberOfClass) {
             case 0:
