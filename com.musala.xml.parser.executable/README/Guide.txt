@@ -1,8 +1,0 @@
-Guide:
--First safe XmlDataTransfer.jar file to the computer's direktory.
--Second enter comand-line and push the path to this direktory.
--Third enter: java -jar XmlDataTransfer.jar ..........firstargument.........secondargument
- firstargument must be the path to the xml readable file
- secondargument must be the path to txt writeable file
-
-P.s. enjoy :)
