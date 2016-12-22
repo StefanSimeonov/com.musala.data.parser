@@ -42,11 +42,12 @@ public class ObjectValidator {
         }
     }
 
-    public static void checkIfStringMatch(String input,String pattern) throws WrongStringInputException {
+    public static void checkIfStringMatch(String input, String pattern, String exceptionMessage)
+            throws WrongStringInputException {
         Pattern p = Pattern.compile(pattern);
         Matcher matcher = p.matcher(input);
         if (!matcher.find()) {
-            throw new WrongStringInputException();
+            throw new WrongStringInputException(exceptionMessage);
         }
 
     }

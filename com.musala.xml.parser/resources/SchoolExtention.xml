@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schools>
+   <school name="Hristo Botev">
+      <students>
+         <!-- eq. ArrayList<Student> -->
+         <student referenceNumber="1">
+            <name>Ivan</name>
+            <age>23</age>
+            <facultyNumber>15500</facultyNumber>
+         </student>
+         <student referenceNumber="5">
+            <name>Iordan</name>
+            <age>21</age>
+            <facultyNumber>15520</facultyNumber>
+         </student>
+         <student referenceNumber="8">
+            <name>Maria</name>
+            <age>21</age>
+            <facultyNumber>15523</facultyNumber>
+         </student>
+         <student referenceNumber="2">
+            <name>Pesho</name>
+            <age>21</age>
+            <facultyNumber>15501</facultyNumber>
+         </student>
+         <student referenceNumber="15">
+            <name>Ivilina</name>
+            <age>25</age>
+            <facultyNumber>15554</facultyNumber>
+         </student>
+         <student referenceNumber="3">
+            <name>Kosta</name>
+            <age>22</age>
+            <facultyNumber>15505</facultyNumber>
+         </student>
+         <student referenceNumber="18">
+            <name>Alex</name>
+            <age>25</age>
+            <facultyNumber>155031</facultyNumber>
+         </student>
+      </students>
+      <teachers>
+         <teacher referenceNumber="T_1">
+            <name>Iordanka Atanasova</name>
+            <age>32</age>
+       </teacher>
+         <teacher referenceNumber="T_4">
+            <name>Stanka Doichinova</name>
+            <age>48</age>
+         </teacher>
+         <teacher referenceNumber="T_2">
+            <name>Penka Ilarionova</name>
+            <age>44</age>
+         </teacher>
+      </teachers>
+      <schoolClass>
+         <teacherReference>T_1</teacherReference>
+         <studentReference>1</studentReference>
+         <studentReference>2</studentReference>
+         <studentReference>3</studentReference>
+         <studentReference>5</studentReference>
+      </schoolClass>
+      <schoolClass>
+         <teacherReference>T_4</teacherReference>
+         <studentReference>15</studentReference>
+         <studentReference>18</studentReference>
+      </schoolClass>
+   </school>
+   <school name="Ivan Vazov">
+      <students>
+         <!-- eq. ArrayList<Student> -->
+         <student referenceNumber="1">
+            <name>Dragan</name>
+            <age>23</age>
+            <facultyNumber>15500</facultyNumber>
+         </student>
+         <student referenceNumber="8">
+            <name>Maria</name>
+            <age>21</age>
+            <facultyNumber>15523</facultyNumber>
+         </student>
+		 <student referenceNumber="5">
+            <name>Viktoria</name>
+            <age>25</age>
+            <facultyNumber>15522</facultyNumber>
+         </student>
+		 <student referenceNumber="22">
+            <name>Natalia</name>
+            <age>21</age>
+            <facultyNumber>15517</facultyNumber>
+         </student>
+		 <student referenceNumber="33">
+            <name>Atanas</name>
+            <age>21</age>
+            <facultyNumber>15512</facultyNumber>
+         </student>
+         <student referenceNumber="2">
+            <name>Pesho</name>
+            <age>21</age>
+            <facultyNumber>15501</facultyNumber>
+         </student>
+         <student referenceNumber="15">
+            <name>Ivilina</name>
+            <age>25</age>
+            <facultyNumber>15554</facultyNumber>
+         </student>
+         <student referenceNumber="3">
+            <name>Kosta</name>
+            <age>22</age>
+            <facultyNumber>15505</facultyNumber>
+         </student>
+         <student referenceNumber="18">
+            <name>Alex</name>
+            <age>25</age>
+            <facultyNumber>155031</facultyNumber>
+         </student>
+      </students>
+      <teachers>
+         <teacher referenceNumber="T_1">
+            <name>Iordanka Atanasova</name>
+            <age>32</age>
+         </teacher>
+         <teacher referenceNumber="T_3">
+            <name>Maria Kostova</name>
+            <age>42</age>
+         </teacher>
+         <teacher referenceNumber="T_4">
+            <name>Stanka Doichinova</name>
+            <age>48</age>
+         </teacher>
+         <teacher referenceNumber="T_2">
+            <name>Penka Ilarionova</name>
+            <age>44</age>
+         </teacher>
+      </teachers>
+      <schoolClass>
+         <teacherReference>T_1</teacherReference>
+         <studentReference>1</studentReference>
+         <studentReference>2</studentReference>
+         <studentReference>3</studentReference>
+      </schoolClass>
+      <schoolClass>
+         <teacherReference>T_4</teacherReference>
+         <studentReference>15</studentReference>
+         <studentReference>18</studentReference>
+      </schoolClass>
+	  <schoolClass>
+         <teacherReference>T_2</teacherReference>
+         <studentReference>5</studentReference>
+         <studentReference>22</studentReference>
+		 <studentReference>33</studentReference>
+      </schoolClass>
+   </school>
+</schools>

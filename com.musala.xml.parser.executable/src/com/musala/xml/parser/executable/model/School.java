@@ -1,4 +1,4 @@
-package com.musala.xml.parser.model;
+package com.musala.xml.parser.executable.model;
 
 import java.util.List;
 

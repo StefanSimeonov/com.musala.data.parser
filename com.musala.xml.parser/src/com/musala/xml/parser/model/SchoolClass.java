@@ -8,25 +8,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "schoolClass")
 public class SchoolClass {
 
-    private String teacherReference;
-    private List<String> studentsReference;
+	private String teacherReference;
+	private List<String> studentsReference;
 
-    @XmlElement(name = "studentReference")
-    public void setStudentsReference(List<String> studentsReference) {
-        this.studentsReference = studentsReference;
-    }
+	@XmlElement(name = "studentReference")
+	public void setStudentsReference(List<String> studentsReference) {
+		this.studentsReference=studentsReference;
 
-    @XmlElement(name = "teacherReference")
-    public void setTeacherReference(String teacherReference) {
-        this.teacherReference = teacherReference;
-    }
+	}
 
-    public List<String> getStudentsReference() {
-        return studentsReference;
-    }
+	@XmlElement(name = "teacherReference")
+	public void setTeacherReference(String teacherReference) {
+		this.teacherReference = teacherReference;
+	}
 
-    public String getTeacherReference() {
-        return teacherReference;
-    }
+	public List<String> getStudentsReference() {
+		return studentsReference;
+	}
 
+	public String getTeacherReference() {
+		return teacherReference;
+	}
+
+	private boolean checkForExistingStudents(String studentReference) {
+		for (int i = 0; i < studentsReference.size(); i++) {
+			if (studentsReference.get(i).equals(studentReference))
+				return true;
+		}
+		return false;
+	}
 }
