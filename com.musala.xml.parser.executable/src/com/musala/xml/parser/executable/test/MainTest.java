@@ -137,7 +137,6 @@ public class MainTest extends Main {
         temp[1] = "C:\\Output.x";
         try {
             Main.main(temp);
-            ;
         } catch (WrongStringInputException e) {
             assertEquals(e.getMessage(), "The output .txt file has incorrent name");
         } catch (FileNotFoundException e) {
@@ -171,7 +170,6 @@ public class MainTest extends Main {
     public void testbuildKeyValueIsNull() {
         try {
             Main.buildKeyValue(0, null, null);
-            ;
         } catch (NullPointerException e) {
             assertThat(e.getClass(), equalTo(NullPointerException.class));
         }
@@ -179,10 +177,8 @@ public class MainTest extends Main {
 
     @Test
     public void testBuildKeyValueWithNegativeSchoolObject() {
-        Student temp = new Student();
         try {
             Main.buildKeyValue(-1, null, null);
-            ;
         } catch (NullPointerException e) {
             assertThat(e.getClass(), equalTo(NullPointerException.class));
         }

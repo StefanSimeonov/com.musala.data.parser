@@ -54,7 +54,7 @@ public class MainTest extends Main {
 		}
 	}
 
-	// @Test
+	@Test
 	public void testprintTeacherWithEmptySchool() {
 		try {
 			Main.printTeacher(null, 1);
