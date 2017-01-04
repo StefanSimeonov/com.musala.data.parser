@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.13" icons="true" automaticImage="GIF" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.musala.xml.parser.database.structure.model.models.Teacher" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/Teacher.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="59" width="250" x="340" y="371"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.musala.xml.parser.database.structure.model.models.StudentListWrapper" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/StudentListWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="121" width="250" x="29" y="202"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.musala.xml.parser.database.structure.model.models.SchoolObject" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/SchoolObject.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="115" width="250" x="205" y="511"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.musala.xml.parser.database.structure.model.models.Student" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/Student.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="98" width="255" x="72" y="371"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.musala.xml.parser.database.structure.model.models.SchoolClass" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/SchoolClass.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="250" x="916" y="372"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.musala.xml.parser.database.structure.model.models.SchoolClassListWrapper" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/SchoolClassListWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="250" x="916" y="208"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.musala.xml.parser.database.structure.model.models.School" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/School.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="129" width="250" x="621" y="372"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.musala.xml.parser.database.structure.model.models.SchoolDataInfo" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/SchoolDataInfo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="263" x="621" y="37"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.musala.xml.parser.database.structure.model.models.SchoolListWrapper" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/SchoolListWrapper.java" 
+    binary="false" corner="BOTTOM_LEFT">    
+    <position height="117" width="255" x="621" y="208"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.musala.xml.parser.database.structure.model.models.TeacherListWrapper" 
+    project="com.musala.xml.parser.database.structure.model" 
+    file="/com.musala.xml.parser.database.structure.model/src/com/musala/xml/parser/database/structure/model/models/TeacherListWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="458" y="261"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="false">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="11">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="12" name="teachers"/>      
+      <multiplicity id="13" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="15" name="students">        
+        <position height="0" width="0" x="-12" y="-6"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-12" y="-6"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="18">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="19" name="schools">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="22">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="23" name="schoolClasses">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="26">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="27" name="students">        
+        <position height="0" width="0" x="31" y="-1"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="31" y="-1"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="30" name="schoolClasses">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="33" name="teachers"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="36" name="schools">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="false">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
