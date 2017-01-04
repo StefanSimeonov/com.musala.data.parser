@@ -1,0 +1,31 @@
+package com.musala.database.parser.model.impl;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.musala.database.parser.model.IDbConnector;
+import com.musala.database.parser.model.IDbQueryWriter;
+import com.musala.database.parser.model.IQueryable;
+
+public abstract class AbstractDbQueryWriter implements IDbQueryWriter {
+	IDbConnector dbconnector;
+	Statement statement;
+	IQueryable query;
+	ResultSet result;
+
+	public AbstractDbQueryWriter(IDbConnector dbconnector, IQueryable query) {
+		this.dbconnector = dbconnector;
+		this.statement = this.dbconnector.getStatement();
+		this.query = query;
+	}
+
+	@Override
+	public IDbConnector getConnector() {
+		return dbconnector;
+	}
+
+	@Override
+	public IQueryable getQuery() {
+		return query;
+	}
+}
