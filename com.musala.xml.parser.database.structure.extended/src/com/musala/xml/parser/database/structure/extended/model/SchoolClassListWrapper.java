@@ -7,7 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "schoolClasses")
 public class SchoolClassListWrapper {
-private	List<SchoolClass> schoolClasses;
+
+	private List<SchoolClass> schoolClasses;
 
 	@XmlElement(name = "schoolClass")
 	public void setSchoolClasses(List<SchoolClass> schoolClasses) {

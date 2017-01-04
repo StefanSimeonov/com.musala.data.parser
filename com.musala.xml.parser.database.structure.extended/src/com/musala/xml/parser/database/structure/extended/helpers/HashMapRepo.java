@@ -7,6 +7,7 @@ import com.musala.xml.parser.database.structure.extended.model.SchoolClass;
 import com.musala.xml.parser.database.structure.extended.model.Teacher;
 
 public class HashMapRepo {
+
 	Map<String, School> schoolRepo;
 	Map<String, SchoolClass> schoolClassRepo;
 	Map<String, Teacher> teachersRepo;

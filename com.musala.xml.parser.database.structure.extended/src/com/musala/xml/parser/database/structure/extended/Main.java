@@ -18,11 +18,13 @@ import com.musala.xml.parser.database.structure.extended.model.SchoolDataInfo;
 import com.musala.xml.parser.database.structure.extended.model.Student;
 import com.musala.xml.parser.database.structure.extended.model.Teacher;
 
-
 public class Main {
-	
-	/** The initialization method for the program
-	 * @param args- expect 2 string file names with proper directory locations
+
+	/**
+	 * The initialization method for the program
+	 * 
+	 * @param args-
+	 *            expect 2 string file names with proper directory locations
 	 * @throws FileNotFoundException
 	 * @throws WrongStringInputException
 	 */
@@ -38,7 +40,9 @@ public class Main {
 		print(schoolData, repo, writer);
 	}
 
-	/** List every student in the xml file
+	/**
+	 * List every student in the xml file
+	 * 
 	 * @param schoolData
 	 * @param repo
 	 * @param writer
@@ -51,7 +55,9 @@ public class Main {
 		writer.close();
 	}
 
-	/**Print collecting properties for every student
+	/**
+	 * Print collecting properties for every student
+	 * 
 	 * @param student
 	 * @param repo
 	 * @param writer
@@ -65,7 +71,10 @@ public class Main {
 				studentClass.getSubject(), studentTeacher.getName(), studentTeacher.getAge());
 	}
 
-	/**Search trough HashMapRepo for Teacher with the same Class's teacher reference
+	/**
+	 * Search trough HashMapRepo for Teacher with the same Class's teacher
+	 * reference
+	 * 
 	 * @param schoolclass
 	 * @param repo
 	 * @return Teacher
@@ -74,7 +83,10 @@ public class Main {
 		return repo.searchTeacherById(schoolclass.getTeacherId());
 	}
 
-	/**Search trough HashMapRepo for Class with the same Student's class reference
+	/**
+	 * Search trough HashMapRepo for Class with the same Student's class
+	 * reference
+	 * 
 	 * @param student
 	 * @param repo
 	 * @return SchoolClass
@@ -83,7 +95,10 @@ public class Main {
 		return repo.searchSchoolClassById(student.getClassId());
 	}
 
-	/**Search trough HashmapRepo for School with the same Class's school reference 
+	/**
+	 * Search trough HashmapRepo for School with the same Class's school
+	 * reference
+	 * 
 	 * @param schoolClass
 	 * @param repo
 	 * @return School
@@ -92,7 +107,9 @@ public class Main {
 		return repo.serchSchoolById(schoolClass.getSchoolId());
 	}
 
-	/** Fill all HashMaps in the HashMapRepo with the xml info
+	/**
+	 * Fill all HashMaps in the HashMapRepo with the xml info
+	 * 
 	 * @param schoolData
 	 * @param repo
 	 */
@@ -119,11 +136,8 @@ public class Main {
 					Teacher temp = teacherList.get(j);
 					repo.putTeacher(temp.getId(), temp);
 				}
-			default:
-				return;
 			}
 		}
-
 	}
 
 }

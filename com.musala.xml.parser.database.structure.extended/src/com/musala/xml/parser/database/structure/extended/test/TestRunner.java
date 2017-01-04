@@ -7,16 +7,16 @@ import org.junit.runner.notification.Failure;
 public class TestRunner {
 
 	public static void main(String[] args) {
-	Result result=	JUnitCore.runClasses(TestMain.class);
-for(Failure failure:result.getFailures()){
-	String failureMehod = failure.getTestHeader();
-    System.out.println("The test method is:" + failureMehod.substring(0, failureMehod.indexOf('(')));
-    System.out.println(failure.getMessage());
-    System.out.println("-----------------------------------------------------");
-}
-if (result.wasSuccessful()) {
-    System.out.println("All tests are passed");
-}
+		Result result = JUnitCore.runClasses(TestMain.class);
+		for (Failure failure : result.getFailures()) {
+			String failureMehod = failure.getTestHeader();
+			System.out.println("The test method is:" + failureMehod.substring(0, failureMehod.indexOf('(')));
+			System.out.println(failure.getMessage());
+			System.out.println("-----------------------------------------------------");
+		}
+		if (result.wasSuccessful()) {
+			System.out.println("All tests are passed");
+		}
 	}
 
 }

@@ -65,48 +65,48 @@ public class TestMain extends Main {
 		searchingStudent.setClassId("5");
 		assertEquals(searcher.getId(), Main.searchSchoolClassOfTheStudent(searchingStudent, repo).getId());
 	}
-	
+
 	@Test
-	public void testSearchingSchoolById(){
-		SchoolClass tempClass=new SchoolClass();
+	public void testSearchingSchoolById() {
+		SchoolClass tempClass = new SchoolClass();
 		tempClass.setSchoolId("5");
-		School searchingSchool=new School();
+		School searchingSchool = new School();
 		searchingSchool.setId("5");
-		HashMap<String, School> map=new HashMap<>();
+		HashMap<String, School> map = new HashMap<>();
 		map.put("5", searchingSchool);
-		HashMapRepo repo=new HashMapRepo(map, null, null);
-		School seacher=new School();
+		HashMapRepo repo = new HashMapRepo(map, null, null);
+		School seacher = new School();
 		seacher.setId("5");
-		assertEquals(seacher.getId(),Main.seachSchoolOfTheSchoolClass(tempClass, repo).getId());
+		assertEquals(seacher.getId(), Main.seachSchoolOfTheSchoolClass(tempClass, repo).getId());
 	}
-	
+
 	@Test
-	public void testPrintNullStudent(){
-		try{
-			Main.printStudent(null, null,null);
-		}catch(NullPointerException e){
+	public void testPrintNullStudent() {
+		try {
+			Main.printStudent(null, null, null);
+		} catch (NullPointerException e) {
 			assertThat(e.getClass(), equalTo(NullPointerException.class));
 		}
 	}
-	
+
 	@Test
-	public void testPrintNull(){
-		try{
+	public void testPrintNull() {
+		try {
 			Main.print(null, null, null);
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			assertThat(e.getClass(), equalTo(NullPointerException.class));
 		}
 	}
-	
-	   @Test
-	    public void testIfFileIsFound()  {
-	        try {
-	            Main.main(new String[] { "incorrectString123" });
-	        } catch (FileNotFoundException e) {
-	            assertThat(e.getClass(), equalTo(FileNotFoundException.class));
-	        } catch (JAXBException e) {
-	            // Skip to avoid throws declaration
-	            // and not needed in test
-	        }
-	    }
+
+	@Test
+	public void testIfFileIsFound() {
+		try {
+			Main.main(new String[] { "incorrectString123" });
+		} catch (FileNotFoundException e) {
+			assertThat(e.getClass(), equalTo(FileNotFoundException.class));
+		} catch (JAXBException e) {
+			// Skip to avoid throws declaration
+			// and not needed in test
+		}
+	}
 }
