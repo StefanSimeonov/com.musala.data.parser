@@ -13,12 +13,7 @@ public class MySqlDbConnector extends AbstractDbConnector {
 
 	private static final String MYSQL_CONNECTION_STRING_PREFIX = "jdbc:mysql://";
 
-	/**
-	 * Create a proper connection string for XAMPP delivered server
-	 * 
-	 * @param url,
-	 *            database, userName, password
-	 */
+	
 	@Override
 	protected void createConnectionString(String url, String database, String userName, String password)
 			throws SQLException {
@@ -27,19 +22,13 @@ public class MySqlDbConnector extends AbstractDbConnector {
 				userName, password);
 	}
 
-	/**
-	 * @return connectionAsString
-	 */
+	
 	@Override
 	public String getConServerName() {
 		return MYSQL_CONNECTION_STRING_PREFIX + url + "/" + database;
 	}
 
-	/**
-	 * Connection building method itself
-	 * 
-	 * @return MySQLDatabaseConnector
-	 */
+	
 	@Override
 	public MySqlDbConnector build(String url, String database) throws SQLException {
 		this.url = url;
@@ -50,11 +39,7 @@ public class MySqlDbConnector extends AbstractDbConnector {
 		return this;
 	}
 
-	/**
-	 * Connection building method itself with credentials
-	 * 
-	 * @return MySQLDatabaseConnector
-	 */
+
 	@Override
 	public MySqlDbConnector buildWithAdditionalCredentials(String url, String database, String userName,
 			String password) throws SQLException {

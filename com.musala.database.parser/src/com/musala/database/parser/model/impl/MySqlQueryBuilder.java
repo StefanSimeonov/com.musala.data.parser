@@ -16,43 +16,30 @@ public class MySqlQueryBuilder implements IQueryable {
 
 	private static final String SELECT_PART_OF_QUERY = "select * from ";
 
-
-	 /** Execute this specific query and returns the result of it as a iterable
-	 * resultSet
-	 * @retun ResultSet
-	 */
 	@Override
 	public ResultSet getRecordById(String dbTable, Statement statement, String id)
 			throws NullPointerException, SQLException {
 
 		String query = SELECT_PART_OF_QUERY + dbTable + " where Id=" + id;
 		ResultSet result = ObjectValidator.checkForSQLQuery(query, statement);
-		
+
 		return result;
 	}
 
-	/**
-	 * Execute this specific query and returns the result of it as a iterable
-	 * resultSet
-	 */
 	@Override
 	public ResultSet getRecordByName(String dbTable, Statement statement, String name)
 			throws NullPointerException, SQLException {
 		String query = SELECT_PART_OF_QUERY + dbTable + " where name='" + name + "'";
 		ResultSet result = ObjectValidator.checkForSQLQuery(query, statement);
-		
+
 		return result;
 	}
 
-	/**
-	 * Execute this specific query and returns the result of it as a iterable
-	 * resultSet
-	 */
 	@Override
 	public ResultSet getAllRecords(String dbTable, Statement statement) throws NullPointerException, SQLException {
 		String query = SELECT_PART_OF_QUERY + dbTable;
 		ResultSet result = ObjectValidator.checkForSQLQuery(query, statement);
-		
+
 		return result;
 	}
 

@@ -18,11 +18,8 @@ public class MySqlDbEngine extends AbstractDbEngine {
 
 	private boolean hasError = false;
 
-	/**
-	 * Connect to the given, as separate strings, database and instancing all
-	 * classes that depends on it. Handle all the occurred exceptions occurred
-	 * meanwhile and don't pass while proper input isn't given
-	 */
+	
+	@Override
 	public void initialize() {
 		errorWriter = new PrintWriter(System.out);
 
@@ -55,9 +52,8 @@ public class MySqlDbEngine extends AbstractDbEngine {
 
 	}
 
-	/**
-	 * ) Execute queries to database and render them using some QIueryWriter.
-	 */
+
+	@Override
 	public void startQuering() {
 		hasError = true;
 		boolean stillReading = true;
@@ -78,6 +74,7 @@ public class MySqlDbEngine extends AbstractDbEngine {
 		}
 	}
 
+	
 	private void CloseAllConnections() throws SQLException {
 		connection.getConnection().close();
 		connection.getStatement().close();

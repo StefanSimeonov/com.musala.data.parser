@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.musala.database.parser.model.IDbInputProvider;
 
 /**
- * This class take responsibility to provide the user's input
+ * This class takes responsibility to provide the user's input
  */
 public class MyConsoleInputDbProvider implements IDbInputProvider {
 	private Scanner in = new Scanner(System.in);
@@ -22,10 +22,7 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 		return in.nextLine();
 	}
 
-	/**
-	 * Transfer the given int type of query to enum QueryType type return
-	 * QueryType
-	 */
+	
 	@Override
 	public QueryType getQueryType() {
 		System.out.println(
@@ -47,6 +44,7 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 		return null;
 	}
 
+	@Override
 	public String getQueryTableName() {
 		System.out.print("Enter table name:");
 		return in.nextLine();
@@ -65,6 +63,7 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 
 	}
 
+	@Override
 	public String getPassword() {
 		System.out.print("Please enter password:");
 		return in.nextLine();
@@ -95,6 +94,7 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 
 	}
 
+	@Override
 	public void close() {
 		in.close();
 	}

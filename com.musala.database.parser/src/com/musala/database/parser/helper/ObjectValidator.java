@@ -19,6 +19,7 @@ public class ObjectValidator {
 		if (object == null) {
 			throw new NullPointerException(message);
 		}
+		
 		return object;
 	}
 
@@ -75,6 +76,7 @@ public class ObjectValidator {
 		} catch (SQLException e) {
 			throw new SQLException(message, e);
 		}
+		
 		return result;
 	}
 

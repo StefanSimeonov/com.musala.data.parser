@@ -2,6 +2,10 @@ package com.musala.database.parser.model;
 
 import com.musala.database.parser.model.impl.QueryType;
 
+/**
+ * For providing the input and communicating to the user
+ *
+ */
 public interface IDbInputProvider {
 
 	void visualizeMainMenu();
@@ -10,6 +14,10 @@ public interface IDbInputProvider {
 
 	String getDatabase();
 
+	/**
+	 * Transfer the given int type of query to enum QueryType type return
+	 * QueryType
+	 */
 	QueryType getQueryType();
 
 	String getUserName();

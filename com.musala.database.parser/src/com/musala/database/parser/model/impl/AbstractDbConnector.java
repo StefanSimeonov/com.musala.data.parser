@@ -7,6 +7,11 @@ import java.sql.Statement;
 import com.musala.database.parser.helper.ObjectValidator;
 import com.musala.database.parser.model.IDbConnector;
 
+/**
+ * Doesn't implement the actual connection string. Lets the extending classes do
+ * this job.
+ *
+ */
 public abstract class AbstractDbConnector implements IDbConnector {
 	protected String url;
 	protected String userName;
@@ -35,6 +40,7 @@ public abstract class AbstractDbConnector implements IDbConnector {
 		return password;
 	}
 
+	@Override
 	public Statement getStatement() {
 
 		return statement;
@@ -49,11 +55,28 @@ public abstract class AbstractDbConnector implements IDbConnector {
 		statement = ObjectValidator.checkForSQLStatementException(connection, "Invalid statement creation");
 	}
 
-
+	/**
+	 * Create a proper connection string for XAMPP delivered server
+	 * 
+	 * @param url,
+	 *            database, userName, password
+	 */
 	protected abstract void createConnectionString(String url, String database, String userName, String password)
 			throws SQLException;
-	
+
+	/**
+	 * Connection building method itself
+	 * 
+	 * @return MySQLDatabaseConnector
+	 */
 	protected abstract AbstractDbConnector build(String url, String database) throws SQLException;
-	protected abstract AbstractDbConnector buildWithAdditionalCredentials(String url, String database, String userName, String password) throws SQLException;
+
+	/**
+	 * Connection building method itself with credentials
+	 * 
+	 * @return MySQLDatabaseConnector
+	 */
+	protected abstract AbstractDbConnector buildWithAdditionalCredentials(String url, String database, String userName,
+			String password) throws SQLException;
 
 }

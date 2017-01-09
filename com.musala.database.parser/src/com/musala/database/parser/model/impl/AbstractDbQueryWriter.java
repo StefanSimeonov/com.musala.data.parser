@@ -7,6 +7,9 @@ import com.musala.database.parser.model.IDbConnector;
 import com.musala.database.parser.model.IDbQueryWriter;
 import com.musala.database.parser.model.IQueryable;
 
+/** Add some class variable and constructor type to IdbQueryWriter
+ *
+ */
 public abstract class AbstractDbQueryWriter implements IDbQueryWriter {
 	IDbConnector dbconnector;
 	Statement statement;

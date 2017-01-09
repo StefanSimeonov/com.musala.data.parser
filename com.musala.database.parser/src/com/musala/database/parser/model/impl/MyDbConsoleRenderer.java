@@ -8,7 +8,7 @@ import com.musala.database.parser.model.IDbConnector;
 import com.musala.database.parser.model.IQueryable;
 
 /**
- * This class take responsibility to print all the queries getting from
+ * This class takes responsibility to print all the queries getting from
  * IQueryable object
  *
  */
@@ -18,33 +18,21 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 		super(dbconnector, query);
 	}
 
-	/**
-	 * Print all records in a given table without where clause
-	 */
+	@Override
 	public void printAllRecordsInTable(String dbTable, String... columnNames)
 			throws NullPointerException, SQLException {
 		result = query.getAllRecords(dbTable, statement);
 		resultSetPrinting(columnNames);
 	}
 
-	/**
-	 * Print all records in a given table with additional where clause
-	 * 
-	 * @throws SQLException,
-	 *             NullPointerException
-	 */
+	@Override
 	public void printRecordsById(String dbTable, String id, String... columnNames)
 			throws NullPointerException, SQLException {
 		result = query.getRecordById(dbTable, statement, id);
 		resultSetPrinting(columnNames);
 	}
 
-	/**
-	 * Print all records in a given table without where clause
-	 * 
-	 * @throws SQLException,SchoolClassException,
-	 *             NullPointerException
-	 */
+	@Override
 	public void printRecordsByName(String dbTable, String name, String... columnNames)
 			throws NullPointerException, SQLException, SchoolClassException {
 		ObjectValidator.checkForSchoolClassException(dbTable, "School classes dont have name property");
