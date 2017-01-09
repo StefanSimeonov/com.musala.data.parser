@@ -3,40 +3,39 @@
 ------------------------
 This program is create to transform xml school's data information to simple java objects. This is happening with
 the Java Architecutre for XML Binding [JAXB](http://javatpoint.com/jaxb-tutorial)  which provides a fast and convenient way for bind schemas. The schools information is in format: 
-<pre>
-<code>
 
-   &lt;school name="..."&gt;
-      &lt;students
-         &lt;student referenceNumber="..."&gt;
-            &lt;name&gt;...&lt;/name&gt;
-            &lt;age&gt;...&lt;/age&gt;
-            &lt;facultyNumber&gt;...&lt;/facultyNumber&gt;
-         &lt;/student&gt;
-         &lt;student referenceNumber="...."&gt;
-            &lt;name&gt;...&lt;/name&gt;
-            &lt;age&gt;...&lt;/age&gt;
-            &lt;facultyNumber&gt;...&lt;/facultyNumber&gt;
-         &lt;/student&gt;
-      &lt;/students&gt;
-      &lt;teachers&gt;
-         &lt;teacher referenceNumber="..."&gt;
-            &lt;name&gt;...&lt;/name&gt;
-            &lt;age&gt;...&lt;/age&gt;
-       &lt;/teacher&gt;
-         &lt;teacher referenceNumber="..."&gt;
-            &lt;name>...&lt;/name&gt;
-            &lt;age>...&lt;/age&gt;
-      &lt;/teachers&gt;
-      &lt;schoolClass&gt;
-         &lt;teacherReference&gt;...&lt;/teacherReference&gt;
-         &lt;studentReference&gt;...&lt;/studentReference&gt;
-         &lt;studentReference&gt;...&lt;/studentReference&gt;
-    &lt;/school&gt;
-</pre>
+```xml
+	<school name="...">
+	  <students
+		 <student referenceNumber="...">
+			<name>...</name>
+			<age>...</age>
+			<facultyNumber>...</facultyNumber>
+		 </student>
+		 <student referenceNumber="....">
+			<name>...</name>
+			<age>...</age>
+			<facultyNumber>...</facultyNumber>
+		 </student>
+	  </students>
+	  <teachers>
+		 <teacher referenceNumber="...">
+			<name>...</name>
+			<age>...</age>
+	   </teacher>
+		 <teacher referenceNumber="...">
+			<name>...</name>
+			<age>...</age>
+	  </teachers>
+	  <schoolClass>
+		 <teacherReference>...</teacherReference>
+		 <studentReference>...</studentReference>
+		 <studentReference>...</studentReference>
+	</school>
+```
 
 The java objects **have to** be written with proper **setter** and getter <br /> methods, and proper **annotations**, because of jaxb's parsing <br />requirement.
 The program read this data and after transfer it to <br /> java objects, represent them descriptively in two files. <br />The xml file is givven from a **"resourses"** folder in the project. <br />. It is obligatory to give a path to computer's direktory with a <br /> file name and **<... .txt>** file format, where all information is <br /> going to be stored. Second **<... .property>** file is attached in <br /> the same direktory. Its information is displayed in this way:<br /> 
 <pre>
-&lt;TypeOfSchoolPerson&gt;.&lt;currentClassNumber&gt;.&lt;PersonProperty&gt;=&lt;TheValueOfTheProperty&gt;
+<TypeOfSchoolPerson>.<currentClassNumber>.<PersonProperty>=<TheValueOfTheProperty>
 </pre>
