@@ -1,11 +1,11 @@
-package com.musala.database.parser.model.impl;
+package com.musala.database.web.parser.model.impl;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.musala.database.parser.model.IDbConnector;
-import com.musala.database.parser.model.IDbQueryWriter;
-import com.musala.database.parser.model.IQueryable;
+import com.musala.database.web.parser.model.IDbConnector;
+import com.musala.database.web.parser.model.IDbQueryWriter;
+import com.musala.database.web.parser.model.IQueryable;
 
 /**
  * Add some class variable and constructor type to IdbQueryWriter

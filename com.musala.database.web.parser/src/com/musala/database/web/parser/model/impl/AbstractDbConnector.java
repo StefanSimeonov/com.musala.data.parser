@@ -1,11 +1,11 @@
-package com.musala.database.parser.model.impl;
+package com.musala.database.web.parser.model.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.musala.database.parser.helper.ObjectValidator;
-import com.musala.database.parser.model.IDbConnector;
+import com.musala.database.web.parser.helper.ObjectValidator;
+import com.musala.database.web.parser.model.IDbConnector;
 
 /**
  * Doesn't implement the actual connection string. Lets the extending classes do

@@ -1,4 +1,4 @@
-package com.musala.database.parser.helper;
+package com.musala.database.web.parser.helper;
 
 /**
  * This exception is occurring while the user wants the SchoolClass by

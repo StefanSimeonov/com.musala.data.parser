@@ -1,8 +1,9 @@
-package com.musala.database.parser.model.impl;
+package com.musala.database.web.parser.model.impl;
 
 import java.sql.SQLException;
 
-import com.musala.database.parser.helper.ObjectValidator;
+
+import com.musala.database.web.parser.helper.ObjectValidator;
 
 /**
  * Class that hold in itself the connection and statement for executing a query

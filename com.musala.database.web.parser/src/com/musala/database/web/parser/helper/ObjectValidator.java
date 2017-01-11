@@ -1,4 +1,4 @@
-package com.musala.database.parser.helper;
+package com.musala.database.web.parser.helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.InputMismatchException;
+
+import com.musala.database.web.parser.helper.SchoolClassException;
 
 /**
  * This class is responsible for handle all the exceptions occurred during the

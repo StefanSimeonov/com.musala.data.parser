@@ -1,10 +1,10 @@
-package com.musala.database.parser.model;
+package com.musala.database.web.parser.model;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.musala.database.parser.model.impl.AbstractDbConnector;
+import com.musala.database.web.parser.model.impl.AbstractDbConnector;
 
 /**
  * Requiring the connection and statement in every implementing classes

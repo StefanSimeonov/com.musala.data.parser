@@ -1,11 +1,17 @@
-package com.musala.database.parser.model.impl;
+package com.musala.database.web.parser.model.impl;
 
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 
-import com.musala.database.parser.helper.ObjectValidator;
-import com.musala.database.parser.helper.SchoolClassException;
+import com.musala.database.web.parser.model.impl.AbstractDbEngine;
+import com.musala.database.web.parser.model.impl.MyConsoleInputDbProvider;
+import com.musala.database.web.parser.model.impl.MyDbConsoleRenderer;
+import com.musala.database.web.parser.model.impl.MySqlDbConnector;
+import com.musala.database.web.parser.model.impl.MySqlQueryBuilder;
+import com.musala.database.web.parser.model.impl.QueryType;
+import com.musala.database.web.parser.helper.ObjectValidator;
+import com.musala.database.web.parser.helper.SchoolClassException;
 
 /**
  * The engine, where the initial required classes is stored and instanced for

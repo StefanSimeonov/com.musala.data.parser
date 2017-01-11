@@ -1,9 +1,10 @@
-package com.musala.database.parser.model.impl;
+package com.musala.database.web.parser.model.impl;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.musala.database.parser.model.IDbInputProvider;
+import com.musala.database.web.parser.model.impl.QueryType;
+import com.musala.database.web.parser.model.IDbInputProvider;
 
 /**
  * This class takes responsibility to provide the user's input

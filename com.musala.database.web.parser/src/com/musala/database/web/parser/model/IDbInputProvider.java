@@ -1,6 +1,6 @@
-package com.musala.database.parser.model;
+package com.musala.database.web.parser.model;
 
-import com.musala.database.parser.model.impl.QueryType;
+import com.musala.database.web.parser.model.impl.QueryType;
 
 /**
  * For providing the input and communicating to the user
