@@ -2,7 +2,6 @@ package com.musala.database.web.parser.model.impl;
 
 import java.sql.SQLException;
 
-
 import com.musala.database.web.parser.helper.ObjectValidator;
 
 /**

@@ -1,6 +1,7 @@
 package com.musala.database.web.parser.model.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.musala.database.web.parser.model.IDbConnector;
@@ -32,4 +33,8 @@ public abstract class AbstractDbQueryWriter implements IDbQueryWriter {
 	public IQueryable getQuery() {
 		return query;
 	}
+
+	protected abstract void resultSetPrinting(String... columnNames) throws NullPointerException, SQLException;
+
+	protected abstract void printTableRow(String[] columnNames) throws SQLException;
 }

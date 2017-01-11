@@ -22,19 +22,20 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 		System.out.print("Please enter server name:");
 		return in.nextLine();
 	}
+
 	@Override
 	public QueryType getQueryType() {
 		System.out.println(
 				" Your can choose from 3 type of queries: \n 1. Get all records from a given table \n 2. Get records from a table by given Id. \n 3.Get All records from a given table by name. \n 4. Close");
 		System.out.print("Enter your choice:");
-		int choice ;
-		try{
-	choice = in.nextInt();
-		}catch(InputMismatchException e){
+		int choice;
+		try {
+			choice = in.nextInt();
+		} catch (InputMismatchException e) {
 			in.nextLine();
 			throw new InputMismatchException("Incorrect query");
 		}
-		 in.nextLine();
+		in.nextLine();
 
 		switch (choice) {
 		case 1:

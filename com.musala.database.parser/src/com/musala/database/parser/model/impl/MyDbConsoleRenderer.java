@@ -47,7 +47,7 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 	 * @throws NullPointerException
 	 * @throws SQLException
 	 */
-	private void resultSetPrinting(String... columnNames) throws NullPointerException, SQLException {
+	protected void resultSetPrinting(String... columnNames) throws NullPointerException, SQLException {
 		ObjectValidator.checkIfObjectIsNull(result, "Wrong property name or database table");
 		result = ObjectValidator.checkAndMoveCursorToNextPosition(result, "Wrong resultset cursor translation");
 		printTableRow(columnNames);
@@ -62,7 +62,7 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 	 * @param columnNames
 	 * @throws SQLException
 	 */
-	private void printTableRow(String[] columnNames) throws SQLException {
+	protected void printTableRow(String[] columnNames) throws SQLException {
 		for (String currentColumnName : columnNames) {
 			String queryResult = ObjectValidator.checkForPropertyNameValidaty(result, currentColumnName,
 					"Wrong table's column name");

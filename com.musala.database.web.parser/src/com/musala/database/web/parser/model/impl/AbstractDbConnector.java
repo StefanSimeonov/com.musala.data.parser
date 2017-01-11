@@ -53,6 +53,6 @@ public abstract class AbstractDbConnector implements IDbConnector {
 
 	protected void createStatement() throws SQLException {
 		statement = ObjectValidator.checkForSQLStatementException(connection, "Invalid statement creation");
-	}	
+	}
 
 }

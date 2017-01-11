@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.musala.database.web.parser.model.impl.MySqlDbConnector;
+import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
 
 /**
  * Servlet implementation class ServletGetter
@@ -36,46 +37,11 @@ public class ServletGetter extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("Server name").equals("alex")) {
-			response.sendRedirect("http://localhost:8080/com.musala.database.web.parser/Servlet?error=true");
-		} else {
-			String serverName = request.getParameter("Server name");
-			String databaseName = request.getParameter("Database name");
-			String userName = request.getParameter("Username");
-			String password = request.getParameter("Password");
-			response.getWriter().println("<html><body>");
-			response.getWriter().println("<p>" + "The name of the server is:" + serverName + "</p>");
-			response.getWriter().println("<p>" + "The name of the database is:" + databaseName + "</p>");
-			response.getWriter().println("<p>" + "The name of the user is:" + userName + "</p>");
-			response.getWriter().println("<p>" + "The password is:" + password + "</p>");
-			// response.getWriter().println("</body></html>");
-			// try {
-			// Class.forName("com.mysql.jdbc.Driver");
-			// Connection con = DriverManager.getConnection("jdbc:mysql://" +
-			// serverName + "/" + databaseName, userName,
-			// password);
-			// Statement st = con.createStatement();
-			// ResultSet res = st.executeQuery("select * from schools");
-			// while(res.next()){
-			// String name=res.getString("name");
-			// response.getWriter().println("<p>" +name +
-			// "</p>");
-			// }
-			// response.getWriter().println("</body></html>");
+		MySqlWebDbEngine engine = MySqlWebDbEngine.getInstance(response, request);
+		engine.initialize();
+		response.getWriter().append(
+				"<html><body><form action='SecondGetter' method='GET'><p>Enter type of query your want: </p><select name='queriesType'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById'>getRecordById</option><option value='getRecordByName' >getRecordByName</option><option value='closeTheQuery'>close</option></select><p>Enter table you want: </p><select name='tableName'><option value='schools'>schools</option><option value='schoolclasses'>school classes</option><option value='students' >students</option><option value='teachers' >teachers</option></select><p>Please enter the record's propeties you want, splited by space: </p><input type='text' name='properties'> <br><br><input type='submit'></form>");
 
-			//
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				MySqlDbConnector con = new MySqlDbConnector();
-				con.buildWithAdditionalCredentials(serverName, databaseName, userName, password);
-
-			} catch (ClassNotFoundException e) {
-
-			} catch (SQLException e) {
-				response.sendRedirect("http://localhost:8080/com.musala.database.web.parser/Servlet?error=true&errorMessage=sqlbadconnection");
-
-			}
-		}
 	}
 
 	/**

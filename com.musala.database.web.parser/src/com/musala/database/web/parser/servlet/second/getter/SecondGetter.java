@@ -1,4 +1,4 @@
-package com.musala.database.web.parser.servlet;
+package com.musala.database.web.parser.servlet.second.getter;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
+
 /**
- * Servlet implementation class Servlet
+ * Servlet implementation class SecondGetter
  */
-@WebServlet("/Servlet")
-public class Servlet extends HttpServlet {
+@WebServlet("/SecondGetter")
+public class SecondGetter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Servlet() {
+	public SecondGetter() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -28,12 +30,8 @@ public class Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		boolean errorParam = Boolean.valueOf(request.getParameter("error"));
-		String errorMessage = request.getParameter("errorMessage");
-		response.getWriter()
-				.append("<html><body><form id='firstForm' action='ServletGetter' method='GET'>Please enter the server name:<br><input type='text' name='Server name' value='localhost'><br> Please enter database name:<br><input type='text' name='Database name' value='schools'><br>Please enter username:<br><input type='text' name='Username' value='root'><br>Please enter user's password:<br><input type='text' name='Password' value=''><br><br>"
-						+ (errorParam == true ? "<p style=\"color:red;\">" + errorMessage + "</p>" : "")
-						+ "<input type='submit' value='Submit'>");
+		MySqlWebDbEngine engine = MySqlWebDbEngine.getInstance(response, request);
+		engine.startQuering();
 	}
 
 	/**
