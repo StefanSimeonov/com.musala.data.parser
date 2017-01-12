@@ -22,14 +22,14 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 	public void printAllRecordsInTable(String dbTable, String... columnNames)
 			throws NullPointerException, SQLException {
 		result = query.getAllRecords(dbTable, statement);
-		resultSetPrinting(columnNames);
+		printResultSet(columnNames);
 	}
 
 	@Override
 	public void printRecordsById(String dbTable, String id, String... columnNames)
 			throws NullPointerException, SQLException {
 		result = query.getRecordById(dbTable, statement, id);
-		resultSetPrinting(columnNames);
+		printResultSet(columnNames);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 			throws NullPointerException, SQLException, SchoolClassException {
 		ObjectValidator.checkForSchoolClassException(dbTable, "School classes dont have name property");
 		result = query.getRecordByName(dbTable, statement, name);
-		resultSetPrinting(columnNames);
+		printResultSet(columnNames);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 	 * @throws NullPointerException
 	 * @throws SQLException
 	 */
-	protected void resultSetPrinting(String... columnNames) throws NullPointerException, SQLException {
+	protected void printResultSet(String... columnNames) throws NullPointerException, SQLException {
 		ObjectValidator.checkIfObjectIsNull(result, "Wrong property name or database table");
 		result = ObjectValidator.checkAndMoveCursorToNextPosition(result, "Wrong resultset cursor translation");
 		printTableRow(columnNames);
@@ -69,5 +69,4 @@ public class MyDbConsoleRenderer extends AbstractDbQueryWriter {
 			System.out.println(queryResult);
 		}
 	}
-
 }

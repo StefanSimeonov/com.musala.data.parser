@@ -15,5 +15,4 @@ public enum QueryType {
 	public Integer getValue() {
 		return this.value;
 	}
-
 };

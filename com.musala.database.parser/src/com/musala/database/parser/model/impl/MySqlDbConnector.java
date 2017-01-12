@@ -14,11 +14,6 @@ public class MySqlDbConnector extends AbstractDbConnector {
 	private static final String MYSQL_CONNECTION_STRING_PREFIX = "jdbc:mysql://";
 
 	@Override
-	public String getConServerName() {
-		return MYSQL_CONNECTION_STRING_PREFIX + url + "/" + database;
-	}
-
-	@Override
 	public MySqlDbConnector build(String url, String database) throws SQLException {
 		this.url = url;
 		this.database = database;
@@ -45,4 +40,8 @@ public class MySqlDbConnector extends AbstractDbConnector {
 		return this;
 	}
 
+	@Override
+	public String getConServerName() {
+		return MYSQL_CONNECTION_STRING_PREFIX + url + "/" + database;
+	}
 }

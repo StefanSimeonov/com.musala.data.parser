@@ -8,11 +8,51 @@ import com.musala.database.web.parser.model.impl.QueryType;
  */
 public interface IDbInputProvider {
 
-	void visualizeMainMenu();
+	/**
+	 * close the accomplished connection
+	 */
+	void close();
 
+	/**
+	 * Get the server's connection name and return it as string representation
+	 * 
+	 * @return String
+	 */
 	String getConnection();
 
+	/**
+	 * Get the server's database and return it as string representation
+	 * 
+	 * @return String
+	 */
 	String getDatabase();
+
+	/**
+	 * Send a greeting message to the user
+	 */
+	void getGreeting();
+
+	/**
+	 * Get the id from the user and return it as string representation
+	 * 
+	 * @return String
+	 */
+	String getNeedableId();
+
+	/**
+	 * Get the name from database records in some table and return it as string
+	 * representation
+	 * 
+	 * @return String
+	 */
+	String getNeedableName();
+
+	/**
+	 * Get the server's password and return it as string representation
+	 * 
+	 * @return String
+	 */
+	String getPassword();
 
 	/**
 	 * Transfer the given int type of query to enum QueryType type return
@@ -20,20 +60,33 @@ public interface IDbInputProvider {
 	 */
 	QueryType getQueryType();
 
-	String getUserName();
-
-	String getPassword();
-
+	/**
+	 * Get the table name from some server's database and return it as string
+	 * representation
+	 * 
+	 * @return String
+	 */
 	String getQueryTableName();
 
+	/**
+	 * Get the columns name from table in server's database and return it as
+	 * string representation
+	 * 
+	 * @return String
+	 */
 	String[] getRecordPropertiesName();
 
-	String getNeedableId();
+	/**
+	 * Get the server's username and return it as string representation
+	 * 
+	 * @return String
+	 */
 
-	String getNeedableName();
+	String getUserName();
 
-	void getGreeting();
-
-	void close();
-	
+	/**
+	 * Visualize the main menu to the user
+	 * 
+	 */
+	void visualizeMainMenu();
 }

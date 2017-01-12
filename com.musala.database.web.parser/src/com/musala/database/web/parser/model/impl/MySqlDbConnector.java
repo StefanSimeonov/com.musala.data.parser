@@ -44,5 +44,4 @@ public class MySqlDbConnector extends AbstractDbConnector {
 
 		return this;
 	}
-
 }

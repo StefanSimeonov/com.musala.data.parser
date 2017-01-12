@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.musala.database.web.parser.helper.ObjectValidator;
+import com.musala.database.web.parser.helper.RedirectURLBuilder;
 import com.musala.database.web.parser.helper.SchoolClassException;
 
 /**
  * The engine, where the initial required classes is stored and instanced for
  * the purpose of the program. The class where all cycling process like reading
- * queries from the input starts.
+ * queries from the input starts. SINGLETON PATTERN USAGE
  * 
  *
  */
@@ -22,10 +23,16 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 	private HttpServletResponse response;
 	private HttpServletRequest request;
 	public static boolean secondQueryInvoking = false;
-	private final String connectionDriversAsString = "com.mysql.jdbc.Driver";
-	private String redirectWebPage = "http://localhost:8080/com.musala.database.web.parser/Servlet?error=true&errorMessage=";
+	private final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
+	private String REDIRECT_WEB_PAGE = RedirectURLBuilder.getPath();
 	private static MySqlWebDbEngine instance;
 
+	/**
+	 * The constructor for the singleton pattern usage
+	 * 
+	 * @param response
+	 * @param request
+	 */
 	private MySqlWebDbEngine(HttpServletResponse response, HttpServletRequest request) {
 		this.response = response;
 		this.request = request;
@@ -35,22 +42,23 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 		if (instance == null) {
 			instance = new MySqlWebDbEngine(response, request);
 			return instance;
+
 		} else {
 			instance.response = response;
 			instance.request = request;
 			return instance;
-		}
 
+		}
 	}
 
 	@Override
 	public void initialize() {
 
 		try {
-			ObjectValidator.checkForDatabaseDrivers(connectionDriversAsString);
+			ObjectValidator.checkForDatabaseDrivers(CONNECTION_DRIVERS_AS_STRING);
 		} catch (ClassNotFoundException ex) {
 			try {
-				response.sendRedirect(redirectWebPage + ex.getMessage());
+				response.sendRedirect(REDIRECT_WEB_PAGE + ex.getMessage());
 			} catch (IOException e) {
 				// fictive try-catch block for the needs of sendredirect method
 				// exception requirement
@@ -70,14 +78,13 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			this.writer = new MyDbWebQueryRenderer(connection, query, response);
 		} catch (SQLException sq) {
 			try {
-				response.sendRedirect(redirectWebPage + sq.getMessage());
+				response.sendRedirect(REDIRECT_WEB_PAGE + sq.getMessage());
 			} catch (IOException e) {
 				// fictive try-catch block for the needs of sendredirect
 				// method
 				// exception requirement
 			}
 		}
-
 	}
 
 	@Override
@@ -94,22 +101,6 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 		}
 	}
 
-	private void CloseAllConnections() throws SQLException {
-		connection.getConnection().close();
-		connection.getStatement().close();
-		input.close();
-		errorWriter.close();
-
-	}
-
-	/**
-	 * Switch between every query type and execute the exact query commands.
-	 * Handle all the occurred exceptions occurred meanwhile and don't pass
-	 * while proper input isn't given
-	 * 
-	 * @param typeOfQuery-there
-	 *            are currently 4 types of queries
-	 */
 	private void executeQuery(QueryType typeOfQuery) {
 
 		try {
@@ -145,20 +136,29 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 		} catch (SQLException sqlex) {
 			try {
-				response.sendRedirect(redirectWebPage + sqlex.getMessage());
-				secondQueryInvoking = false; 
+				response.sendRedirect(REDIRECT_WEB_PAGE + sqlex.getMessage());
+				secondQueryInvoking = false;
 			} catch (IOException e) {
 				// fictive
 			}
 		} catch (SchoolClassException sc) {
 			try {
-				response.sendRedirect(redirectWebPage + sc.getMessage());
+				response.sendRedirect(REDIRECT_WEB_PAGE + sc.getMessage());
 			} catch (IOException e) {
 				// fictive
 			}
 		}
 
 	}
+
+	/**
+	 * Switch between every query type and execute the exact query commands.
+	 * Handle all the occurred exceptions occurred meanwhile and don't pass
+	 * while proper input isn't given
+	 * 
+	 * @param typeOfQuery-there
+	 *            are currently 4 types of queries
+	 */
 
 	private void fillTheResponse(String currentTable, String[] currentProperties, QueryType typeOfQuery,
 			HttpServletResponse response2) {

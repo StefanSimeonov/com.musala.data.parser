@@ -9,6 +9,12 @@ public interface IQueryable {
 	/**
 	 * Execute this specific query and returns the result of it as a iterable
 	 * resultSet
+	 */
+	ResultSet getAllRecords(String dbTable, Statement statement) throws SQLException, NullPointerException;
+
+	/**
+	 * Execute this specific query and returns the result of it as a iterable
+	 * resultSet
 	 * 
 	 * @return ResultSet
 	 */
@@ -20,10 +26,4 @@ public interface IQueryable {
 	 */
 	ResultSet getRecordByName(String dbTable, Statement statement, String name)
 			throws SQLException, NullPointerException;
-
-	/**
-	 * Execute this specific query and returns the result of it as a iterable
-	 * resultSet
-	 */
-	ResultSet getAllRecords(String dbTable, Statement statement) throws SQLException, NullPointerException;
 }

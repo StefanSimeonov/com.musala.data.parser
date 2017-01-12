@@ -21,18 +21,13 @@ public abstract class AbstractDbConnector implements IDbConnector {
 	protected Connection connection;
 
 	@Override
-	public String getURL() {
-		return url;
+	public Connection getConnection() {
+		return connection;
 	}
 
 	@Override
 	public String getDatabase() {
 		return database;
-	}
-
-	@Override
-	public String getUserName() {
-		return userName;
 	}
 
 	@Override
@@ -47,12 +42,21 @@ public abstract class AbstractDbConnector implements IDbConnector {
 	}
 
 	@Override
-	public Connection getConnection() {
-		return connection;
+	public String getURL() {
+		return url;
 	}
 
+	@Override
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * Accomplish a statement with a database
+	 * 
+	 * @throws SQLException
+	 */
 	protected void createStatement() throws SQLException {
 		statement = ObjectValidator.checkForSQLStatementException(connection, "Invalid statement creation");
-	}	
-
+	}
 }

@@ -17,5 +17,4 @@ public abstract class AbstractDbEngine implements IDbEngine {
 	protected IQueryable query;
 	protected IDbConnector connection;
 	protected PrintWriter errorWriter;
-
 }

@@ -2,8 +2,6 @@ package com.musala.database.web.parser.model;
 
 import java.sql.SQLException;
 
-import com.musala.database.web.parser.model.IDbConnector;
-import com.musala.database.web.parser.model.IQueryable;
 import com.musala.database.web.parser.helper.SchoolClassException;
 
 /**
@@ -12,6 +10,20 @@ import com.musala.database.web.parser.helper.SchoolClassException;
  *
  */
 public interface IDbQueryWriter {
+
+	/**
+	 * Retrieve the IDbConnector object
+	 * 
+	 * @return IDbConnector
+	 */
+	IDbConnector getConnector();
+
+	/**
+	 * Retrieve the IQueryable object
+	 * 
+	 * @return IQueryable
+	 */
+	IQueryable getQuery();
 
 	/**
 	 * Print all records in a given table without where clause
@@ -34,9 +46,4 @@ public interface IDbQueryWriter {
 	 */
 	void printRecordsByName(String dbTable, String name, String... columnNames)
 			throws SQLException, NullPointerException, SchoolClassException;
-
-	IDbConnector getConnector();
-
-	IQueryable getQuery();
-
 }

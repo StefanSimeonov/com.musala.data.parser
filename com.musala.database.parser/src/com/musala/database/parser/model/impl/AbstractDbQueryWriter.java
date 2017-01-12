@@ -33,6 +33,22 @@ public abstract class AbstractDbQueryWriter implements IDbQueryWriter {
 	public IQueryable getQuery() {
 		return query;
 	}
-	protected abstract void resultSetPrinting(String... columnNames) throws NullPointerException, SQLException;
+
+	/**
+	 * Print the resultSet with brought comunNames as String array. Iterate
+	 * trough all table's rows.
+	 * 
+	 * @param columnNames
+	 * @throws NullPointerException
+	 * @throws SQLException
+	 */
+	protected abstract void printResultSet(String... columnNames) throws NullPointerException, SQLException;
+
+	/**
+	 * Getting the all results from a current table row
+	 * 
+	 * @param columnNames
+	 * @throws SQLException
+	 */
 	protected abstract void printTableRow(String[] columnNames) throws SQLException;
 }

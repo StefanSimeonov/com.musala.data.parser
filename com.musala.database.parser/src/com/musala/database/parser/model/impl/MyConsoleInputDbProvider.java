@@ -12,14 +12,49 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 	private Scanner in = new Scanner(System.in);
 
 	@Override
-	public void visualizeMainMenu() {
-		System.out.println("Hello to database-java parser ");
-
+	public void close() {
+		in.close();
 	}
 
 	@Override
 	public String getConnection() {
 		System.out.print("Please enter server name:");
+		return in.nextLine();
+	}
+
+	@Override
+	public String getDatabase() {
+		System.out.print(" Please enter database name:");
+		return in.nextLine();
+	}
+
+	@Override
+	public void getGreeting() {
+		System.out.println("Thank you. Have a nice day.");
+	}
+
+	@Override
+	public String getNeedableId() {
+		System.out.print("Enter the id you want:");
+		String Id = in.nextLine();
+		return Id;
+	}
+
+	@Override
+	public String getNeedableName() {
+		System.out.print("Enter the name you want");
+		return in.nextLine();
+	}
+
+	@Override
+	public String getPassword() {
+		System.out.print("Please enter password:");
+		return in.nextLine();
+	}
+
+	@Override
+	public String getQueryTableName() {
+		System.out.print("Enter table name:");
 		return in.nextLine();
 	}
 
@@ -51,58 +86,19 @@ public class MyConsoleInputDbProvider implements IDbInputProvider {
 	}
 
 	@Override
-	public String getQueryTableName() {
-		System.out.print("Enter table name:");
-		return in.nextLine();
-	}
-
-	@Override
-	public String getDatabase() {
-		System.out.print(" Please enter database name:");
-		return in.nextLine();
-	}
-
-	@Override
-	public String getUserName() {
-		System.out.print("Please enter username:");
-		return in.nextLine();
-
-	}
-
-	@Override
-	public String getPassword() {
-		System.out.print("Please enter password:");
-		return in.nextLine();
-	}
-
-	@Override
 	public String[] getRecordPropertiesName() {
 		System.out.print("Please enter the record's propeties you want, splited by space:");
 		return in.nextLine().split(" ");
 	}
 
 	@Override
-	public String getNeedableId() {
-		System.out.print("Enter the id you want:");
-		String Id = in.nextLine();
-		return Id;
-	}
-
-	@Override
-	public String getNeedableName() {
-		System.out.print("Enter the name you want");
+	public String getUserName() {
+		System.out.print("Please enter username:");
 		return in.nextLine();
 	}
 
 	@Override
-	public void getGreeting() {
-		System.out.println("Thank you. Have a nice day.");
-
+	public void visualizeMainMenu() {
+		System.out.println("Hello to database-java parser ");
 	}
-
-	@Override
-	public void close() {
-		in.close();
-	}
-
 }

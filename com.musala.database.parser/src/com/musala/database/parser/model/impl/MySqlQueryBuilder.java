@@ -17,6 +17,14 @@ public class MySqlQueryBuilder implements IQueryable {
 	private static final String SELECT_PART_OF_QUERY = "select * from ";
 
 	@Override
+	public ResultSet getAllRecords(String dbTable, Statement statement) throws NullPointerException, SQLException {
+		String query = SELECT_PART_OF_QUERY + dbTable;
+		ResultSet result = ObjectValidator.checkForSQLQuery(query, statement);
+
+		return result;
+	}
+
+	@Override
 	public ResultSet getRecordById(String dbTable, Statement statement, String id)
 			throws NullPointerException, SQLException {
 
@@ -34,13 +42,4 @@ public class MySqlQueryBuilder implements IQueryable {
 
 		return result;
 	}
-
-	@Override
-	public ResultSet getAllRecords(String dbTable, Statement statement) throws NullPointerException, SQLException {
-		String query = SELECT_PART_OF_QUERY + dbTable;
-		ResultSet result = ObjectValidator.checkForSQLQuery(query, statement);
-
-		return result;
-	}
-
 }

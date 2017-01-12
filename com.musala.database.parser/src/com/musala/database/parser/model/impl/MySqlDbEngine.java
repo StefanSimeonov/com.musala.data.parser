@@ -83,8 +83,8 @@ public class MySqlDbEngine extends AbstractDbEngine {
 
 	/**
 	 * Switch between every query type and execute the exact query commands.
-	 * Handle all the occurred exceptions occurred meanwhile and don't pass
-	 * while proper input isn't given
+	 * Handle all the exceptions occurred meanwhile and don't pass while proper
+	 * input isn't given
 	 * 
 	 * @param typeOfQuery-there
 	 *            are currently 4 types of queries
@@ -146,7 +146,7 @@ public class MySqlDbEngine extends AbstractDbEngine {
 			} catch (InputMismatchException e) {
 				errorWriter.println(e.getMessage());
 				errorWriter.flush();
-				
+
 			}
 
 		}

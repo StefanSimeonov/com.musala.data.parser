@@ -31,7 +31,7 @@ public class Servlet extends HttpServlet {
 		boolean errorParam = Boolean.valueOf(request.getParameter("error"));
 		String errorMessage = request.getParameter("errorMessage");
 		response.getWriter()
-				.append("<html><body><form id='firstForm' action='ServletGetter' method='GET'>Please enter the server name:<br><input type='text' name='Server name' value='localhost'><br> Please enter database name:<br><input type='text' name='Database name' value='schools'><br>Please enter username:<br><input type='text' name='Username' value='root'><br>Please enter user's password:<br><input type='text' name='Password' value=''><br><br>"
+				.append("<html><body><form id='firstForm' action='ServletGetter' method='GET'>Please enter the server name:<br><input type='text' name='ServerName' value='localhost'><br> Please enter database name:<br><input type='text' name='DatabaseName' value='schools'><br>Please enter username:<br><input type='text' name='Username' value='root'><br>Please enter user's password:<br><input type='text' name='Password' value=''><br><br>"
 						+ (errorParam == true ? "<p style=\"color:red;\">" + errorMessage + "</p>" : "")
 						+ "<input type='submit' value='Submit'>");
 	}

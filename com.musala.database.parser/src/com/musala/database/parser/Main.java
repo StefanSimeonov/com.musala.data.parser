@@ -14,10 +14,6 @@ public class Main {
 
 		IDbEngine engine = new MySqlDbEngine();
 		engine.initialize();
-		engine.startQuering();
-		
+		engine.startQuering();		
 	}
-	
-	
-
 }

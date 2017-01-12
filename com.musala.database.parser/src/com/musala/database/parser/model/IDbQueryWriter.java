@@ -10,6 +10,19 @@ import com.musala.database.parser.helper.SchoolClassException;
  *
  */
 public interface IDbQueryWriter {
+	/**
+	 * Retrieve the IDbConnector object
+	 * 
+	 * @return IDbConnector
+	 */
+	IDbConnector getConnector();
+
+	/**
+	 * Retrieve the IQueryable object
+	 * 
+	 * @return IQueryable
+	 */
+	IQueryable getQuery();
 
 	/**
 	 * Print all records in a given table without where clause
@@ -32,9 +45,4 @@ public interface IDbQueryWriter {
 	 */
 	void printRecordsByName(String dbTable, String name, String... columnNames)
 			throws SQLException, NullPointerException, SchoolClassException;
-
-	IDbConnector getConnector();
-
-	IQueryable getQuery();
-
 }
