@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.InputMismatchException;
 
-import com.musala.database.web.parser.helper.SchoolClassException;
-
 /**
  * This class is responsible for handle all the exceptions occurred during the
  * working process and rethrow them with a proper exceptions message

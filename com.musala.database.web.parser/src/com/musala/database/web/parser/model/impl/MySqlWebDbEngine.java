@@ -2,7 +2,6 @@ package com.musala.database.web.parser.model.impl;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.InputMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,11 +19,12 @@ import com.musala.database.web.parser.helper.SchoolClassException;
  */
 public class MySqlWebDbEngine extends AbstractDbEngine {
 
+	private static final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
+	private static final String REDIRECT_WEB_PAGE = RedirectURLBuilder.getPath();
+
 	private HttpServletResponse response;
 	private HttpServletRequest request;
 	public static boolean secondQueryInvoking = false;
-	private final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
-	private String REDIRECT_WEB_PAGE = RedirectURLBuilder.getPath();
 	private static MySqlWebDbEngine instance;
 
 	/**
@@ -53,7 +53,6 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 	@Override
 	public void initialize() {
-
 		try {
 			ObjectValidator.checkForDatabaseDrivers(CONNECTION_DRIVERS_AS_STRING);
 		} catch (ClassNotFoundException ex) {
@@ -181,6 +180,10 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 	}
 
+	/** Build static html depending on query type
+	 * @param typeOfQuery
+	 * @return String
+	 */
 	private String searchForQueryTypeName(QueryType typeOfQuery) {
 		switch (typeOfQuery.getValue()) {
 		case 2:
@@ -191,6 +194,10 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 		return null;
 	}
 
+	/** Build static html depending on table name
+	 * @param currentTable
+	 * @return String
+	 */
 	private String searchForTableName(String currentTable) {
 		switch (currentTable) {
 		case "schools":

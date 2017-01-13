@@ -1,7 +1,7 @@
 # ``Database-Console program``
 ### &nbsp;  &nbsp; &nbsp; &nbsp;console input and output rendering
 ------------------------
-This program is create to communicate between relational database and java's console, as showing the givin database table and his own columns consecutively. The user interface is asking for every step, from database server name, to each simply table's column name and choosen command on it.<br/>
+This program is create to communicate between relational database and java's console, as showing the giving database table and his own columns consecutively. The user interface is asking for every step, from database server name, to each simply table's column name and chosen command on it.<br/>
 <li>**In our particular implementation:** <br/>
 We were using console rendering to all information. The input stream is also given by the java's console.
 **XAMPP**, free and open source cross-platform web server providing our working MySQL server, where database has been set. The graphic interface for creating,altering and etc. the base is **HeidiSQL**. The connection string is associate with this server.
@@ -37,5 +37,7 @@ Our base is schools relationship model. Each school has many school classes. In 
 <li>schoolClassId:int-foreign key to schoolclasses table
 </ol>
 **Pay Attention: Before using this program ensure that XAMPP MySQL server is turned on and mysql connector jar file is referenced in project library!**
+
+Possible extension points: addition of unit tests.
 
 

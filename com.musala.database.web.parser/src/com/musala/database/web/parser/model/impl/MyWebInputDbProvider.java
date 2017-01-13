@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.musala.database.web.parser.helper.StringConstants;
 import com.musala.database.web.parser.model.IDbInputProvider;
-import com.sun.javafx.binding.StringConstant;
 
 public class MyWebInputDbProvider implements IDbInputProvider {
 	private HttpServletRequest request;
