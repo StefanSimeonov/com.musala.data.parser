@@ -24,8 +24,11 @@ import com.musala.xml.parser.model.Teacher;
  */
 public class Main {
 
-	/** The initialization method for the program
-	 * @param args- doesnt use this arguments
+	/**
+	 * The initialization method for the program
+	 * 
+	 * @param args-
+	 *            doesnt use this arguments
 	 * @throws IOException
 	 * @throws JAXBException
 	 */
@@ -33,19 +36,23 @@ public class Main {
 
 		ClassLoader classload = Main.class.getClassLoader();
 		File configFile = new File(classload.getResource(Constants.XML_EXTENTION_FILE_PATH).getFile());
-		JAXBContext jaxb = JAXBContext.newInstance(SchoolListWrapper.class); Unmarshaller jaxbUnmarsheller = jaxb.createUnmarshaller();
+		JAXBContext jaxb = JAXBContext.newInstance(SchoolListWrapper.class);
+		Unmarshaller jaxbUnmarsheller = jaxb.createUnmarshaller();
 		SchoolListWrapper schools = (SchoolListWrapper) jaxbUnmarsheller.unmarshal(configFile);
 		PrintSchools(schools);
 	}
 
-	/** Print the information for every school, readed from the xml file
+	/**
+	 * Print the information for every school, readed from the xml file
+	 * 
 	 * @param schools
 	 */
 	protected static void PrintSchools(SchoolListWrapper schools) {
 		int numberOfSchools = schools.getSchools().size();
 		for (int i = 0; i < numberOfSchools; i++) {
 			School currentSchool = schools.getSchools().get(i);
-			String schoolNumAsString = turnClassNumberIntoText(i).toString(); int numberOfClasses = currentSchool.getSchoolClasses().size();
+			String schoolNumAsString = turnClassNumberIntoText(i).toString();
+			int numberOfClasses = currentSchool.getSchoolClasses().size();
 			System.out.printf(MessageProvider.STRING_SCHOOLS_INFO.getValue(), schoolNumAsString,
 					currentSchool.getName(),
 					numberOfClasses > 1 ? Constants.PLURAL_BE_VERB_AS_STRING : Constants.SINGULAR_BE_VERB_AS_STRING,
@@ -54,7 +61,9 @@ public class Main {
 		}
 	}
 
-	/** Count number of classes for every given school
+	/**
+	 * Count number of classes for every given school
+	 * 
 	 * @param myschool
 	 * @param numberOfClasses
 	 */
@@ -65,7 +74,9 @@ public class Main {
 		}
 	}
 
-	/**Print the current class with all students in it
+	/**
+	 * Print the current class with all students in it
+	 * 
 	 * @param myschool
 	 * @param currentClassNum
 	 */
@@ -84,7 +95,9 @@ public class Main {
 		}
 	}
 
-	/**Print teacher of the class 
+	/**
+	 * Print teacher of the class
+	 * 
 	 * @param myschool
 	 * @param currentClassNum
 	 */
@@ -96,7 +109,10 @@ public class Main {
 				currentTeacher.getAge());
 	}
 
-	/**Depending on what type of object is given, search the corresponding reference 
+	/**
+	 * Depending on what type of object is given, search the corresponding
+	 * reference
+	 * 
 	 * @param objectReference
 	 * @param myschool
 	 * @param typeOfPerson
@@ -125,7 +141,9 @@ public class Main {
 
 	}
 
-	/** Tranfer number of current class into ClassNumberText representation
+	/**
+	 * Tranfer number of current class into ClassNumberText representation
+	 * 
 	 * @param numberOfClass
 	 * @return ClassNumberText
 	 */
