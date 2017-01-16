@@ -111,7 +111,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				break;
 			}
 			case 2: {
-				if (secondQueryInvoking == false) {
+				if (!secondQueryInvoking) {
 					fillTheResponse(currentTable, currentProperties, typeOfQuery, response);
 					secondQueryInvoking = true;
 				} else {
@@ -121,7 +121,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				break;
 			}
 			case 3: {
-				if (secondQueryInvoking == false) {
+				if (!secondQueryInvoking) {
 					fillTheResponse(currentTable, currentProperties, typeOfQuery, response);
 					secondQueryInvoking = true;
 
