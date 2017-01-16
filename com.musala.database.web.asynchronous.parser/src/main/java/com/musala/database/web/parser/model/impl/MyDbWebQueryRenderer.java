@@ -2,6 +2,7 @@ package com.musala.database.web.parser.model.impl;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 
 	private HttpServletResponse response;
 	private String returnAnswear = "";
+	private HashMap<String, String> repoForJsonCreation = new HashMap<>();
 
 	public MyDbWebQueryRenderer(IDbConnector dbconnector, IQueryable query, HttpServletResponse response) {
 		super(dbconnector, query);
@@ -50,14 +52,16 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 		result = ObjectValidator.checkAndMoveCursorToNextPosition(result, "Wrong resultset cursor translation");
 
 		printTableRow(columnNames);
-		returnAnswear+=",";
+		returnAnswear += ",";
 		while (result.next()) {
 			printTableRow(columnNames);
-			returnAnswear+=",";
+			returnAnswear += ",";
 		}
-		String respMessage = new JsonMaker().convertAnswear(returnAnswear.substring(0, returnAnswear.length()-1), false);
+		repoForJsonCreation.put("status", "false");
+		repoForJsonCreation.put("message", returnAnswear.substring(0, returnAnswear.length() - 1));
+		String json = com.musala.database.web.parser.model.ui.JsonMaker.build("answear", repoForJsonCreation);
 		try {
-			response.getWriter().println(respMessage);
+			response.getWriter().println(json);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

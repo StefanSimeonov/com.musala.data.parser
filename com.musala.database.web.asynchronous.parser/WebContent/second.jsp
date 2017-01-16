@@ -5,22 +5,23 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Insert title here</title>
-		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/scripts/constants.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("form").submit(function(event) {
 					event.preventDefault();
-					var queriesType = $("select[name='queriesType']").val();
-					var tableName = $("select[name='tableName']").val();
-					var properties = $("input[name = 'properties']").val();
+					var queriesType = $(select_queries_type).val();
+					var tableName = $(select_table_name).val();
+					var properties = $(input_properties).val();
 					$.ajax({
-						type : 'POST',
-						url : 'AjaxController',
+						type : HTTP_TYPE_POST,
+						url : controller_url,
 						data : {
 							queriesType : queriesType,
 							tableName : tableName,
 							properties : properties,
-							funcRequest : "second",
+							funcRequest : function_request_second,
 						},
 						success : function(result) {
 							console.log(result.status);
@@ -28,15 +29,15 @@
 								$("form").empty();
 								$("#answear").text(result.message);
 								setTimeout(function() {
-									window.location.replace("third.jsp");
+									window.location.replace(template_name_third);
 								}, 2000);
 		
 							} else {
 								$("form").empty();
 								$("#answear").text(result.message);
 								setTimeout(function() {
-									window.location.replace("index.jsp");
-								}, 2000);
+									window.location.replace(template_name_first);
+								}, 3000);
 							}
 						}
 					});
@@ -48,19 +49,19 @@
 	<body>
 		<form>
 			<p>Enter type of query your want:</p>
-			<select name='queriesType'><option value='getAllRecords'>getAllRecords</option>
-				<option value='getRecordById'>getRecordById</option>
-				<option value='getRecordByName'>getRecordByName</option>
-				<option value='closeTheQuery'>close</option></select>
+			<select name="queriesType"><option value="getAllRecords">getAllRecords</option>
+				<option value="getRecordById">getRecordById</option>
+				<option value="getRecordByName">getRecordByName</option>
+				<option value="closeTheQuery">close</option></select>
 			<p>Enter table you want:</p>
-			<select name='tableName'><option value='schools'>schools</option>
-				<option value='schoolclasses'>school classes</option>
-				<option value='students'>students</option>
-				<option value='teachers'>teachers</option></select>
-			<p>Please enter the record's properties you want, splited by
+			<select name="tableName"><option value="schools">schools</option>
+				<option value="schoolclasses">school classes</option>
+				<option value="students">students</option>
+				<option value="teachers">teachers</option></select>
+			<p>Please enter the record"s properties you want, splited by
 				space:</p>
-			<input type='text' name='properties'> <br> <br> <input
-				type='submit'>
+			<input type="text" name="properties"> <br> <br> <input
+				type="submit">
 		</form>
 		<p id="answear"></p>
 	</body>

@@ -16,7 +16,10 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+private static final String FIRST_FUNC_REQUEST="first";
+private static final String SECOND_FUNC_REQUEST="second";
+private static final String THIRD_FUNC_REQUEST="third";
+private static final String FUNC_REQUEST_AS_STRING="funcRequest";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -42,19 +45,19 @@ public class AjaxController extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("application/json");
 		MySqlWebDbEngine con;
-		String req = request.getParameter("funcRequest");
+		String req = request.getParameter(FUNC_REQUEST_AS_STRING);
 		switch (req) {
-			case "first": {
+			case FIRST_FUNC_REQUEST: {
 				con = MySqlWebDbEngine.getInstance(response, request);
 				con.initialize();
 				return;
 			}
-			case "second": {
+			case SECOND_FUNC_REQUEST: {
 				con = MySqlWebDbEngine.getInstance(response, request);
 				con.startQuering();
 				return;
 			}
-			case "third": {
+			case THIRD_FUNC_REQUEST: {
 				con = MySqlWebDbEngine.getInstance(response, request);
 				con.startQuering();
 				break;

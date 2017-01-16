@@ -5,20 +5,20 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Insert title here</title>
-		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("form").submit(function(event) {
 					event.preventDefault();
-					var id = $("input[name='id']").val();
-					var name = $("input[name='name']").val();
+					var id = $(input_id).val();
+					var name = $(input_name).val();
 					$.ajax({
-						type : 'POST',
-						url : 'AjaxController',
+						type : HTTP_TYPE_POST,
+						url : controller_url,
 						data : {
 							id:id,
 							name:name,
-							funcRequest:"third",
+							funcRequest: template_name_third,
 						},
 						success : function(result) {
 							console.log(result.status);
@@ -26,7 +26,7 @@
 								var res = result.username;
 								$("p").text(result.message);
 								setTimeout(function() {
-									window.location.replace("index.jsp");
+									window.location.replace(template_name_first);
 								}, 2000);
 			
 							} else {
@@ -34,7 +34,7 @@
 								$("form").empty();
 								$("#answear").text(result.message);
 								setTimeout(function() {
-									window.location.replace("index.jsp");
+									window.location.replace(template_name_first);
 								}, 3000);
 							}
 						}
@@ -47,10 +47,10 @@
 	<body>
 		<form >
 			<p>
-				Enter the id you want:<br> <input type='text' name='id'>
+				Enter the id you want:<br> <input type="text" name="id">
 			<p>Enter the name you want:</p>
-			<input type='text' name='name'><br>
-			<input type="submit" name='submit' value='Submit query'>
+			<input type="text" name="name"><br>
+			<input type="submit" name="submit" value="Submit query">
 		</form>
 		<p id="answear"></p>
 	</body>

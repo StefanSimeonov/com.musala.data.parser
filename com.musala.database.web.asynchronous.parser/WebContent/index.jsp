@@ -5,25 +5,26 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Test</title>
-		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/scripts/constants.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("form").submit(function(event) {
 					event.preventDefault();
-					var serverName = $("input[name='ServerName']").val();
-					var databaseName = $("input[name='DatabaseName']").val();
-					var username = $("input[name='Username']").val();
-					var password = $("input[name='Password']").val();
+					var serverName = $(input_server_name).val();
+					var databaseName = $(input_db_name).val();
+					var username = $(input_username).val();
+					var password = $(input_password).val();
 					console.log(serverName);
 					$.ajax({
-						type : 'POST',
-						url : 'AjaxController',
+						type : HTTP_TYPE_POST,
+						url : controller_url,
 						data : {
 							serverName : serverName,
 							databaseName : databaseName,
 							username : username,
 							password : password,
-							funcRequest : "first",
+							funcRequest : function_request_first,
 						},
 						success : function(result) {
 							console.log(result.status);
@@ -31,7 +32,7 @@
 								var res = result.username;
 								$("p").text(result.status + " " + "operation");
 								setTimeout(function() {
-									window.location.replace("second.jsp");
+									window.location.replace(template_name_second);
 								}, 1000);
 		
 							} else {
@@ -46,13 +47,13 @@
 	</head>
 	<body>
 		<form>
-			Please enter the server name:<br> <input type='text' id="5"
-				name='ServerName' value='localhost'><br> Please enter
-			database name:<br> <input type='text' name='DatabaseName'
-				value='schools'><br> Please enter username:<br> <input
-				type='text' name='Username' value='root'><br> Please
-			enter user's password:<br> <input type='text' name='Password'
-				value=''><br> <br> <input type="submit"
+			Please enter the server name:<br> <input type="text" id="5"
+				name="ServerName" value="localhost"><br> Please enter
+			database name:<br> <input type="text" name="DatabaseName"
+				value="schools"><br> Please enter username:<br> <input
+				type="text" name="Username" value="root"><br> Please
+			enter user"s password:<br> <input type="text" name="Password"
+				value=""><br> <br> <input type="submit"
 				value="Connect">
 		</form>
 		<p style="color: red"></p>

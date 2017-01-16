@@ -2,10 +2,11 @@ package com.musala.database.web.parser.model.impl;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.musala.database.web.parser.model.ui.JsonMaker;
 import com.musala.database.web.parser.helper.ObjectValidator;
 import com.musala.database.web.parser.helper.SchoolClassException;
 
@@ -19,12 +20,12 @@ import com.musala.database.web.parser.helper.SchoolClassException;
 public class MySqlWebDbEngine extends AbstractDbEngine {
 
 	private static final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
-	private JsonMaker jsonMaker = new JsonMaker();
 	private HttpServletResponse response;
 	private HttpServletRequest request;
 	public static boolean secondQueryInvoking = false;
 	private static MySqlWebDbEngine instance;
 	private QueryHolder queryHolder = new QueryHolder();
+	private HashMap<String, String> repoForJsonCreation = new HashMap<>();
 
 	/**
 	 * The constructor for the singleton pattern usage
@@ -56,8 +57,10 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			ObjectValidator.checkForDatabaseDrivers(CONNECTION_DRIVERS_AS_STRING);
 		} catch (ClassNotFoundException ex) {
 			try {
-				String j = jsonMaker.convertConnection(null, null, null, null, false);
-				response.getWriter().print(j);
+				repoForJsonCreation.put("status", "false");
+				repoForJsonCreation.put("message", ex.getMessage());
+				String json = JsonMaker.build("connection", repoForJsonCreation);
+				response.getWriter().print(json);
 			} catch (IOException e) {
 				// fictive try-catch block for the needs of sendredirect method
 				// exception requirement
@@ -71,22 +74,30 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			String databaseName = input.getDatabase();
 			String userName = input.getUserName();
 			String password = input.getPassword();
+			repoForJsonCreation.put("serverName", serverName);
+			repoForJsonCreation.put("databaseName", databaseName);
+			repoForJsonCreation.put("username", userName);
+			repoForJsonCreation.put("password", password);
 			connection = new MySqlDbConnector().buildWithAdditionalCredentials(serverName, databaseName, userName,
 					password);
 			query = new MySqlQueryBuilder();
-			this.writer = new MyDbWebQueryRenderer(connection, query, response);
+			writer = new MyDbWebQueryRenderer(connection, query, response);
 
 			try {
-				String respMessage = jsonMaker.convertConnection(serverName, databaseName, userName, password, true);
-				response.getWriter().print(respMessage);
+				repoForJsonCreation.put("status", "true");
+				String json =JsonMaker.build("connection",
+						repoForJsonCreation);
+				response.getWriter().print(json);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (SQLException sq) {
 			try {
-				String respMessage = jsonMaker.convertConnection(null, null, null, null, false);
-				response.getWriter().print(respMessage);
+				repoForJsonCreation.put("status", "false");
+				String json =JsonMaker.build("connection",
+						repoForJsonCreation);
+				response.getWriter().print(json);
 			} catch (IOException e) {
 				// fictive try-catch block for the needs of sendredirect
 				// method
@@ -98,15 +109,17 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 	@Override
 	public void startQuering() {
 		QueryType typeOfQuery;
-		if (! secondQueryInvoking) {
+		if (!secondQueryInvoking) {
 			typeOfQuery = input.getQueryType();
 		} else {
 			typeOfQuery = queryHolder.getQueryType();
 		}
 		if (typeOfQuery.getValue() == QueryType.fourth.getValue()) {
 			try {
-				String respMessage = jsonMaker.convertAnswear("Thank you", false);
-				response.getWriter().println(respMessage);
+				repoForJsonCreation.put("status", "false");
+				repoForJsonCreation.put("message", "Thank you");
+				String json = JsonMaker.build("answear", repoForJsonCreation);
+				response.getWriter().println(json);
 			} catch (IOException e) {
 				// fictive
 			}
@@ -116,81 +129,93 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 	}
 
 	/**
-	 * Executes query depending on
-	 * a given type
+	 * Executes query depending on a given type
 	 * 
-	 * @param QueryType typeOfQuery
+	 * @param QueryType
+	 *            typeOfQuery
 	 */
 	private void executeQuery(QueryType typeOfQuery) {
 
 		try {
 			String currentTable = null;
 			String[] currentProperties = null;
-			if (! secondQueryInvoking) {
+			if (!secondQueryInvoking) {
 				currentTable = input.getQueryTableName();
 				currentProperties = input.getRecordPropertiesName();
 			}
 			switch (typeOfQuery.getValue()) {
-				case 1: {
-					writer.printAllRecordsInTable(currentTable, currentProperties);
-					break;
-				}
-				case 2: {
-					if (!secondQueryInvoking) {
-						queryHolder.setCurrentProperties(currentProperties);
-						queryHolder.setCurrentTable(currentTable);
-						queryHolder.setQueryType(typeOfQuery);
-						String respMessage = jsonMaker.convertAnswear("succesfull", true);
-						secondQueryInvoking = true;
-						try {
-							response.getWriter().println(respMessage);
-						} catch (IOException e) {
-							// fictive
-						}
-	
-					} else {
-						String needablePropertyName = input.getNeedableId();
-						writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
-								queryHolder.getCurrentProperties());
-						secondQueryInvoking = false;
+			case 1: {
+				writer.printAllRecordsInTable(currentTable, currentProperties);
+				break;
+			}
+			case 2: {
+				if (!secondQueryInvoking) {
+					queryHolder.setCurrentProperties(currentProperties);
+					queryHolder.setCurrentTable(currentTable);
+					queryHolder.setQueryType(typeOfQuery);
+					repoForJsonCreation.put("status", "true");
+					repoForJsonCreation.put("message", "Succesfull");
+					String json = JsonMaker.build("answear",
+							repoForJsonCreation);
+					secondQueryInvoking = true;
+					try {
+						response.getWriter().println(json);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					break;
+
+				} else {
+					String needablePropertyName = input.getNeedableId();
+					writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
+							queryHolder.getCurrentProperties());
+					secondQueryInvoking = false;
 				}
-				case 3: {
-					if (!secondQueryInvoking) {
-						queryHolder.setCurrentProperties(currentProperties);
-						queryHolder.setCurrentTable(currentTable);
-						queryHolder.setQueryType(typeOfQuery);
-						String respMessage = jsonMaker.convertAnswear("succesfull", true);
-						secondQueryInvoking = true;
-						try {
-							response.getWriter().println(respMessage);
-						} catch (IOException e) {
-							// fictive
-						}
-	
-					} else {
-						String needablePropertyName = input.getNeedableName();
-						writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
-								queryHolder.getCurrentProperties());
-						secondQueryInvoking = false;
+				break;
+			}
+			case 3: {
+				if (!secondQueryInvoking) {
+					queryHolder.setCurrentProperties(currentProperties);
+					queryHolder.setCurrentTable(currentTable);
+					queryHolder.setQueryType(typeOfQuery);
+					repoForJsonCreation.put("status", "true");
+					repoForJsonCreation.put("message", "Succesfull");
+					String json =JsonMaker.build("answear",
+							repoForJsonCreation);
+					secondQueryInvoking = true;
+					try {
+						response.getWriter().println(json);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					break;
+
+				} else {
+					String needablePropertyName = input.getNeedableName();
+					writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
+							queryHolder.getCurrentProperties());
+					secondQueryInvoking = false;
 				}
+				break;
+			}
 			}
 
 		} catch (SQLException sqlex) {
 			try {
-				String respMessage = jsonMaker.convertAnswear(sqlex.getMessage(), false);
-				response.getWriter().println(respMessage);
+				repoForJsonCreation.put("status", "false");
+				repoForJsonCreation.put("message", sqlex.getMessage());
+				String json =JsonMaker.build("answear", repoForJsonCreation);
+				response.getWriter().println(json);
 				secondQueryInvoking = false;
 			} catch (IOException e) {
 				// fictive
 			}
 		} catch (SchoolClassException sc) {
 			try {
-				String respMessage = jsonMaker.convertAnswear(sc.getMessage(), false);
-				response.getWriter().println(respMessage);
+				repoForJsonCreation.put("status", "false");
+				repoForJsonCreation.put("message", sc.getMessage());
+				String json = JsonMaker.build("answear", repoForJsonCreation);
+				response.getWriter().println(json);
 				secondQueryInvoking = false;
 			} catch (IOException e) {
 				// fictive
