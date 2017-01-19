@@ -1,6 +1,9 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
 
 /**
@@ -45,25 +52,31 @@ public class AjaxController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json");
+		byte[] reqBytes = new byte[request.getContentLength()];
+		request.getInputStream().read(reqBytes);
+
+		JsonParser parser = new JsonParser();
+		JsonObject reqJson = parser.parse(new String(reqBytes)).getAsJsonObject();
+
 		MySqlWebDbEngine con;
-		String req = request.getParameter(FUNC_REQUEST_AS_STRING);
-		switch (req) {
-			case FIRST_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, request);
-				con.initialize();
-				return;
-			}
-			case SECOND_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, request);
-				con.startQuering();
-				return;
-			}
-			case THIRD_FUNC_REQUEST: {
-				System.out.println("asdasd");
-				con = MySqlWebDbEngine.getInstance(response, request);
-				con.startQuering();
-				break;
-			}
+		JsonElement req = reqJson.get(FUNC_REQUEST_AS_STRING);
+		switch (req.getAsString()) {
+		case FIRST_FUNC_REQUEST: {
+			con = MySqlWebDbEngine.getInstance(response, reqJson);
+			con.initialize();
+			return;
+		}
+		case SECOND_FUNC_REQUEST: {
+			con = MySqlWebDbEngine.getInstance(response, reqJson);
+			con.startQuering();
+			return;
+		}
+		case THIRD_FUNC_REQUEST: {
+			System.out.println("asdasd");
+			con = MySqlWebDbEngine.getInstance(response,  reqJson);
+			con.startQuering();
+			break;
+		}
 		}
 	}
 }

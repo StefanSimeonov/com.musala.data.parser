@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="connectionCtrl">
+	<form ng-submit="connect()">
+		<p>Please enter the server name:</p><input ng-model="serverName" type="text" id="5"
+			name="ServerName" value="localhost"><p> Please enter
+		database name:</p> <input ng-model="databaseName" type="text" name="DatabaseName"
+			value="schools"><p> Please enter username:</p> <input
+			ng-model="userName" type="text" name="Username" value="root"><p> Please
+		enter user's password:</p> <input ng-model="password" type="text" name="Password"
+			value=""> <br><br><input type="submit"
+			value="Connect">
+	</form>
+	<p >{{message}}</p>
+	</div>
+</body>
+</html>

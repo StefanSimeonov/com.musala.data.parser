@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p {
+	font-family: verdana;
+}
+
+h1 {
+	color: green
+}
+
+#view {
+	color: blue;
+	margin-top: 10px;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<body ng-app="myApp">
+	<h1>Hello to database parser</h1>
+	<p>Choose the current comand:</p>
+	<div>
+		<a href="#/connection"> Connection to database</a>
+		
+	</div>
+
+	<div id="view" ng-view></div>
+
+	<script>
+		var app = angular.module("myApp", [ "ngRoute" ]);
+		app
+				.config(function($routeProvider) {
+					$routeProvider
+							.when("/",
+									{template : "<p>Its always good to use Angular routine </p><p ng-bind='msg'></p>",
+									controller : "mainCtrl"
+									}).when("/firstQuery", {
+								templateUrl : "firstQuery.html",
+								controller: "queryCtrl"
+							}).when("/connection", {
+								templateUrl : "connection.html",
+								cotroller : "connectionCtrl"
+							}).when("/secondQuery",{
+								templateUrl : "secondQuery.html",
+								cotroller : "secondCtrl"
+							});
+				});
+		app.controller("mainCtrl", function($scope) {
+			$scope.msg = "I love Gsoho";
+		});
+		app.controller("connectionCtrl", function($scope, $http) {
+			$scope.serverName="localhost";
+			 $scope.databaseName="schools";
+			 $scope.userName="root";
+			 $scope.password="";
+			$scope.connect = function() {
+				$http({
+					url : 'AjaxController',
+					method : "POST",
+					headers : {
+						'Content-Type' : 'application/json'
+					},
+					data : {
+						'serverName' : $scope.serverName,
+						'databaseName' : $scope.databaseName,
+						'username' : $scope.userName,
+						'password' : $scope.password,
+						'funcRequest' : 'first'
+					},
+				}).then(function(response) {
+					console.log(response.data.status);
+					$scope.message=response.data.status+" operation";
+					if (response.data.status) {
+						setTimeout(function() {
+							window.location.replace("index.html#/firstQuery");
+						}, 1000);
+					} 
+				})
+
+			}
+		});
+		app.controller("queryCtrl",function($scope, $http){
+		$scope.connect=function(){
+			console.log($scope.queriesType);
+			$http({
+				url : 'AjaxController',
+				method : "POST",
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : {
+					'queriesType' : $scope.queriesType,
+					'tableName' :  $scope.tableName,
+					'properties' :  $scope.properties,
+					'funcRequest' : 'second',
+				},
+			}).then(function(response) {
+				console.log(response.data.status);
+				console.log(response.data.message);
+				if (response.data.status) {
+					$scope.message=response.data.message;
+					setTimeout(function() {
+						window.location.replace("index.html#/secondQuery");
+					}, 2000);
+
+				} else{
+					$scope.message=response.data.status+" operation";
+				setTimeout(function() {
+					window.location.replace("index.html#/connection");
+				}, 2000);
+				}
+			})
+		}
+		});
+		app.controller("secondCtrl",function($scope, $http){
+			$scope.connect=function(){
+				console.log($scope.id);
+				console.log($scope.name);
+				$http({
+					url : 'AjaxController',
+					method : "POST",
+					headers : {
+						'Content-Type' : 'application/json'
+					},
+					data : {
+						'id':$scope.id,
+						'name':$scope.name,
+						'funcRequest': "third",
+					},
+				}).then(function(response) {
+					console.log(response.data.status);
+					console.log(response.data.message);
+					$scope.message=response.data.message;
+					if (response.data.status==false) {
+						setTimeout(function() {
+							window.location.replace("index.html#/connection");
+						}, 2000);
+
+					} 
+				})
+			}	
+		});
+	</script>
+</body>
+</html>

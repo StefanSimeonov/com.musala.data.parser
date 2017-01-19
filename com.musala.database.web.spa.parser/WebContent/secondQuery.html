@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div ng-controller="secondCtrl">
+			<form ng-submit="connect()">
+				<p>Enter the id you want:</p> 
+				<input ng-model="id" type="text">
+				
+				<p>Enter the name you want:</p>
+				<input ng-model="name" type="text">
+				<br><br> 
+				<input type="submit" name="submit" value="Submit query">
+			</form>
+			<p ng-bind="message"></p>
+		</div>
+	</body>
+</html>

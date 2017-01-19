@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Insert title here</title>
-		<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/scripts/constants.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
+			$(document).ready(function() {	
 				$("form").submit(function(event) {
+					console.log("passed");
 					event.preventDefault();
 					var id = $(input_id).val();
 					var name = $(input_name).val();
@@ -18,7 +18,7 @@
 						data : {
 							id:id,
 							name:name,
-							funcRequest: template_name_third,
+							funcRequest: function_request_third,
 						},
 						success : function(result) {
 							console.log(result.status);

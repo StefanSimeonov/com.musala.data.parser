@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="queryCtrl">
+	<form ng-submit="connect()">
+		<p>Enter type of query your want:</p>
+		<select name="queriesType" ng-model="queriesType" ><option value="getAllRecords">getAllRecords</option>
+			<option value="getRecordById">getRecordById</option>
+			<option value="getRecordByName">getRecordByName</option>
+			<option value="closeTheQuery">close</option></select>
+		<p>Enter table you want:</p>
+		<select name="tableName" ng-model="tableName"><option value="schools">schools</option>
+			<option value="schoolclasses">school classes</option>
+			<option value="students">students</option>
+			<option value="teachers">teachers</option></select>
+		<p>Please enter the record"s properties you want, splited by
+			space:</p>
+		<input type="text" name="properties" ng-model="properties"> <br> <br> <input
+			type="submit">
+	</form>
+	<p ng-bind="queriesType"></p>
+	<p ng-bind="message"></p>
+</body>
+</html>
