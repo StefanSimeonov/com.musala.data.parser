@@ -1,9 +1,6 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -51,32 +47,45 @@ public class AjaxController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		response.setContentType("application/json");
-		byte[] reqBytes = new byte[request.getContentLength()];
-		request.getInputStream().read(reqBytes);
-
-		JsonParser parser = new JsonParser();
-		JsonObject reqJson = parser.parse(new String(reqBytes)).getAsJsonObject();
-
+		JsonObject reqJson = fromPostRequestToJson(request);
 		MySqlWebDbEngine con;
 		JsonElement req = reqJson.get(FUNC_REQUEST_AS_STRING);
 		switch (req.getAsString()) {
-		case FIRST_FUNC_REQUEST: {
-			con = MySqlWebDbEngine.getInstance(response, reqJson);
-			con.initialize();
-			return;
+			case FIRST_FUNC_REQUEST: {
+				con = MySqlWebDbEngine.getInstance(response, reqJson);
+				con.initialize();
+				return;
+			}
+			case SECOND_FUNC_REQUEST: {
+				con = MySqlWebDbEngine.getInstance(response, reqJson);
+				con.startQuering();
+				return;
+			}
+			case THIRD_FUNC_REQUEST: {
+				con = MySqlWebDbEngine.getInstance(response, reqJson);
+				con.startQuering();
+				break;
+			}
 		}
-		case SECOND_FUNC_REQUEST: {
-			con = MySqlWebDbEngine.getInstance(response, reqJson);
-			con.startQuering();
-			return;
-		}
-		case THIRD_FUNC_REQUEST: {
-			System.out.println("asdasd");
-			con = MySqlWebDbEngine.getInstance(response,  reqJson);
-			con.startQuering();
-			break;
-		}
-		}
+	}
+
+	/**
+	 * Processes POST request params into
+	 * a generic json object
+	 * 
+	 * @param HttpServletRequest request
+	 * @return JsonObject
+	 * @throws IOException
+	 */
+	private JsonObject fromPostRequestToJson(HttpServletRequest request) throws IOException {
+
+		byte[] reqBytes = new byte[request.getContentLength()];
+		request.getInputStream().read(reqBytes);// because of the post request
+		JsonParser parser = new JsonParser();
+		JsonObject reqJson = parser.parse(new String(reqBytes)).getAsJsonObject();
+		
+		return reqJson;
 	}
 }

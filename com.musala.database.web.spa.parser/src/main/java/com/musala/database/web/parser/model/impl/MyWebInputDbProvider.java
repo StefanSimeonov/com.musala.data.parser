@@ -1,7 +1,5 @@
 package com.musala.database.web.parser.model.impl;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.musala.database.web.parser.helper.StringConstants;
@@ -58,8 +56,8 @@ public class MyWebInputDbProvider implements IDbInputProvider {
 
 	@Override
 	public QueryType getQueryType() {
-	JsonElement el = request.get(StringConstants.WEB_PARAMS_QUERIESTYPE);
-				String query=		el.getAsString();
+		JsonElement el = request.get(StringConstants.WEB_PARAMS_QUERIESTYPE);
+		String query = el.getAsString();
 		switch (query) {
 		case "getAllRecords":
 			return QueryType.first;

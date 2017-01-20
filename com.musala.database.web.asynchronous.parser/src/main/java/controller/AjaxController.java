@@ -59,7 +59,6 @@ public class AjaxController extends HttpServlet {
 				return;
 			}
 			case THIRD_FUNC_REQUEST: {
-				System.out.println("asdasd");
 				con = MySqlWebDbEngine.getInstance(response, request);
 				con.startQuering();
 				break;
