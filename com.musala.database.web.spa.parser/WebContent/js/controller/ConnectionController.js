@@ -1,10 +1,9 @@
-app.controller('ConnectionController', function($scope, $http) {
-	//Setting default input values
+app.controller('ConnectionController', function($scope, $http,$rootScope) {
+	// Setting default input values
 	$scope.serverName = 'localhost';
 	$scope.databaseName = 'schools';
 	$scope.userName = 'root';
 	$scope.password = '';
-
 	$scope.connect = function() {
 		$http({
 			url : BACKEND_URL,
@@ -21,9 +20,10 @@ app.controller('ConnectionController', function($scope, $http) {
 			},
 		}).then(function(response) {
 			// Logging response data status
-			console.log(response.data.status)
+			console.log(response.data.status);
 			$scope.message = response.data.status + ' operation';
 			if (response.data.status) {
+				$rootScope.lastInvokedStep=2;
 				setTimeout(function() {
 					window.location.replace('index.html#/simple-querying');
 				}, 1000);

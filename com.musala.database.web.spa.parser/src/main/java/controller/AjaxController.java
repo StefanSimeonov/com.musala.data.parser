@@ -18,6 +18,7 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
  */
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 	private static final String FIRST_FUNC_REQUEST = "first";
 	private static final String SECOND_FUNC_REQUEST = "second";
@@ -47,35 +48,40 @@ public class AjaxController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.setContentType("application/json");
 		JsonObject reqJson = fromPostRequestToJson(request);
 		MySqlWebDbEngine con;
-		JsonElement req = reqJson.get(FUNC_REQUEST_AS_STRING);
-		switch (req.getAsString()) {
-			case FIRST_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, reqJson);
-				con.initialize();
-				return;
+		
+		try {
+			JsonElement req = reqJson.get(FUNC_REQUEST_AS_STRING);
+			switch (req.getAsString()) {
+				case FIRST_FUNC_REQUEST: {
+					con = MySqlWebDbEngine.getInstance(response, reqJson);
+					con.initialize();
+					return;
+				}
+				case SECOND_FUNC_REQUEST: {
+					con = MySqlWebDbEngine.getInstance(response, reqJson);
+					con.startQuering();
+					return;
+				}
+				case THIRD_FUNC_REQUEST: {
+					con = MySqlWebDbEngine.getInstance(response, reqJson);
+					con.startQuering();
+					return;
+				}
 			}
-			case SECOND_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, reqJson);
-				con.startQuering();
-				return;
-			}
-			case THIRD_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, reqJson);
-				con.startQuering();
-				break;
-			}
+		} catch (Exception e) {
+			// fictive
 		}
 	}
 
+
 	/**
-	 * Processes POST request params into
-	 * a generic json object
+	 * Processes POST request params into a generic json object
 	 * 
-	 * @param HttpServletRequest request
+	 * @param HttpServletRequest
+	 *            request
 	 * @return JsonObject
 	 * @throws IOException
 	 */
@@ -85,7 +91,7 @@ public class AjaxController extends HttpServlet {
 		request.getInputStream().read(reqBytes);// because of the post request
 		JsonParser parser = new JsonParser();
 		JsonObject reqJson = parser.parse(new String(reqBytes)).getAsJsonObject();
-		
+
 		return reqJson;
 	}
 }

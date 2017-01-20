@@ -1,4 +1,7 @@
-app.controller('SimpleQueryController', function($scope, $http) {
+app.controller('SimpleQueryController', function($scope, $http,$rootScope) {
+	if($rootScope.lastInvokedStep!=2){
+		window.location.replace('index.html#');
+	}
 	$scope.connect = function() {
 		// Logging retrieved query types
 		console.log($scope.queriesType);
@@ -15,6 +18,7 @@ app.controller('SimpleQueryController', function($scope, $http) {
 				'funcRequest' : 'second',
 			},
 		}).then(function(response) {
+			$rootScope.lastInvokedStep=3;
 			// Logging response data
 			console.log(response.data.status);
 			console.log(response.data.message);
@@ -26,6 +30,7 @@ app.controller('SimpleQueryController', function($scope, $http) {
 
 			} else {
 				$scope.message = response.data.message;
+				$rootScope.lastInvokedStep=1;
 				setTimeout(function() {
 					window.location.replace('index.html#/initialization');
 				}, 2000);

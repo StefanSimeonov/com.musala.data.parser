@@ -32,7 +32,7 @@ public class JsonMaker {
 				break;
 			}
 			case JSON_OBJ_TYPE_ANSWER: {
-				AnswearStringRepo repo = new AnswearStringRepo();
+				AnswerStringRepo repo = new AnswerStringRepo();
 				repo.setMessage(map.get(JSON_OBJ_FIELD_MESSAGE));
 				repo.setStatus(Boolean.valueOf(map.get(JSON_OBJ_FIELD_STATUS)));
 				jsonObj = gson.toJson(repo);
