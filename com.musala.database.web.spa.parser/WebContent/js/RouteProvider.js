@@ -3,7 +3,7 @@ app.run(function($rootScope){
 });
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
-		template : '<p>Click on start Database Quering button to start</p>'
+		template : '<p>Click on start <abbr title="The link above"> Database Quering <abbr>button to start</p>'
 	}).when('/initialization', {
 		templateUrl : 'templates/initialization-templ.html',
 		controller : 'ConnectionController'

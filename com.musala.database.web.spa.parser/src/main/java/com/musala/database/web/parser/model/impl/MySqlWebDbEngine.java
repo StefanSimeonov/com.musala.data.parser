@@ -129,7 +129,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			}
 		} catch (NullPointerException e) {
 			repoForJsonCreation.put("status", "false");
-			repoForJsonCreation.put("message", e.getMessage());
+			repoForJsonCreation.put("message", "Enter query type");
 			String json = JsonMaker.build("answear", repoForJsonCreation);
 			try {
 				response.getWriter().print(json);

@@ -2,24 +2,6 @@ app.controller('ExtendedQueryController', function($scope, $http,$rootScope) {
 	if($rootScope.lastInvokedStep!=3){
 		window.location.replace('index.html#');
 	}
-	$scope.init = function() {
-		$http({
-			url : BACKEND_URL,
-			method : BACKEND_REQUEST_TYPE_POST,
-			headers : {
-				'Content-Type' : 'application/json'
-			},
-			data : {
-				'sessionNum' : 3,
-			},
-		}).then(function(response) {
-			if (response.data.status == false) {
-				$scope.message = response.data.status;
-				window.location.replace('index.html#');
-			}
-		})
-	}
-
 	$scope.connect = function() {
 		// Logging scope data
 		console.log($scope.id);
@@ -40,6 +22,7 @@ app.controller('ExtendedQueryController', function($scope, $http,$rootScope) {
 			console.log(response.data.status);
 			console.log(response.data.message);
 			$scope.message = response.data.message;
+			$('#message').show();
 			if (response.data.status == false) {
 				$rootScope.lastInvokedStep=1;
 				setTimeout(function() {

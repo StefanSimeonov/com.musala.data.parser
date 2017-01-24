@@ -21,7 +21,16 @@ app.controller('ConnectionController', function($scope, $http,$rootScope) {
 		}).then(function(response) {
 			// Logging response data status
 			console.log(response.data.status);
-			$scope.message = response.data.status + ' operation';
+			if(response.data.status){
+				$scope.trueMessage = response.data.status + ' operation';
+				$('#init-failure-box').hide();
+				$('#init-success-box').show();
+				
+			} else{
+				$scope.falseMessage=response.data.status + ' operation';
+				$('#init-success-box').hide();
+				$('#init-failure-box').show();
+			}
 			if (response.data.status) {
 				$rootScope.lastInvokedStep=2;
 				setTimeout(function() {

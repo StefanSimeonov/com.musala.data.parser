@@ -23,13 +23,17 @@ app.controller('SimpleQueryController', function($scope, $http,$rootScope) {
 			console.log(response.data.status);
 			console.log(response.data.message);
 			if (response.data.status) {
-				$scope.message = response.data.message;
+				$scope.trueMessage = response.data.message;
+				$('#init-failure-box').hide();
+				$('#init-success-box').show();
 				setTimeout(function() {
 					window.location.replace('index.html#/extended-querying');
 				}, 2000);
 
 			} else {
-				$scope.message = response.data.message;
+				$scope.falseMessage = response.data.message;
+				$('#init-success-box').hide();
+				$('#init-failure-box').show();
 				$rootScope.lastInvokedStep=1;
 				setTimeout(function() {
 					window.location.replace('index.html#/initialization');
