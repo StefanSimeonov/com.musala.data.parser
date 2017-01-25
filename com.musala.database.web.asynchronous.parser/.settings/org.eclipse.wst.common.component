@@ -2,6 +2,7 @@
     <wb-module deploy-name="com.musala.database.web.asynchronous.parser">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
         <property name="java-output-path" value="/com.musala.database.web.asynchronous.parser/build/classes"/>
         <property name="context-root" value="com.musala.database.web.asynchronous.parser"/>
     </wb-module>

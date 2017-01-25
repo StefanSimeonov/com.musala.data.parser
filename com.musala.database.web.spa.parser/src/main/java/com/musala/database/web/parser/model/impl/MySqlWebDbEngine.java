@@ -90,8 +90,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				String json = JsonMaker.build("connection", repoForJsonCreation);
 				response.getWriter().print(json);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//fictive
 			}
 		} catch (SQLException sq) {
 			try {

@@ -16,10 +16,10 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String FIRST_FUNC_REQUEST = "first";
-	private static final String SECOND_FUNC_REQUEST = "second";
-	private static final String THIRD_FUNC_REQUEST = "third";
-	private static final String FUNC_REQUEST_AS_STRING = "funcRequest";
+	protected static final String FIRST_FUNC_REQUEST = "first";
+	protected static final String SECOND_FUNC_REQUEST = "second";
+	protected static final String THIRD_FUNC_REQUEST = "third";
+	protected static final String FUNC_REQUEST_AS_STRING = "funcRequest";
 
 	/**
 	 * @see HttpServlet#HttpServlet()

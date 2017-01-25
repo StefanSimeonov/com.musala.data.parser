@@ -1,4 +1,4 @@
-package controller;
+package com.musala.database.web.spa.parser.controller;
 
 import java.io.IOException;
 
@@ -46,7 +46,7 @@ public class AjaxController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json");
 		JsonObject reqJson = fromPostRequestToJson(request);
@@ -85,7 +85,7 @@ public class AjaxController extends HttpServlet {
 	 * @return JsonObject
 	 * @throws IOException
 	 */
-	private JsonObject fromPostRequestToJson(HttpServletRequest request) throws IOException {
+	protected JsonObject fromPostRequestToJson(HttpServletRequest request) throws IOException {
 
 		byte[] reqBytes = new byte[request.getContentLength()];
 		request.getInputStream().read(reqBytes);// because of the post request
