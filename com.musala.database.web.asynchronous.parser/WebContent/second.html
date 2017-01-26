@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Insert title here</title>
 		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
 		<script type="text/javascript" src="js/scripts/constants.js"></script>
 		<script type="text/javascript">
@@ -26,14 +25,14 @@
 							console.log(result.status);
 							if (result.status) {
 								$("form").empty();
-								$("#answear").text(result.message);
+								$("#answer").text(result.message);
 								setTimeout(function() {
 									window.location.replace(template_name_third);
 								}, 2000);
 		
 							} else {
 								$("form").empty();
-								$("#answear").text(result.message);
+								$("#answer").text(result.message);
 								setTimeout(function() {
 									window.location.replace(template_name_first);
 								}, 3000);
@@ -46,26 +45,23 @@
 		</script>
 	</head>
 	<body>
-
-	<script type='text/javascript'>
-	
-</script>
 		<form>
 			<p>Enter type of query your want:</p>
 			<select name="queriesType"><option value="getAllRecords">getAllRecords</option>
 				<option value="getRecordById">getRecordById</option>
 				<option value="getRecordByName">getRecordByName</option>
-				<option value="closeTheQuery">close</option></select>
+				<option value="closeTheQuery">close</option>
+			</select>
 			<p>Enter table you want:</p>
 			<select name="tableName"><option value="schools">schools</option>
 				<option value="schoolclasses">school classes</option>
 				<option value="students">students</option>
-				<option value="teachers">teachers</option></select>
-			<p>Please enter the record"s properties you want, splited by
-				space:</p>
-			<input type="text" name="properties"> <br> <br> <input
-				type="submit">
+				<option value="teachers">teachers</option>
+			</select>
+			<p>Please enter the record"s properties you want, splited by space:</p>
+			<input type="text" name="properties">  <br> <br> 
+			<input type="submit">
 		</form>
-		<p id="answear"></p>
+		<p id="answer"></p>
 	</body>
 </html>

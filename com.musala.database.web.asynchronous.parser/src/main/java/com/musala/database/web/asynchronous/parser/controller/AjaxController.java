@@ -1,4 +1,4 @@
-package controller;
+package com.musala.database.web.asynchronous.parser.controller;
 
 import java.io.IOException;
 

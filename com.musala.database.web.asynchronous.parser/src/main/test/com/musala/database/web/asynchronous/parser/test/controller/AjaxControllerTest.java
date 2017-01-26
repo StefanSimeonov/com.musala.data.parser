@@ -19,7 +19,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import controller.AjaxController;
+import com.musala.database.web.asynchronous.parser.controller.AjaxController;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AjaxControllerTest extends AjaxController {

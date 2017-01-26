@@ -19,6 +19,8 @@ import com.musala.database.web.parser.servlet.getter.ServletGetter;
 
 public class TestServletGetter extends ServletGetter {
 
+	private static final long serialVersionUID = 6746988175878133249L;
+
 	@Test
 	public void testdoGet() throws ServletException, IOException {
 		HttpServletRequest request = mock(HttpServletRequest.class);

@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Test</title>
 		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
 		<script type="text/javascript" src="js/scripts/constants.js"></script>
 		<script type="text/javascript">
+		
 			$(document).ready(function() {
 				$("form").submit(function(event) {
 					event.preventDefault();
@@ -45,14 +45,15 @@
 	</head>
 	<body>
 		<form>
-			Please enter the server name:<br> <input type="text" id="5"
-				name="ServerName" value="localhost"><br> Please enter
-			database name:<br> <input type="text" name="DatabaseName"
-				value="schools"><br> Please enter username:<br> <input
-				type="text" name="Username" value="root"><br> Please
-			enter user"s password:<br> <input type="text" name="Password"
-				value=""><br> <br> <input type="submit"
-				value="Connect">
+			Please enter the server name: <br> 
+			<input type="text" id="5" name="ServerName" value="localhost"> <br> 
+			Please enter database name: <br>
+			<input type="text" name="DatabaseName" value="schools"> <br>
+			  Please enter username: <br> 
+			<input type="text" name="Username" value="root"><br> 
+			  Please enter user"s password: <br>
+		    <input type="text" name="Password" value=""><br> <br> 
+			<input type="submit" value="Connect">
 		</form>
 		<p style="color: red"></p>
 	</body>

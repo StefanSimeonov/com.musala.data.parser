@@ -12,7 +12,7 @@ public class JsonMaker {
 	private static final String JSON_OBJ_FIELD_USERNAME = "username";
 	private static final String JSON_OBJ_FIELD_DATABASE_NAME = "databaseName";
 	private static final String JSON_OBJ_FIELD_SERVER_NAME = "serverName";
-	private static final String JSON_OBJ_TYPE_ANSWER = "answear";
+	private static final String JSON_OBJ_TYPE_ANSWER = "answer";
 	private static final String JSON_OBJ_TYPE_CONNECTION = "connection";
 
 	public static String build(String typeOfJsonObj, HashMap<String, String> map) {

@@ -6,12 +6,13 @@ import com.musala.database.web.parser.helper.StringConstants;
 import com.musala.database.web.parser.model.IDbInputProvider;
 
 public class MyWebInputDbProvider implements IDbInputProvider {
-	
+
 	private static final String CLOSE_THE_QUERY = "closeTheQuery";
 	private static final String GET_RECORD_BY_NAME = "getRecordByName";
 	private static final String GET_RECORD_BY_ID = "getRecordById";
 	private static final String GET_ALL_RECORDS = "getAllRecords";
 	private JsonObject request;
+
 	public MyWebInputDbProvider(JsonObject request) {
 		this.request = request;
 	}

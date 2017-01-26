@@ -1,6 +1,7 @@
 app.run(function($rootScope){
 	$rootScope.lastInvokedStep=1;
 });
+
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
 		template : '<p>Click on start <abbr title="The link above"> Database Quering <abbr>button to start</p>'

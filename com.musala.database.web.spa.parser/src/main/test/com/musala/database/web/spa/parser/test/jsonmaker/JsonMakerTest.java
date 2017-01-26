@@ -31,7 +31,7 @@ public class JsonMakerTest {
 	public void testBuildCheckForNullPointingMap() {
 		HashMap<String, String> map = new HashMap<>();
 		try {
-			String obj = JsonMaker.build("connection", map);
+			 JsonMaker.build("connection", map);
 		} catch (NullPointerException e) {
 			assertThat(e.getClass(), equalTo(NullPointerException.class));
 		}

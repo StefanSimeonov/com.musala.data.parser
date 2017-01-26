@@ -15,7 +15,7 @@ import com.musala.database.web.parser.model.ui.JsonMaker;
 public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 
 	private HttpServletResponse response;
-	private String returnAnswear = "";
+	private String returnAnswer = "";
 	private HashMap<String, String> repoForJsonCreation = new HashMap<>();
 
 	public MyDbWebQueryRenderer(IDbConnector dbconnector, IQueryable query, HttpServletResponse response) {
@@ -53,14 +53,14 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 		result = ObjectValidator.checkAndMoveCursorToNextPosition(result, "Wrong resultset cursor translation");
 
 		printTableRow(columnNames);
-		returnAnswear += ",";
+		returnAnswer += ",";
 		while (result.next()) {
 			printTableRow(columnNames);
-			returnAnswear += ",";
+			returnAnswer += ",";
 		}
 		repoForJsonCreation.put("status", "false");
-		repoForJsonCreation.put("message", returnAnswear.substring(0, returnAnswear.length() - 1));
-		String json = JsonMaker.build("answear", repoForJsonCreation);
+		repoForJsonCreation.put("message", returnAnswer.substring(0, returnAnswer.length() - 1));
+		String json = JsonMaker.build("answer", repoForJsonCreation);
 		try {
 			response.getWriter().println(json);
 		} catch (IOException e) {
@@ -75,7 +75,7 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 		for (String currentColumnName : columnNames) {
 			String queryResult = ObjectValidator.checkForPropertyNameValidaty(result, currentColumnName,
 					"Wrong table's column name");
-			returnAnswear += queryResult + " ";
+			returnAnswer += queryResult + " ";
 		}
 
 	}

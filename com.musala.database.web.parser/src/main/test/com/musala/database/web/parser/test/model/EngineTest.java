@@ -34,15 +34,8 @@ public class EngineTest {
 
 	@Test
 	public void testInitializationWithoutRequestParameters() throws IOException {
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);// manual
-																			// mock
-																			// the
-																			// object
-		HttpServletResponse response = Mockito.mock(HttpServletResponse.class);// manual
-																				// mock
-																				// the
-																				// object
-
+		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);// manual mock
+		HttpServletResponse response = Mockito.mock(HttpServletResponse.class);// manual mock
 		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, request);
 		db.initialize();
 		verify(response, times(1)).sendRedirect(RedirectURLBuilder.getPath() + "Invalid SQL operation");

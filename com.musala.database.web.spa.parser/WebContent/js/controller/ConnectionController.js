@@ -37,6 +37,9 @@ app.controller('ConnectionController', function($scope, $http, $rootScope) {
 					window.location.replace('index.html#/simple-querying');
 				}, 1000);
 			}
+		},function(fail){
+			$scope.falseMessage="The Server is not able to response";
+			$('#init-failure-box').show();
 		})
 	}
 });

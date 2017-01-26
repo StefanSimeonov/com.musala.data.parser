@@ -29,6 +29,10 @@ app.controller('ExtendedQueryController', function($scope, $http, $rootScope) {
 					window.location.replace('index.html#/initialization');
 				}, 2000);
 			}
+		},function(fail){
+			$scope.falseMessage="The Server is not able to response";
+			$('#init-success-box').hide();
+			$('#init-failure-box').show();
 		})
 	}
 });

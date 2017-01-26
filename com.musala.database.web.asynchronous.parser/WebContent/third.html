@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Insert title here</title>
 		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
 		<script type="text/javascript" src="js/scripts/constants.js"></script>
 		<script type="text/javascript">
@@ -32,7 +31,7 @@
 							} else {
 								console.log(result.message);
 								$("form").empty();
-								$("#answear").text(result.message);
+								$("#answer").text(result.message);
 								setTimeout(function() {
 									window.location.replace(template_name_first);
 								}, 3000);
@@ -45,13 +44,13 @@
 		</script>
 	</head>
 	<body>
-		<form >
-			<p>
-				Enter the id you want:<br> <input type="text" name="id">
+		<form>
+			<p>Enter the id you want: <br> 
+			<input type="text" name="id">
 			<p>Enter the name you want:</p>
 			<input type="text" name="name"><br>
 			<input type="submit" name="submit" value="Submit query">
 		</form>
-		<p id="answear"></p>
+		<p id="answer"></p>
 	</body>
 </html>

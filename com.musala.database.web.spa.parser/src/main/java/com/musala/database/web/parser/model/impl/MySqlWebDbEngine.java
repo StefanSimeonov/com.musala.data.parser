@@ -118,7 +118,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				try {
 					repoForJsonCreation.put("status", "false");
 					repoForJsonCreation.put("message", "Thank you");
-					String json = JsonMaker.build("answear", repoForJsonCreation);
+					String json = JsonMaker.build("answer", repoForJsonCreation);
 					response.getWriter().println(json);
 				} catch (IOException e) {
 					// fictive
@@ -129,7 +129,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 		} catch (NullPointerException e) {
 			repoForJsonCreation.put("status", "false");
 			repoForJsonCreation.put("message", "Enter query type");
-			String json = JsonMaker.build("answear", repoForJsonCreation);
+			String json = JsonMaker.build("answer", repoForJsonCreation);
 			try {
 				response.getWriter().print(json);
 			} catch (IOException e1) {
@@ -165,7 +165,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 					queryHolder.setQueryType(typeOfQuery);
 					repoForJsonCreation.put("status", "true");
 					repoForJsonCreation.put("message", "Succesfull");
-					String json = JsonMaker.build("answear", repoForJsonCreation);
+					String json = JsonMaker.build("answer", repoForJsonCreation);
 					secondQueryInvoking = true;
 					try {
 						response.getWriter().println(json);
@@ -189,7 +189,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 					queryHolder.setQueryType(typeOfQuery);
 					repoForJsonCreation.put("status", "true");
 					repoForJsonCreation.put("message", "Succesfull");
-					String json = JsonMaker.build("answear", repoForJsonCreation);
+					String json = JsonMaker.build("answer", repoForJsonCreation);
 					secondQueryInvoking = true;
 					try {
 						response.getWriter().println(json);
@@ -212,7 +212,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			try {
 				repoForJsonCreation.put("status", "false");
 				repoForJsonCreation.put("message", sqlex.getMessage());
-				String json = JsonMaker.build("answear", repoForJsonCreation);
+				String json = JsonMaker.build("answer", repoForJsonCreation);
 				response.getWriter().println(json);
 				secondQueryInvoking = false;
 			} catch (IOException e) {
@@ -222,7 +222,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			try {
 				repoForJsonCreation.put("status", "false");
 				repoForJsonCreation.put("message", sc.getMessage());
-				String json = JsonMaker.build("answear", repoForJsonCreation);
+				String json = JsonMaker.build("answer", repoForJsonCreation);
 				response.getWriter().println(json);
 				secondQueryInvoking = false;
 			} catch (IOException e) {

@@ -20,9 +20,6 @@ import com.musala.database.web.parser.servlet.Servlet;
 
 public class TestServlet extends Servlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -192704657641609144L;
 
 	@Test

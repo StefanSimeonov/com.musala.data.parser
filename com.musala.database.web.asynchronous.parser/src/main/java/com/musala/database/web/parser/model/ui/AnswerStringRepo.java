@@ -1,6 +1,6 @@
 package com.musala.database.web.parser.model.ui;
 
-public class AnswearStringRepo {
+public class AnswerStringRepo {
 	private String message;
 	private boolean status;
 
