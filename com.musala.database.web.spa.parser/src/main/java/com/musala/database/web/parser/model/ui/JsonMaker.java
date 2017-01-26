@@ -18,29 +18,29 @@ public class JsonMaker {
 	public static String build(String typeOfJsonObj, HashMap<String, String> map) {
 		Gson gson = new Gson();
 		String jsonObj = null;
-		
+
 		switch (typeOfJsonObj) {
-			case JSON_OBJ_TYPE_CONNECTION: {
-				ConnectionStringRepo repo = new ConnectionStringRepo();
-				repo.setServerName(map.get(JSON_OBJ_FIELD_SERVER_NAME));
-				repo.setDatabaseName(map.get(JSON_OBJ_FIELD_DATABASE_NAME));
-				repo.setUsername(map.get(JSON_OBJ_FIELD_USERNAME));
-				repo.setPassword(map.get(JSON_OBJ_FIELD_PASSWORD));
-				repo.setStatus(Boolean.valueOf(map.get(JSON_OBJ_FIELD_STATUS)));
-				jsonObj = gson.toJson(repo);
-				
-				break;
-			}
-			case JSON_OBJ_TYPE_ANSWER: {
-				AnswerStringRepo repo = new AnswerStringRepo();
-				repo.setMessage(map.get(JSON_OBJ_FIELD_MESSAGE));
-				repo.setStatus(Boolean.valueOf(map.get(JSON_OBJ_FIELD_STATUS)));
-				jsonObj = gson.toJson(repo);
-				
-				break;
-			}
+		case JSON_OBJ_TYPE_CONNECTION: {
+			ConnectionStringRepo repo = new ConnectionStringRepo();
+			repo.setServerName(map.get(JSON_OBJ_FIELD_SERVER_NAME));
+			repo.setDatabaseName(map.get(JSON_OBJ_FIELD_DATABASE_NAME));
+			repo.setUsername(map.get(JSON_OBJ_FIELD_USERNAME));
+			repo.setPassword(map.get(JSON_OBJ_FIELD_PASSWORD));
+			repo.setStatus(Boolean.valueOf(map.get(JSON_OBJ_FIELD_STATUS)));
+			jsonObj = gson.toJson(repo);
+
+			break;
 		}
-		
+		case JSON_OBJ_TYPE_ANSWER: {
+			AnswerStringRepo repo = new AnswerStringRepo();
+			repo.setMessage(map.get(JSON_OBJ_FIELD_MESSAGE));
+			repo.setStatus(Boolean.valueOf(map.get(JSON_OBJ_FIELD_STATUS)));
+			jsonObj = gson.toJson(repo);
+
+			break;
+		}
+		}
+
 		return jsonObj;
 	}
 }

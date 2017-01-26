@@ -15,7 +15,8 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
  */
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -7948233786480773518L;
 	protected static final String FIRST_FUNC_REQUEST = "first";
 	protected static final String SECOND_FUNC_REQUEST = "second";
 	protected static final String THIRD_FUNC_REQUEST = "third";

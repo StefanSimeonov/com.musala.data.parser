@@ -1,4 +1,4 @@
-app.controller('ConnectionController', function($scope, $http,$rootScope) {
+app.controller('ConnectionController', function($scope, $http, $rootScope) {
 	// Setting default input values
 	$scope.serverName = 'localhost';
 	$scope.databaseName = 'schools';
@@ -21,18 +21,18 @@ app.controller('ConnectionController', function($scope, $http,$rootScope) {
 		}).then(function(response) {
 			// Logging response data status
 			console.log(response.data.status);
-			if(response.data.status){
+			if (response.data.status) {
 				$scope.trueMessage = response.data.status + ' operation';
 				$('#init-failure-box').hide();
 				$('#init-success-box').show();
-				
-			} else{
-				$scope.falseMessage=response.data.status + ' operation';
+
+			} else {
+				$scope.falseMessage = response.data.status + ' operation';
 				$('#init-success-box').hide();
 				$('#init-failure-box').show();
 			}
 			if (response.data.status) {
-				$rootScope.lastInvokedStep=2;
+				$rootScope.lastInvokedStep = 2;
 				setTimeout(function() {
 					window.location.replace('index.html#/simple-querying');
 				}, 1000);

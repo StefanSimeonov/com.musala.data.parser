@@ -19,7 +19,7 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4155893928565706941L;
 	private static final String FIRST_FUNC_REQUEST = "first";
 	private static final String SECOND_FUNC_REQUEST = "second";
 	private static final String THIRD_FUNC_REQUEST = "third";
@@ -46,36 +46,34 @@ public class AjaxController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		JsonObject reqJson = fromPostRequestToJson(request);
 		MySqlWebDbEngine con;
-		
+
 		try {
 			JsonElement req = reqJson.get(FUNC_REQUEST_AS_STRING);
 			switch (req.getAsString()) {
-				case FIRST_FUNC_REQUEST: {
-					con = MySqlWebDbEngine.getInstance(response, reqJson);
-					con.initialize();
-					return;
-				}
-				case SECOND_FUNC_REQUEST: {
-					con = MySqlWebDbEngine.getInstance(response, reqJson);
-					con.startQuering();
-					return;
-				}
-				case THIRD_FUNC_REQUEST: {
-					con = MySqlWebDbEngine.getInstance(response, reqJson);
-					con.startQuering();
-					return;
-				}
+			case FIRST_FUNC_REQUEST: {
+				con = MySqlWebDbEngine.getInstance(response, reqJson);
+				con.initialize();
+				return;
+			}
+			case SECOND_FUNC_REQUEST: {
+				con = MySqlWebDbEngine.getInstance(response, reqJson);
+				con.startQuering();
+				return;
+			}
+			case THIRD_FUNC_REQUEST: {
+				con = MySqlWebDbEngine.getInstance(response, reqJson);
+				con.startQuering();
+				return;
+			}
 			}
 		} catch (Exception e) {
 			// fictive
 		}
 	}
-
 
 	/**
 	 * Processes POST request params into a generic json object

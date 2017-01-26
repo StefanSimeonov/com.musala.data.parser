@@ -1,16 +1,16 @@
 package com.musala.database.web.spa.parser.test.model;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import static org.hamcrest.CoreMatchers.*;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
@@ -39,53 +39,50 @@ public class EngineTest {
 		jsonObj.addProperty("funcRequest", "first");
 	}
 
-	 @Test
-	 public void testInitializationWithProperParameters() throws IOException {
-	 File file = File.createTempFile("temp", ".txt");
-	 PrintWriter writer = new PrintWriter(file);
-	 when(response.getWriter()).thenReturn(writer);
-	 MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
-	 db.initialize();
-	 writer.flush();
-	 Scanner scan = new Scanner(file);
-	 String returnedResponseAsString = scan.nextLine();
-	 int index = returnedResponseAsString.lastIndexOf(":");
-	 String returnedStatus =
-	 returnedResponseAsString.substring(index+1,returnedResponseAsString.length()-1);
-	 assertEquals("true", returnedStatus);
-	 scan.close();
-	 }
-	
-	 @Test
-	 public void testInitializationWithWrongParameters() throws IOException {
-	 File file = File.createTempFile("temp", ".txt");
-	 PrintWriter writer = new PrintWriter(file);
-	 when(response.getWriter()).thenReturn(writer);
-	 jsonObj.addProperty("serverName", "smthWrong");
-	 MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
-	 db.initialize();
-	 writer.flush();
-	 Scanner scan = new Scanner(file);
-	 String returnedResponseAsString = scan.nextLine();
-	 int index = returnedResponseAsString.lastIndexOf(":");
-	 String returnedStatus =
-	 returnedResponseAsString.substring(index+1,returnedResponseAsString.length()-1);
-	 assertEquals("false", returnedStatus);
-	 scan.close();
-	 }
-	
-	 @Test
-	 public void testQueryingWithoutAnyArguments() throws
-	 FileNotFoundException, IOException {
-	 when(response.getWriter()).thenReturn(new PrintWriter("smth"));
-	 MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
-	 db.initialize();
-	 try {
-	 db.startQuering();
-	 } catch (NullPointerException e) {
-	 assertThat(e.getClass(), equalTo(NullPointerException.class));
-	 }
-	 }
+	@Test
+	public void testInitializationWithProperParameters() throws IOException {
+		File file = File.createTempFile("temp", ".txt");
+		PrintWriter writer = new PrintWriter(file);
+		when(response.getWriter()).thenReturn(writer);
+		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
+		db.initialize();
+		writer.flush();
+		Scanner scan = new Scanner(file);
+		String returnedResponseAsString = scan.nextLine();
+		int index = returnedResponseAsString.lastIndexOf(":");
+		String returnedStatus = returnedResponseAsString.substring(index + 1, returnedResponseAsString.length() - 1);
+		assertEquals("true", returnedStatus);
+		scan.close();
+	}
+
+	@Test
+	public void testInitializationWithWrongParameters() throws IOException {
+		File file = File.createTempFile("temp", ".txt");
+		PrintWriter writer = new PrintWriter(file);
+		when(response.getWriter()).thenReturn(writer);
+		jsonObj.addProperty("serverName", "smthWrong");
+		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
+		db.initialize();
+		writer.flush();
+		Scanner scan = new Scanner(file);
+		String returnedResponseAsString = scan.nextLine();
+		int index = returnedResponseAsString.lastIndexOf(":");
+		String returnedStatus = returnedResponseAsString.substring(index + 1, returnedResponseAsString.length() - 1);
+		assertEquals("false", returnedStatus);
+		scan.close();
+	}
+
+	@Test
+	public void testQueryingWithoutAnyArguments() throws FileNotFoundException, IOException {
+		when(response.getWriter()).thenReturn(new PrintWriter("smth"));
+		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
+		db.initialize();
+		try {
+			db.startQuering();
+		} catch (NullPointerException e) {
+			assertThat(e.getClass(), equalTo(NullPointerException.class));
+		}
+	}
 
 	@Test
 	public void testQueryingWitFourthQueryType() throws FileNotFoundException, IOException {
@@ -105,46 +102,46 @@ public class EngineTest {
 		scan.close();
 	}
 
-	 @Test
-	 public void testQueryingWithProperRequest()throws IOException {
-		 File file = File.createTempFile("temp", ".txt");
-			PrintWriter writer = new PrintWriter(file);
-			when(response.getWriter()).thenReturn(writer);
-			jsonObj.addProperty("queriesType", "getAllRecords");
-			jsonObj.addProperty("properties", "id");
-			jsonObj.addProperty("tableName","schools" );
-			MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
-			db.initialize();
-			db.startQuering();
-			writer.flush();
-			Scanner scan = new Scanner(file);
-			String returnedResponseAsString = scan.nextLine();
-			int index = returnedResponseAsString.lastIndexOf(":");
-			String returnedStatus = returnedResponseAsString.substring(index + 1, returnedResponseAsString.length() - 1);
-			assertEquals("false", returnedStatus);
-			scan.close();
-	
-	 }
-	
-	 @Test
-	 public void testExtendedQuerying()throws IOException {
-		 File file = File.createTempFile("temp", ".txt");
-			PrintWriter writer = new PrintWriter(file);
-			when(response.getWriter()).thenReturn(writer);
-			jsonObj.addProperty("queriesType", "getRecordById");
-			jsonObj.addProperty("properties", "id");
-			jsonObj.addProperty("tableName","schools" );
-			MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
-			db.initialize();
-			db.startQuering();
-			writer.flush();
-			Scanner scan = new Scanner(file);
-			String returnedResponseAsString = scan.nextLine();
-			int index = returnedResponseAsString.lastIndexOf(":");
-			String returnedStatus = returnedResponseAsString.substring(index + 1, returnedResponseAsString.length() - 1);
-			assertEquals("true", returnedStatus);
-			scan.close();
-	
-	 }
-	
+	@Test
+	public void testQueryingWithProperRequest() throws IOException {
+		File file = File.createTempFile("temp", ".txt");
+		PrintWriter writer = new PrintWriter(file);
+		when(response.getWriter()).thenReturn(writer);
+		jsonObj.addProperty("queriesType", "getAllRecords");
+		jsonObj.addProperty("properties", "id");
+		jsonObj.addProperty("tableName", "schools");
+		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
+		db.initialize();
+		db.startQuering();
+		writer.flush();
+		Scanner scan = new Scanner(file);
+		String returnedResponseAsString = scan.nextLine();
+		int index = returnedResponseAsString.lastIndexOf(":");
+		String returnedStatus = returnedResponseAsString.substring(index + 1, returnedResponseAsString.length() - 1);
+		assertEquals("false", returnedStatus);
+		scan.close();
+
+	}
+
+	@Test
+	public void testExtendedQuerying() throws IOException {
+		File file = File.createTempFile("temp", ".txt");
+		PrintWriter writer = new PrintWriter(file);
+		when(response.getWriter()).thenReturn(writer);
+		jsonObj.addProperty("queriesType", "getRecordById");
+		jsonObj.addProperty("properties", "id");
+		jsonObj.addProperty("tableName", "schools");
+		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, jsonObj);
+		db.initialize();
+		db.startQuering();
+		writer.flush();
+		Scanner scan = new Scanner(file);
+		String returnedResponseAsString = scan.nextLine();
+		int index = returnedResponseAsString.lastIndexOf(":");
+		String returnedStatus = returnedResponseAsString.substring(index + 1, returnedResponseAsString.length() - 1);
+		assertEquals("true", returnedStatus);
+		scan.close();
+
+	}
+
 }

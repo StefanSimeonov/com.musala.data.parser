@@ -60,7 +60,7 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 		}
 		repoForJsonCreation.put("status", "false");
 		repoForJsonCreation.put("message", returnAnswear.substring(0, returnAnswear.length() - 1));
-		String json =JsonMaker.build("answear", repoForJsonCreation);
+		String json = JsonMaker.build("answear", repoForJsonCreation);
 		try {
 			response.getWriter().println(json);
 		} catch (IOException e) {

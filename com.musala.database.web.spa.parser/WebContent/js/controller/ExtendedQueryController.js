@@ -1,5 +1,5 @@
-app.controller('ExtendedQueryController', function($scope, $http,$rootScope) {
-	if($rootScope.lastInvokedStep!=3){
+app.controller('ExtendedQueryController', function($scope, $http, $rootScope) {
+	if ($rootScope.lastInvokedStep != 3) {
 		window.location.replace('index.html#');
 	}
 	$scope.connect = function() {
@@ -24,7 +24,7 @@ app.controller('ExtendedQueryController', function($scope, $http,$rootScope) {
 			$scope.message = response.data.message;
 			$('#message').show();
 			if (response.data.status == false) {
-				$rootScope.lastInvokedStep=1;
+				$rootScope.lastInvokedStep = 1;
 				setTimeout(function() {
 					window.location.replace('index.html#/initialization');
 				}, 2000);

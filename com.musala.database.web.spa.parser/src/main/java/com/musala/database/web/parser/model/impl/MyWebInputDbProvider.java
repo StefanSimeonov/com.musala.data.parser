@@ -6,8 +6,12 @@ import com.musala.database.web.parser.helper.StringConstants;
 import com.musala.database.web.parser.model.IDbInputProvider;
 
 public class MyWebInputDbProvider implements IDbInputProvider {
+	
+	private static final String CLOSE_THE_QUERY = "closeTheQuery";
+	private static final String GET_RECORD_BY_NAME = "getRecordByName";
+	private static final String GET_RECORD_BY_ID = "getRecordById";
+	private static final String GET_ALL_RECORDS = "getAllRecords";
 	private JsonObject request;
-
 	public MyWebInputDbProvider(JsonObject request) {
 		this.request = request;
 	}
@@ -59,13 +63,13 @@ public class MyWebInputDbProvider implements IDbInputProvider {
 		JsonElement el = request.get(StringConstants.WEB_PARAMS_QUERIESTYPE);
 		String query = el.getAsString();
 		switch (query) {
-		case "getAllRecords":
+		case GET_ALL_RECORDS:
 			return QueryType.first;
-		case "getRecordById":
+		case GET_RECORD_BY_ID:
 			return QueryType.second;
-		case "getRecordByName":
+		case GET_RECORD_BY_NAME:
 			return QueryType.third;
-		case "closeTheQuery":
+		case CLOSE_THE_QUERY:
 			return QueryType.fourth;
 		default:
 			return null;

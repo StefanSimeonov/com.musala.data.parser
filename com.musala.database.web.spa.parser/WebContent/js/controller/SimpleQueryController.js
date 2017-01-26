@@ -1,5 +1,5 @@
-app.controller('SimpleQueryController', function($scope, $http,$rootScope) {
-	if($rootScope.lastInvokedStep!=2){
+app.controller('SimpleQueryController', function($scope, $http, $rootScope) {
+	if ($rootScope.lastInvokedStep != 2) {
 		window.location.replace('index.html#');
 	}
 	$scope.connect = function() {
@@ -18,7 +18,7 @@ app.controller('SimpleQueryController', function($scope, $http,$rootScope) {
 				'funcRequest' : 'second',
 			},
 		}).then(function(response) {
-			$rootScope.lastInvokedStep=3;
+			$rootScope.lastInvokedStep = 3;
 			// Logging response data
 			console.log(response.data.status);
 			console.log(response.data.message);
@@ -34,7 +34,7 @@ app.controller('SimpleQueryController', function($scope, $http,$rootScope) {
 				$scope.falseMessage = response.data.message;
 				$('#init-success-box').hide();
 				$('#init-failure-box').show();
-				$rootScope.lastInvokedStep=1;
+				$rootScope.lastInvokedStep = 1;
 				setTimeout(function() {
 					window.location.replace('index.html#/initialization');
 				}, 2000);

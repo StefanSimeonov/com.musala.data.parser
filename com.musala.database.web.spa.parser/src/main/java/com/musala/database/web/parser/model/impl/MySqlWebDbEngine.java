@@ -43,7 +43,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 		if (instance == null) {
 			instance = new MySqlWebDbEngine(response, request);
 			return instance;
-		
+
 		} else {
 			instance.response = response;
 			instance.request = request;
@@ -90,7 +90,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				String json = JsonMaker.build("connection", repoForJsonCreation);
 				response.getWriter().print(json);
 			} catch (IOException e) {
-				//fictive
+				// fictive
 			}
 		} catch (SQLException sq) {
 			try {

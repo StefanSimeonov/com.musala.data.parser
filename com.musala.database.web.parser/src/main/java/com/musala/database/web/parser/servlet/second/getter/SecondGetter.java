@@ -15,7 +15,8 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
  */
 @WebServlet("/SecondGetter")
 public class SecondGetter extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 6135655281703848916L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
