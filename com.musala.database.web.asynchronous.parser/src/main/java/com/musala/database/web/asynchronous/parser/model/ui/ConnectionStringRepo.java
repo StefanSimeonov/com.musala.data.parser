@@ -5,6 +5,7 @@ public class ConnectionStringRepo {
 	private String databaseName;
 	private String username;
 	private String password;
+	@SuppressWarnings("unused")
 	private boolean status;
 
 	public void setDatabaseName(String databaseName) {

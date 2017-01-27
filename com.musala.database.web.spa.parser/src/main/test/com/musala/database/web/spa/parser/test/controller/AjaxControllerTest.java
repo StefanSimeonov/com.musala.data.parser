@@ -24,6 +24,7 @@ import com.musala.database.web.spa.parser.controller.AjaxController;
 @RunWith(MockitoJUnitRunner.class)
 public class AjaxControllerTest extends AjaxController {
 
+	private static final long serialVersionUID = -6169351981137036431L;
 	@Mock
 	HttpServletRequest request;
 	@Mock

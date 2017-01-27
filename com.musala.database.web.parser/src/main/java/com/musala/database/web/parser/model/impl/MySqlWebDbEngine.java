@@ -191,10 +191,10 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 	 */
 	private String searchForQueryTypeName(QueryType typeOfQuery) {
 		switch (typeOfQuery.getValue()) {
-			case 2:
-				return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById' selected>getRecordById</option><option value='getRecordByName' >getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
-			case 3:
-				return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById'>getRecordById</option><option value='getRecordByName' selected>getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
+				case 2:
+					return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById' selected>getRecordById</option><option value='getRecordByName' >getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
+				case 3:
+					return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById'>getRecordById</option><option value='getRecordByName' selected>getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
 		}
 		return null;
 	}

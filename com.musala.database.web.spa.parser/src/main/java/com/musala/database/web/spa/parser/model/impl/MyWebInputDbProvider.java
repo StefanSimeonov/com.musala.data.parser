@@ -87,8 +87,4 @@ public class MyWebInputDbProvider implements IDbInputProvider {
 		String username = request.get(StringConstants.WEB_PARAMS_USERNAME).getAsString();
 		return username;
 	}
-
-	@Override
-	public void visualizeMainMenu() {
-	}
 }

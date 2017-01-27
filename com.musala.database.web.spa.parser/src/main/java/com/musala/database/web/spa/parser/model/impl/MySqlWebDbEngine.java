@@ -71,7 +71,6 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 		input = new MyWebInputDbProvider(request);
 		try {
-			input.visualizeMainMenu();
 			String serverName = input.getConnection();
 			String databaseName = input.getDatabase();
 			String userName = input.getUserName();
