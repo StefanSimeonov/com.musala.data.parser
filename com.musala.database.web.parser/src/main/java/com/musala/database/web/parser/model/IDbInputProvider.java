@@ -84,9 +84,4 @@ public interface IDbInputProvider {
 
 	String getUserName();
 
-	/**
-	 * Visualize the main menu to the user
-	 * 
-	 */
-	void visualizeMainMenu();
 }

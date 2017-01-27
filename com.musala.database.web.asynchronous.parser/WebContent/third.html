@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<script type="text/javascript" src="js/lib//jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/scripts/constants.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				$("form").submit(function(event) {
+					console.log("passed");
+					event.preventDefault();
+					var id = $(input_id).val();
+					var name = $(input_name).val();
+					$.ajax({
+						type : HTTP_TYPE_POST,
+						url : controller_url,
+						data : {
+							id:id,
+							name:name,
+							funcRequest: function_request_third,
+						},
+						success : function(result) {
+							console.log(result.status);
+							if (result.status) {
+								var res = result.username;
+								$("p").text(result.message);
+								setTimeout(function() {
+									window.location.replace(template_name_first);
+								}, 2000);
+			
+							} else {
+								console.log(result.message);
+								$("form").empty();
+								$("#answer").text(result.message);
+								setTimeout(function() {
+									window.location.replace(template_name_first);
+								}, 3000);
+							}
+						}
+					});
+					return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form>
+			<p>Enter the id you want: <br> 
+			<input type="text" name="id">
+			<p>Enter the name you want:</p>
+			<input type="text" name="name"><br>
+			<input type="submit" name="submit" value="Submit query">
+		</form>
+		<p id="answer"></p>
+	</body>
+</html>

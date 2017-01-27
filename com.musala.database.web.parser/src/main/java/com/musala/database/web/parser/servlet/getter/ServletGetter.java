@@ -15,14 +15,14 @@ import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
  */
 @WebServlet("/ServletGetter")
 public class ServletGetter extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -6451307502873691810L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletGetter() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
