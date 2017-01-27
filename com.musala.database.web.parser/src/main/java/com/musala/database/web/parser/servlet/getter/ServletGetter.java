@@ -23,7 +23,6 @@ public class ServletGetter extends HttpServlet {
 	 */
 	public ServletGetter() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

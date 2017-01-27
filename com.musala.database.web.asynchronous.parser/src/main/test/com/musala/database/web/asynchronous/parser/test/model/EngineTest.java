@@ -23,7 +23,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
+import com.musala.database.web.asynchronous.parser.model.impl.MySqlWebDbEngine;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EngineTest {
@@ -37,14 +37,8 @@ public class EngineTest {
 
 	@Test
 	public void testInitializationWithoutRequestParameters() throws IOException, ClassNotFoundException {
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);// manual
-																			// mock
-																			// the
-																			// object
-		HttpServletResponse response = Mockito.mock(HttpServletResponse.class);// manual
-																				// mock
-																				// the
-																				// object
+		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);// manual mock
+		HttpServletResponse response = Mockito.mock(HttpServletResponse.class);// manual mock
 		MySqlWebDbEngine db = MySqlWebDbEngine.getInstance(response, request);
 		File file = File.createTempFile("file", ".txt");
 		PrintWriter writer = new PrintWriter(file);

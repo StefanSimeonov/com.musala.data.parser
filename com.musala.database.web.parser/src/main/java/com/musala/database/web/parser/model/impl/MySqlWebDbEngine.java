@@ -19,6 +19,10 @@ import com.musala.database.web.parser.helper.SchoolClassException;
  */
 public class MySqlWebDbEngine extends AbstractDbEngine {
 
+	private static final String TEACHERS_TABLE_NAME = "teachers";
+	private static final String STUDENTS_TABLE_NAME = "students";
+	private static final String SCHOOLCLASSES__TABLE_NAME = "schoolclasses";
+	private static final String SCHOOLS_TABLE_NAME = "schools";
 	private static final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
 	private static final String REDIRECT_WEB_PAGE = RedirectURLBuilder.getPath();
 
@@ -66,7 +70,6 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 		input = new MyWebInputDbProvider(request);
 		try {
-			input.visualizeMainMenu();
 			String serverName = input.getConnection();
 			String databaseName = input.getDatabase();
 			String userName = input.getUserName();
@@ -106,31 +109,31 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			String currentTable = input.getQueryTableName();
 			String[] currentProperties = input.getRecordPropertiesName();
 			switch (typeOfQuery.getValue()) {
-			case 1: {
-				writer.printAllRecordsInTable(currentTable, currentProperties);
-				break;
-			}
-			case 2: {
-				if (!secondQueryInvoking) {
-					fillTheResponse(currentTable, currentProperties, typeOfQuery, response);
-					secondQueryInvoking = true;
-				} else {
-					String needablePropertyName = input.getNeedableId();
-					writer.printRecordsById(currentTable, needablePropertyName, currentProperties);
+				case 1: {
+					writer.printAllRecordsInTable(currentTable, currentProperties);
+					break;
 				}
-				break;
-			}
-			case 3: {
-				if (!secondQueryInvoking) {
-					fillTheResponse(currentTable, currentProperties, typeOfQuery, response);
-					secondQueryInvoking = true;
-
-				} else {
-					String needablePropertyName = input.getNeedableName();
-					writer.printRecordsByName(currentTable, needablePropertyName, currentProperties);
+				case 2: {
+					if (!secondQueryInvoking) {
+						fillTheResponse(currentTable, currentProperties, typeOfQuery, response);
+						secondQueryInvoking = true;
+					} else {
+						String needablePropertyName = input.getNeedableId();
+						writer.printRecordsById(currentTable, needablePropertyName, currentProperties);
+					}
+					break;
 				}
-				break;
-			}
+				case 3: {
+					if (!secondQueryInvoking) {
+						fillTheResponse(currentTable, currentProperties, typeOfQuery, response);
+						secondQueryInvoking = true;
+	
+					} else {
+						String needablePropertyName = input.getNeedableName();
+						writer.printRecordsByName(currentTable, needablePropertyName, currentProperties);
+					}
+					break;
+				}
 			}
 
 		} catch (SQLException sqlex) {
@@ -180,34 +183,38 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 	}
 
-	/** Build static html depending on query type
+	/**
+	 * Build static html depending on query type
+	 * 
 	 * @param typeOfQuery
 	 * @return String
 	 */
 	private String searchForQueryTypeName(QueryType typeOfQuery) {
 		switch (typeOfQuery.getValue()) {
-		case 2:
-			return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById' selected>getRecordById</option><option value='getRecordByName' >getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
-		case 3:
-			return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById'>getRecordById</option><option value='getRecordByName' selected>getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
+			case 2:
+				return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById' selected>getRecordById</option><option value='getRecordByName' >getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
+			case 3:
+				return "</p><select name='queriesType' style='display:none'><option value='getAllRecords'>getAllRecords</option><option value='getRecordById'>getRecordById</option><option value='getRecordByName' selected>getRecordByName</option><option value='closeTheQuery'>close</option></select><p>";
 		}
 		return null;
 	}
 
-	/** Build static html depending on table name
+	/**
+	 * Build static html depending on table name
+	 * 
 	 * @param currentTable
 	 * @return String
 	 */
 	private String searchForTableName(String currentTable) {
 		switch (currentTable) {
-		case "schools":
-			return "</p><select name='tableName' style='display:none'><option value='schools' selected >schools</option><option value='schoolclasses'>school classes</option><option value='students' >students</option><option value='teachers' >teachers</option></select>";
-		case "schoolclasses":
-			return "</p><select name='tableName' style='display:none'><option value='schools'>schools</option><option value='schoolclasses' selected >school classes</option><option value='students' >students</option><option value='teachers' >teachers</option></select>";
-		case "students":
-			return "</p><select name='tableName' style='display:none'><option value='schools' >schools</option><option value='schoolclasses'>school classes</option><option value='students' selected >students</option><option value='teachers' >teachers</option></select>";
-		case "teachers":
-			return "</p><select name='tableName' style='display:none'><option value='schools' >schools</option><option value='schoolclasses'>school classes</option><option value='students' >students</option><option value='teachers' selected >teachers</option></select>";
+			case SCHOOLS_TABLE_NAME:
+				return "</p><select name='tableName' style='display:none'><option value='schools' selected >schools</option><option value='schoolclasses'>school classes</option><option value='students' >students</option><option value='teachers' >teachers</option></select>";
+			case SCHOOLCLASSES__TABLE_NAME:
+				return "</p><select name='tableName' style='display:none'><option value='schools'>schools</option><option value='schoolclasses' selected >school classes</option><option value='students' >students</option><option value='teachers' >teachers</option></select>";
+			case STUDENTS_TABLE_NAME:
+				return "</p><select name='tableName' style='display:none'><option value='schools' >schools</option><option value='schoolclasses'>school classes</option><option value='students' selected >students</option><option value='teachers' >teachers</option></select>";
+			case TEACHERS_TABLE_NAME:
+				return "</p><select name='tableName' style='display:none'><option value='schools' >schools</option><option value='schoolclasses'>school classes</option><option value='students' >students</option><option value='teachers' selected >teachers</option></select>";
 		}
 		return null;
 	}

@@ -12,10 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.musala.database.web.parser.model.IDbConnector;
-import com.musala.database.web.parser.model.IQueryable;
-import com.musala.database.web.parser.model.impl.MySqlDbConnector;
-import com.musala.database.web.parser.model.impl.MySqlQueryBuilder;
+import com.musala.database.web.spa.parser.model.IDbConnector;
+import com.musala.database.web.spa.parser.model.IQueryable;
+import com.musala.database.web.spa.parser.model.impl.MySqlDbConnector;
+import com.musala.database.web.spa.parser.model.impl.MySqlQueryBuilder;
 
 public class QueryTest {
 	IQueryable query;

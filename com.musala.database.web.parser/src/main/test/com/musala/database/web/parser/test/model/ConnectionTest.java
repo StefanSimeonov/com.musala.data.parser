@@ -40,7 +40,7 @@ public class ConnectionTest extends MySqlDbConnector {
 	}
 
 	@Test
-	public void testgetConString() {
+	public void testGetConnectionString() {
 		assertEquals("jdbc:mysql://null/null", this.getConServerName());
 	}
 

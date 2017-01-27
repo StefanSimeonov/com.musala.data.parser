@@ -23,7 +23,6 @@ public class ThirdGetter extends HttpServlet {
 	 */
 	public ThirdGetter() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

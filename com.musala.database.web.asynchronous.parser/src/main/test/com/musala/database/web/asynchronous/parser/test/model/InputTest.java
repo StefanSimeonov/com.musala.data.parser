@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.musala.database.web.parser.model.impl.MyWebInputDbProvider;
+import com.musala.database.web.asynchronous.parser.model.impl.MyWebInputDbProvider;
 
 @RunWith(MockitoJUnitRunner.class)
 public class InputTest {

@@ -86,7 +86,4 @@ public class MyWebInputDbProvider implements IDbInputProvider {
 		return username;
 	}
 
-	@Override
-	public void visualizeMainMenu() {
-	}
 }

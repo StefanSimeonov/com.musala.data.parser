@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import com.musala.database.web.parser.model.impl.MySqlDbConnector;
+import com.musala.database.web.spa.parser.model.impl.MySqlDbConnector;
 
 public class ConnectionTest extends MySqlDbConnector {
 

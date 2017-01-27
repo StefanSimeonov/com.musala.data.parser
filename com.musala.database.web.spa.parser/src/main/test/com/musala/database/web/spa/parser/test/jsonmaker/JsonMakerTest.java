@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import com.musala.database.web.parser.model.ui.JsonMaker;
+import com.musala.database.web.spa.parser.model.ui.JsonMaker;
 
 public class JsonMakerTest {
 
@@ -31,7 +31,7 @@ public class JsonMakerTest {
 	public void testBuildCheckForNullPointingMap() {
 		HashMap<String, String> map = new HashMap<>();
 		try {
-			 JsonMaker.build("connection", map);
+			JsonMaker.build("connection", map);
 		} catch (NullPointerException e) {
 			assertThat(e.getClass(), equalTo(NullPointerException.class));
 		}

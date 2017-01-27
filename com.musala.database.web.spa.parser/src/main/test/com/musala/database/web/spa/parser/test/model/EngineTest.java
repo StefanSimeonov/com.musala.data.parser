@@ -20,7 +20,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.google.gson.JsonObject;
-import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
+import com.musala.database.web.spa.parser.model.impl.MySqlWebDbEngine;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EngineTest {

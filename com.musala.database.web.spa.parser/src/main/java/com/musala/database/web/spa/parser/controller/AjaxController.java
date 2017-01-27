@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
+import com.musala.database.web.spa.parser.model.impl.MySqlWebDbEngine;
 
 /**
  * Servlet implementation class AjaxController
@@ -54,21 +54,21 @@ public class AjaxController extends HttpServlet {
 		try {
 			JsonElement req = reqJson.get(FUNC_REQUEST_AS_STRING);
 			switch (req.getAsString()) {
-			case FIRST_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, reqJson);
-				con.initialize();
-				return;
-			}
-			case SECOND_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, reqJson);
-				con.startQuering();
-				return;
-			}
-			case THIRD_FUNC_REQUEST: {
-				con = MySqlWebDbEngine.getInstance(response, reqJson);
-				con.startQuering();
-				return;
-			}
+				case FIRST_FUNC_REQUEST: {
+					con = MySqlWebDbEngine.getInstance(response, reqJson);
+					con.initialize();
+					return;
+				}
+				case SECOND_FUNC_REQUEST: {
+					con = MySqlWebDbEngine.getInstance(response, reqJson);
+					con.startQuering();
+					return;
+				}
+				case THIRD_FUNC_REQUEST: {
+					con = MySqlWebDbEngine.getInstance(response, reqJson);
+					con.startQuering();
+					return;
+				}
 			}
 		} catch (Exception e) {
 			// fictive

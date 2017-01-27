@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.musala.database.web.parser.model.impl.MySqlWebDbEngine;
+import com.musala.database.web.asynchronous.parser.model.impl.MySqlWebDbEngine;
 
 /**
  * Servlet implementation class AjaxController

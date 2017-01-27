@@ -14,8 +14,8 @@ import java.util.InputMismatchException;
 
 import org.junit.Test;
 
-import com.musala.database.web.parser.helper.ObjectValidator;
-import com.musala.database.web.parser.helper.SchoolClassException;
+import com.musala.database.web.asynchronous.parser.helper.ObjectValidator;
+import com.musala.database.web.asynchronous.parser.helper.SchoolClassException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
@@ -23,8 +23,9 @@ import com.mysql.jdbc.exceptions.MySQLNonTransientConnectionException;
 
 public class ObjectValidatorTest extends ObjectValidator {
 
+	@SuppressWarnings("unchecked")
 	@Test
-	public void testcheckAndMoveCursorToNextPosition() throws SQLException {
+	public void testCheckAndMoveCursorToNextPosition() throws SQLException {
 		ResultSet set = mock(ResultSet.class);
 		when(set.next()).thenThrow(SQLException.class);
 		try {
@@ -174,6 +175,7 @@ public class ObjectValidatorTest extends ObjectValidator {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testCheckForSQLStatementExceptionForSQLExc() throws SQLException {
 		Connection con = mock(Connection.class);

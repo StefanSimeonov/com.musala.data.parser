@@ -18,13 +18,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.musala.database.web.parser.helper.ObjectValidator;
-import com.musala.database.web.parser.helper.SchoolClassException;
-import com.musala.database.web.parser.model.IDbConnector;
-import com.musala.database.web.parser.model.IQueryable;
-import com.musala.database.web.parser.model.impl.MyDbWebQueryRenderer;
-import com.musala.database.web.parser.model.impl.MySqlDbConnector;
-import com.musala.database.web.parser.model.impl.MySqlQueryBuilder;
+import com.musala.database.web.asynchronous.parser.helper.ObjectValidator;
+import com.musala.database.web.asynchronous.parser.helper.SchoolClassException;
+import com.musala.database.web.asynchronous.parser.model.IDbConnector;
+import com.musala.database.web.asynchronous.parser.model.IQueryable;
+import com.musala.database.web.asynchronous.parser.model.impl.MyDbWebQueryRenderer;
+import com.musala.database.web.asynchronous.parser.model.impl.MySqlDbConnector;
+import com.musala.database.web.asynchronous.parser.model.impl.MySqlQueryBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RendererTest {
