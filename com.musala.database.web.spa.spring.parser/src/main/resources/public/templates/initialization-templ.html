@@ -1,0 +1,63 @@
+<div ng-controller="ConnectionController">
+	<form ng-submit="connect()" class="form-horizontal" data-toggle="validator" role="form">
+		<div class="form-group">
+			<label for="1" class="col-md-12">Please enter server name:</label>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-home"></i>
+					</span> 
+					<input class="form-control input-lg" ng-model="serverName" type="text" id="1" name="ServerName" value="localhost" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="2" class="col-md-12">Please enter database name:</label>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-list-alt"></i>
+					</span> 
+					<input id="2" ng-model="databaseName" class="form-control input-lg" type="text" name="DatabaseName" value="schools" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="3" class="col-md-12">Please enter username:</label>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<iclass="glyphicon glyphicon-user"></i>
+					</span> 
+					<input id="3" ng-model="userName" class="form-control input-lg" type="text" name="Username" value="root" required>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="4" class="col-md-12">Please enter user's password:</label>
+			<div class="col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-lock"></i>
+					</span>
+					<input id="4" ng-model="password" class="form-control input-lg" type="password" name="Password" value="">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-12">
+				<div id="init-success-box" class="alert alert-success col-md-3" hidden>
+					<p>{{trueMessage}}</p>
+				</div>
+				<div id="init-failure-box" class="alert alert-danger col-md-3"hidden>
+					<p>{{falseMessage}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-12">
+				<input type="submit" value="Connect" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>

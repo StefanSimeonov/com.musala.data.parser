@@ -118,7 +118,7 @@ public class ObjectValidator {
 		try {
 			result = statement.executeQuery(query);
 		} catch (SQLException e) {
-			throw new SQLException("Invalid Query . " + e.getMessage(), e);
+			throw new SQLException("Invalid Query.");
 		}
 		checkIfObjectIsNull(result, "Empty resultSet");
 
