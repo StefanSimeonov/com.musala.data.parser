@@ -1,24 +1,28 @@
 package com.musala.database.web.spa.spring.parser.model.impl;
 
 import java.sql.SQLException;
-
 import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 
-import com.musala.database.web.spa.parser.model.ui.JsonMaker;
 import com.musala.database.web.spa.spring.parser.helper.ObjectValidator;
 import com.musala.database.web.spa.spring.parser.helper.SchoolClassException;
+import com.musala.database.web.spa.spring.parser.model.ui.JsonMaker;
 import com.musala.database.web.spa.spring.parser.requests.RequestConnectionStringRepo;
 import com.musala.database.web.spa.spring.parser.requests.RequestQueryStringRepo;
 
 @Component
 public class MySqlWebDbEngine extends AbstractDbEngine {
+	private static final String QUERY_TYPE_CLOSE_THE_QUERY = "closeTheQuery";
+	private static final String QUERY_TYPE_GET_RECORD_BY_NAME = "getRecordByName";
+	private static final String QUERY_TYPE_GET_RECORD_BY_ID = "getRecordById";
+	private static final String QUERY_TYPE_GET_ALL_RECORDS = "getAllRecords";
 	private static final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
 	private HashMap<String, String> repoForJsonCreation = new HashMap<>();
 	private static MySqlWebDbEngine instance;
 	private RequestConnectionStringRepo connetionRequest;
 	private RequestQueryStringRepo queryRequest;
+	private final String SQL_ERROR_MESSAGE = "Invalid query";
 	public static boolean secondQueryInvoking = false;
 	private QueryHolder queryHolder = new QueryHolder();
 
@@ -84,7 +88,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			} else {
 				typeOfQuery = queryHolder.getQueryType();
 			}
-			if (typeOfQuery.equals("closeTheQuery")) {
+			if (typeOfQuery.equals(QUERY_TYPE_CLOSE_THE_QUERY)) {
 				repoForJsonCreation.put("status", "false");
 				repoForJsonCreation.put("message", "Thank you");
 				json = JsonMaker.build("answer", repoForJsonCreation);
@@ -117,10 +121,10 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				currentProperties = queryRequest.getProperties().split(" ");
 			}
 			switch (typeOfQuery) {
-			case "getAllRecords": {
+			case QUERY_TYPE_GET_ALL_RECORDS: {
 				return writer.printAllRecordsInTable(currentTable, currentProperties);
 			}
-			case "getRecordById": {
+			case QUERY_TYPE_GET_RECORD_BY_ID: {
 				if (!secondQueryInvoking) {
 					queryHolder.setCurrentProperties(currentProperties);
 					queryHolder.setCurrentTable(currentTable);
@@ -134,11 +138,12 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 					String needablePropertyName = queryRequest.getId();
 					String json = writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
 							queryHolder.getCurrentProperties());
+					json = json.replaceAll("false", "true");
 					secondQueryInvoking = false;
 					return json;
 				}
 			}
-			case "getRecordByName": {
+			case QUERY_TYPE_GET_RECORD_BY_NAME: {
 				if (!secondQueryInvoking) {
 					queryHolder.setCurrentProperties(currentProperties);
 					queryHolder.setCurrentTable(currentTable);
@@ -152,6 +157,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 					String needablePropertyName = queryRequest.getName();
 					String json = writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
 							queryHolder.getCurrentProperties());
+					json = json.replaceAll("false", "true");
 					secondQueryInvoking = false;
 					return json;
 				}
@@ -160,7 +166,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			}
 		} catch (SQLException sqlex) {
 			repoForJsonCreation.put("status", "false");
-			repoForJsonCreation.put("message", sqlex.getMessage());
+			repoForJsonCreation.put("message", SQL_ERROR_MESSAGE);
 			String json = JsonMaker.build("answer", repoForJsonCreation);
 			secondQueryInvoking = false;
 			return json;

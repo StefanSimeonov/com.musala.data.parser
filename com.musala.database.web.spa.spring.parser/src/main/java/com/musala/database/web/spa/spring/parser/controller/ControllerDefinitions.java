@@ -13,7 +13,7 @@ import com.musala.database.web.spa.spring.parser.requests.RequestConnectionStrin
 import com.musala.database.web.spa.spring.parser.requests.RequestQueryStringRepo;
 
 @RestController
-public class Controllers {
+public class ControllerDefinitions {
 
 	@Autowired
 	private IDbService service;

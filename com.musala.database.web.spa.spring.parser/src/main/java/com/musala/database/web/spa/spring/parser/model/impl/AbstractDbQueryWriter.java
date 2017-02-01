@@ -39,7 +39,7 @@ public abstract class AbstractDbQueryWriter implements IDbQueryWriter {
 	 * trough all table's rows.
 	 * 
 	 * @param columnNames
-	 * @return 
+	 * @return
 	 * @throws NullPointerException
 	 * @throws SQLException
 	 */

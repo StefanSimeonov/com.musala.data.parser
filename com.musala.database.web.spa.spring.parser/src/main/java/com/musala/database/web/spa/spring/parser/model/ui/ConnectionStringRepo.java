@@ -1,4 +1,4 @@
-package com.musala.database.web.spa.parser.model.ui;
+package com.musala.database.web.spa.spring.parser.model.ui;
 
 public class ConnectionStringRepo {
 	private String serverName;

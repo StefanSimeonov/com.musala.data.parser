@@ -3,9 +3,6 @@ app.controller('ExtendedQueryController', function($scope, $http, $rootScope) {
 		window.location.replace('index.html#');
 	}
 	$scope.connect = function() {
-		// Logging scope data
-		console.log($scope.id);
-		console.log($scope.name);
 		$http({
 			url : BACKEND_QUERING_URL,
 			method : BACKEND_REQUEST_TYPE_POST,
@@ -21,14 +18,17 @@ app.controller('ExtendedQueryController', function($scope, $http, $rootScope) {
 			// Logging response data
 			console.log(response.data.status);
 			console.log(response.data.message);
-			$scope.message = response.data.message;
-			$('#message').show();
-			if (response.data.status == false) {
+			if(response.data.status){
+			$scope.successMessage = response.data.message;
+			$('#init-success-box').show();
+			}else{
+			$scope.falseMessage = response.data.message;
+			$('#init-failure-box').show();
+			}
 				$rootScope.lastInvokedStep = 1;
 				setTimeout(function() {
 					window.location.replace('index.html#/initialization');
 				}, 2000);
-			}
 		},function(fail){
 			$scope.falseMessage="The Server is not able to response";
 			$('#init-success-box').hide();

@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 
-import com.musala.database.web.spa.parser.model.ui.JsonMaker;
 import com.musala.database.web.spa.spring.parser.helper.ObjectValidator;
 import com.musala.database.web.spa.spring.parser.helper.SchoolClassException;
 import com.musala.database.web.spa.spring.parser.model.IDbConnector;
 import com.musala.database.web.spa.spring.parser.model.IQueryable;
+import com.musala.database.web.spa.spring.parser.model.ui.JsonMaker;
 
 @Component
 public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
@@ -19,21 +19,21 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 
 	public MyDbWebQueryRenderer(IDbConnector dbconnector, IQueryable query) {
 		super(dbconnector, query);
-		
+
 	}
 
 	@Override
 	public String printAllRecordsInTable(String dbTable, String... columnNames)
 			throws SQLException, NullPointerException {
 		result = query.getAllRecords(dbTable, statement);
-	return	printResultSet(columnNames);
+		return printResultSet(columnNames);
 	}
 
 	@Override
 	public String printRecordsById(String dbTable, String id, String... columnNames)
 			throws SQLException, NullPointerException {
 		result = query.getRecordById(dbTable, statement, id);
-	return	printResultSet(columnNames);
+		return printResultSet(columnNames);
 
 	}
 
@@ -42,7 +42,7 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 			throws SQLException, NullPointerException, SchoolClassException {
 		ObjectValidator.checkForSchoolClassException(dbTable, "School classes dont have name property");
 		result = query.getRecordByName(dbTable, statement, name);
-	return	printResultSet(columnNames);
+		return printResultSet(columnNames);
 
 	}
 
