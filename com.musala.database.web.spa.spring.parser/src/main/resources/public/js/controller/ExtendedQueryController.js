@@ -19,16 +19,16 @@ app.controller('ExtendedQueryController', function($scope, $http, $rootScope) {
 			console.log(response.data.status);
 			console.log(response.data.message);
 			if(response.data.status){
-			$scope.successMessage = response.data.message;
-			$('#init-success-box').show();
-			}else{
-			$scope.falseMessage = response.data.message;
-			$('#init-failure-box').show();
+				$scope.successMessage = response.data.message;
+				$('#init-success-box').show();
+			} else {
+				$scope.falseMessage = response.data.message;
+				$('#init-failure-box').show();
 			}
-				$rootScope.lastInvokedStep = 1;
-				setTimeout(function() {
-					window.location.replace('index.html#/initialization');
-				}, 2000);
+			$rootScope.lastInvokedStep = 1;
+			setTimeout(function() {
+				window.location.replace('index.html#/initialization');
+			}, 2000);
 		},function(fail){
 			$scope.falseMessage="The Server is not able to response";
 			$('#init-success-box').hide();

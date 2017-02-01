@@ -35,7 +35,7 @@ public class ConnectionTest extends MySqlDbConnector {
 		try {
 			buildWithAdditionalCredentials("localhost", "schools", "root", "");
 		} catch (Exception e) {
-			assertThat(e.getClass(), equalTo(ClassNotFoundException.class));
+			assertThat(e.getClass(), equalTo(SQLException.class));
 		}
 	}
 

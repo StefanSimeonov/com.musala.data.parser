@@ -23,9 +23,7 @@ public class JsonMakerTest {
 		map.put("password", "");
 		map.put("status", "true");
 		String obj = JsonMaker.build("connection", map);
-		assertEquals(
-				"{\"serverName\":\"localhost\",\"databaseName\":\"schools\",\"username\":\"root\",\"password\":\"\",\"status\":true}",
-				obj);
+		assertEquals("{\"serverName\":\"localhost\",\"databaseName\":\"schools\",\"username\":\"root\",\"password\":\"\",\"status\":true}", obj);
 	}
 
 	@Test

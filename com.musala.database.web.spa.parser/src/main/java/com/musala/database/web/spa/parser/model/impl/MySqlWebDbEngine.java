@@ -20,6 +20,7 @@ import com.musala.database.web.spa.parser.model.ui.JsonMaker;
  */
 public class MySqlWebDbEngine extends AbstractDbEngine {
 
+	private static final String INVALID_QUERY = "Invalid query";
 	private static final String CONNECTION_DRIVERS_AS_STRING = "com.mysql.jdbc.Driver";
 	private HttpServletResponse response;
 	private JsonObject request;
@@ -154,7 +155,13 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 			}
 			switch (typeOfQuery.getValue()) {
 			case 1: {
-				writer.printAllRecordsInTable(currentTable, currentProperties);
+				String json = writer.printAllRecordsInTable(currentTable, currentProperties);
+				try {
+					response.getWriter().println(json);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 			case 2: {
@@ -175,8 +182,15 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 				} else {
 					String needablePropertyName = input.getNeedableId();
-					writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
+					String json = writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
 							queryHolder.getCurrentProperties());
+					json = json.replaceAll("false", "true");
+					try {
+						response.getWriter().println(json);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					secondQueryInvoking = false;
 				}
 				break;
@@ -199,8 +213,15 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 
 				} else {
 					String needablePropertyName = input.getNeedableName();
-					writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
+					String json = writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
 							queryHolder.getCurrentProperties());
+					json = json.replaceAll("false", "true");
+					try {
+						response.getWriter().println(json);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					secondQueryInvoking = false;
 				}
 				break;
@@ -210,7 +231,7 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 		} catch (SQLException sqlex) {
 			try {
 				repoForJsonCreation.put("status", "false");
-				repoForJsonCreation.put("message", sqlex.getMessage());
+				repoForJsonCreation.put("message", INVALID_QUERY);
 				String json = JsonMaker.build("answer", repoForJsonCreation);
 				response.getWriter().println(json);
 				secondQueryInvoking = false;

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.musala.database.web.spa.spring.parser.model.IDbService;
-import com.musala.database.web.spa.spring.parser.requests.RequestConnectionStringRepo;
-import com.musala.database.web.spa.spring.parser.requests.RequestQueryStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestConnectionStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestQueryStringRepo;
 
 @RestController
 public class ControllerDefinitions {

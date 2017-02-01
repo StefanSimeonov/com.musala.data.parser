@@ -18,8 +18,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.google.gson.JsonObject;
 import com.musala.database.web.spa.spring.parser.model.impl.MySqlWebDbEngine;
-import com.musala.database.web.spa.spring.parser.requests.RequestConnectionStringRepo;
-import com.musala.database.web.spa.spring.parser.requests.RequestQueryStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestConnectionStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestQueryStringRepo;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EngineTest {

@@ -1,4 +1,4 @@
-package com.musala.database.web.spa.spring.parser.requests;
+package com.musala.database.web.spa.spring.parser.request;
 
 import org.springframework.stereotype.Component;
 

@@ -24,8 +24,7 @@ public class QueryTest {
 	@Before
 	public void Initialize() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
-		IDbConnector connect = new MySqlDbConnector().buildWithAdditionalCredentials("localhost", "schools", "root",
-				"");
+		IDbConnector connect = new MySqlDbConnector().buildWithAdditionalCredentials("localhost", "schools", "root", "");
 		statement = connect.getStatement();
 		query = new MySqlQueryBuilder();
 	}

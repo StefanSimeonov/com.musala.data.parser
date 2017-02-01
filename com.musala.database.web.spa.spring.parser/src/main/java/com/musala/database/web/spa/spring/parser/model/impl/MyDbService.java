@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.musala.database.web.spa.spring.parser.model.IDbEngine;
 import com.musala.database.web.spa.spring.parser.model.IDbService;
-import com.musala.database.web.spa.spring.parser.requests.RequestConnectionStringRepo;
-import com.musala.database.web.spa.spring.parser.requests.RequestQueryStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestConnectionStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestQueryStringRepo;
 
 @Service
 public class MyDbService implements IDbService {

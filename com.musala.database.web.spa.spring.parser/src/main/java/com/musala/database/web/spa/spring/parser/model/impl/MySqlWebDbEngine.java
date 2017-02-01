@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import com.musala.database.web.spa.spring.parser.helper.ObjectValidator;
 import com.musala.database.web.spa.spring.parser.helper.SchoolClassException;
 import com.musala.database.web.spa.spring.parser.model.ui.JsonMaker;
-import com.musala.database.web.spa.spring.parser.requests.RequestConnectionStringRepo;
-import com.musala.database.web.spa.spring.parser.requests.RequestQueryStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestConnectionStringRepo;
+import com.musala.database.web.spa.spring.parser.request.RequestQueryStringRepo;
 
 @Component
 public class MySqlWebDbEngine extends AbstractDbEngine {
@@ -121,48 +121,48 @@ public class MySqlWebDbEngine extends AbstractDbEngine {
 				currentProperties = queryRequest.getProperties().split(" ");
 			}
 			switch (typeOfQuery) {
-			case QUERY_TYPE_GET_ALL_RECORDS: {
-				return writer.printAllRecordsInTable(currentTable, currentProperties);
-			}
-			case QUERY_TYPE_GET_RECORD_BY_ID: {
-				if (!secondQueryInvoking) {
-					queryHolder.setCurrentProperties(currentProperties);
-					queryHolder.setCurrentTable(currentTable);
-					queryHolder.setQueryType(typeOfQuery);
-					repoForJsonCreation.put("status", "true");
-					repoForJsonCreation.put("message", "Succesfull");
-					String json = JsonMaker.build("answer", repoForJsonCreation);
-					secondQueryInvoking = true;
-					return json;
-				} else {
-					String needablePropertyName = queryRequest.getId();
-					String json = writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
-							queryHolder.getCurrentProperties());
-					json = json.replaceAll("false", "true");
-					secondQueryInvoking = false;
-					return json;
+				case QUERY_TYPE_GET_ALL_RECORDS: {
+					return writer.printAllRecordsInTable(currentTable, currentProperties);
 				}
-			}
-			case QUERY_TYPE_GET_RECORD_BY_NAME: {
-				if (!secondQueryInvoking) {
-					queryHolder.setCurrentProperties(currentProperties);
-					queryHolder.setCurrentTable(currentTable);
-					queryHolder.setQueryType(typeOfQuery);
-					repoForJsonCreation.put("status", "true");
-					repoForJsonCreation.put("message", "Succesfull");
-					String json = JsonMaker.build("answer", repoForJsonCreation);
-					secondQueryInvoking = true;
-					return json;
-				} else {
-					String needablePropertyName = queryRequest.getName();
-					String json = writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
-							queryHolder.getCurrentProperties());
-					json = json.replaceAll("false", "true");
-					secondQueryInvoking = false;
-					return json;
+				case QUERY_TYPE_GET_RECORD_BY_ID: {
+					if (!secondQueryInvoking) {
+						queryHolder.setCurrentProperties(currentProperties);
+						queryHolder.setCurrentTable(currentTable);
+						queryHolder.setQueryType(typeOfQuery);
+						repoForJsonCreation.put("status", "true");
+						repoForJsonCreation.put("message", "Succesfull");
+						String json = JsonMaker.build("answer", repoForJsonCreation);
+						secondQueryInvoking = true;
+						return json;
+					} else {
+						String needablePropertyName = queryRequest.getId();
+						String json = writer.printRecordsById(queryHolder.getCurrentTable(), needablePropertyName,
+								queryHolder.getCurrentProperties());
+						json = json.replaceAll("false", "true");
+						secondQueryInvoking = false;
+						return json;
+					}
 				}
-
-			}
+				case QUERY_TYPE_GET_RECORD_BY_NAME: {
+					if (!secondQueryInvoking) {
+						queryHolder.setCurrentProperties(currentProperties);
+						queryHolder.setCurrentTable(currentTable);
+						queryHolder.setQueryType(typeOfQuery);
+						repoForJsonCreation.put("status", "true");
+						repoForJsonCreation.put("message", "Succesfull");
+						String json = JsonMaker.build("answer", repoForJsonCreation);
+						secondQueryInvoking = true;
+						return json;
+					} else {
+						String needablePropertyName = queryRequest.getName();
+						String json = writer.printRecordsByName(queryHolder.getCurrentTable(), needablePropertyName,
+								queryHolder.getCurrentProperties());
+						json = json.replaceAll("false", "true");
+						secondQueryInvoking = false;
+						return json;
+					}
+	
+				}
 			}
 		} catch (SQLException sqlex) {
 			repoForJsonCreation.put("status", "false");
