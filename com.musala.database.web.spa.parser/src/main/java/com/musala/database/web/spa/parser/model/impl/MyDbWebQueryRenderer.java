@@ -24,31 +24,31 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 	}
 
 	@Override
-	public void printAllRecordsInTable(String dbTable, String... columnNames)
+	public String printAllRecordsInTable(String dbTable, String... columnNames)
 			throws SQLException, NullPointerException {
 		result = query.getAllRecords(dbTable, statement);
-		printResultSet(columnNames);
+		return printResultSet(columnNames);
 	}
 
 	@Override
-	public void printRecordsById(String dbTable, String id, String... columnNames)
+	public String printRecordsById(String dbTable, String id, String... columnNames)
 			throws SQLException, NullPointerException {
 		result = query.getRecordById(dbTable, statement, id);
-		printResultSet(columnNames);
+		return printResultSet(columnNames);
 
 	}
 
 	@Override
-	public void printRecordsByName(String dbTable, String name, String... columnNames)
+	public String printRecordsByName(String dbTable, String name, String... columnNames)
 			throws SQLException, NullPointerException, SchoolClassException {
 		ObjectValidator.checkForSchoolClassException(dbTable, "School classes dont have name property");
 		result = query.getRecordByName(dbTable, statement, name);
-		printResultSet(columnNames);
+		return printResultSet(columnNames);
 
 	}
 
 	@Override
-	protected void printResultSet(String... columnNames) throws NullPointerException, SQLException {
+	protected String printResultSet(String... columnNames) throws NullPointerException, SQLException {
 		ObjectValidator.checkIfObjectIsNull(result, "Wrong property name or database table");
 		result = ObjectValidator.checkAndMoveCursorToNextPosition(result, "Wrong resultset cursor translation");
 
@@ -61,13 +61,7 @@ public class MyDbWebQueryRenderer extends AbstractDbQueryWriter {
 		repoForJsonCreation.put("status", "false");
 		repoForJsonCreation.put("message", returnAnswer.substring(0, returnAnswer.length() - 1));
 		String json = JsonMaker.build("answer", repoForJsonCreation);
-		try {
-			response.getWriter().println(json);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		return json;
 	}
 
 	@Override

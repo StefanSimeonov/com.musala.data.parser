@@ -39,10 +39,11 @@ public abstract class AbstractDbQueryWriter implements IDbQueryWriter {
 	 * trough all table's rows.
 	 * 
 	 * @param columnNames
+	 * @return 
 	 * @throws NullPointerException
 	 * @throws SQLException
 	 */
-	protected abstract void printResultSet(String... columnNames) throws NullPointerException, SQLException;
+	protected abstract String printResultSet(String... columnNames) throws NullPointerException, SQLException;
 
 	/**
 	 * Getting the all results from a current table row

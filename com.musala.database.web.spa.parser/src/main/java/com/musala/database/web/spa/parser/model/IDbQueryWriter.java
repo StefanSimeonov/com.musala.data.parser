@@ -27,23 +27,26 @@ public interface IDbQueryWriter {
 
 	/**
 	 * Print all records in a given table without where clause
+	 * @return 
 	 */
-	void printAllRecordsInTable(String dbTable, String... columnNames) throws SQLException, NullPointerException;
+	String printAllRecordsInTable(String dbTable, String... columnNames) throws SQLException, NullPointerException;
 
 	/**
 	 * Print all records in a given table with additional where clause
+	 * @return 
 	 * 
 	 * @throws SQLException,
 	 *             NullPointerException
 	 */
-	void printRecordsById(String dbTable, String id, String... columnNames) throws SQLException, NullPointerException;
+	String printRecordsById(String dbTable, String id, String... columnNames) throws SQLException, NullPointerException;
 
 	/**
 	 * Print all records in a given table without where clause
+	 * @return 
 	 * 
 	 * @throws SQLException,SchoolClassException,
 	 *             NullPointerException
 	 */
-	void printRecordsByName(String dbTable, String name, String... columnNames)
+	String printRecordsByName(String dbTable, String name, String... columnNames)
 			throws SQLException, NullPointerException, SchoolClassException;
 }
