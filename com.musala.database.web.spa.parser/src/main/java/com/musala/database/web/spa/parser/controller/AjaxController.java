@@ -47,7 +47,7 @@ public class AjaxController extends HttpServlet {
 	 *      response)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
+	
 		JsonObject reqJson = fromPostRequestToJson(request);
 		MySqlWebDbEngine con;
 

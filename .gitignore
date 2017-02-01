@@ -3,11 +3,13 @@ com.musala.database.web.asynchronous.parser/bin/
 com.musala.database.web.parser/bin/
 com.musala.database.web.spa.parser/bin/
 com.musala.database.web.spa.spring.parser/bin/
+com.musala.xml.parser/bin/
+com.musala.xml.parser.database.structure.extended/bin/
+com.musala.xml.parser.executable/bin/
+com.musala.database.web.spa.spring.parser/bin/
 com.musala.database.web.asynchronous.parser/build/
 com.musala.database.web.parser/build/
 com.musala.database.web.spa.parser/build/
 com.musala.database.web.spa.spring.parser/build/
-com.musala.xml.parser/bin/
-com.musala.xml.parser.database.structure.extended/bin/
-com.musala.xml.parser.executable/bin/
+
 

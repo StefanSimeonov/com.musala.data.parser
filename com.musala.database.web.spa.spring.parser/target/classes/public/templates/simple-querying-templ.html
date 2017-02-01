@@ -1,0 +1,47 @@
+<div ng-controller="SimpleQueryController">
+	<form ng-submit="connect()" class="form-horizontal">
+		<div class="form-group">
+			<label for="1" class="col-md-12">Enter type of query you want:</label>
+			<div class="col-md-3">
+				<select id="1" name="queriesType" ng-model="queriesType" class="form-control">
+					<option value="getAllRecords">getAllRecords</option>
+					<option value="getRecordById">getRecordById</option>
+					<option value="getRecordByName">getRecordByName</option>
+					<option value="closeTheQuery">close</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="2" class="col-md-12">Enter table you want:</label>
+			<div class="col-md-3">
+				<select id="2" name="tableName" ng-model="tableName" class="form-control">
+					<option value="schools">schools</option>
+					<option value="schoolclasses">school classes</option>
+					<option value="students">students</option>
+					<option value="teachers">teachers</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="3" class="col-md-12">Please enter the record's <abbr title="Choose from:name,age,id,location,trend,sybject">properties</abbr> you want, split by space:</label>
+			<div class="col-md-3">
+				<input id="3" class="form-control input-lg" type="text" name="properties" ng-model="properties" placeholder="Enter properties" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-12">
+				<div id="init-success-box" class="alert alert-success col-md-3" hidden>
+					<p>{{trueMessage}}</p>
+				</div>
+				<div id="init-failure-box" class="alert alert-danger col-md-3" hidden>
+					<p>{{falseMessage}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-12">
+				<input type="submit" value="Connect" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>

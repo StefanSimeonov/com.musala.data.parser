@@ -38,6 +38,5 @@ Our base is schools relationship model. Each school has many school classes. In 
 </ol>
 **Pay Attention: Before using this program ensure that XAMPP MySQL server is turned on and mysql connector jar file is referenced in project library!**
 
-Possible extension points: addition of unit tests.
 
 
