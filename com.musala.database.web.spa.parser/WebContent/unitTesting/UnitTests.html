@@ -40,8 +40,8 @@
 					  var ourScope = {};
 					  var controller = ourControllers('ConnectionController', { $scope: ourScope});			
 					  spyOn(ourScope, 'connect').and.callFake(function() {
-						  ourScope.trueMessage = 'true operation';
-						});
+					  	  ourScope.trueMessage = 'true operation';
+					  });
 					  ourScope.connect();
 					  expect(typeof ourScope.falseMessage).toBe('undefined');
 					  expect(ourScope.trueMessage).toBe('true operation');
@@ -52,8 +52,8 @@
 					var ourScope = {};
 				    var controller = ourControllers('ConnectionController', { $scope: ourScope});	
 				    spyOn(ourScope,'connect').and.callFake(function(){
-						  ourScope.falseMessage='true operation';
-				     });
+						ourScope.falseMessage='true operation';
+				    });
 				    ourScope.connect();
 					expect(typeof ourScope.trueMessage).toBe('undefined');
 					expect(ourScope.falseMessage).toBe('true operation');
@@ -72,9 +72,9 @@
 					var ourScope = {};
 					var ourRootScope = {};
 					var controller = ourControllers('ConnectionController', { $scope: ourScope, $rootScope:ourRootScope});	
-				 		 spyOn(ourScope,'connect').and.callFake(function(){
-					  		ourRootScope.lastInvokedStep='1';
-				 		 });
+				    spyOn(ourScope,'connect').and.callFake(function(){
+						ourRootScope.lastInvokedStep='1';
+				 	});
 				  	ourScope.connect();
 				    expect(ourRootScope.lastInvokedStep).toBe('1');
 				});	
@@ -83,11 +83,11 @@
 				it('Check $scope.trueMessage', function () { 
 					var ourScope = {};
 					var controller = ourControllers('ConnectionController', { $scope: ourScope});	
-					  spyOn(ourScope,'connect').and.callFake(function(){
-						 ourScope.trueMessage='true operation';
-					  });
-					  ourScope.connect();
-				      expect( ourScope.trueMessage).toBe('true operation');
+					spyOn(ourScope,'connect').and.callFake(function(){
+						ourScope.trueMessage='true operation';
+					});
+				    ourScope.connect();
+				    expect( ourScope.trueMessage).toBe('true operation');
 					});	
 			});
 			describe('ConnectionController', function(){
@@ -95,8 +95,8 @@
 					var ourScope = {};
 				    var controller = ourControllers('ConnectionController', { $scope: ourScope});	
 				    spyOn(ourScope,'connect').and.callFake(function(){
-				   	   ourScope.falseMessage='false operation';
-				  });
+				   	    ourScope.falseMessage='false operation';
+				    });
 				    ourScope.connect();
 					expect(ourScope.falseMessage).toBe('false operation');
 				});	
@@ -182,8 +182,8 @@
 					var ourScope = {};
 				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
 				    spyOn(ourScope,'connect').and.callFake(function(){
-					   	   ourScope.falseMessage='false operation';
-					  });
+					   	ourScope.falseMessage='false operation';
+					});
 				    ourScope.connect();
 					expect(ourScope.falseMessage).toBe('false operation');
 					expect(ourScope.connect).toHaveBeenCalled();
@@ -224,8 +224,8 @@
 					var ourScope = {};
 				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
 				    spyOn(ourScope,'connect').and.callFake(function(){
-					   	   ourScope.falseMessage='false operation';
-					  });
+					   	ourScope.falseMessage='false operation';
+					});
 				    ourScope.connect();
 					expect(ourScope.falseMessage).toBe('false operation');
 					expect(ourScope.connect).toHaveBeenCalled();

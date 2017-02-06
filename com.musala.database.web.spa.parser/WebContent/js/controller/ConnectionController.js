@@ -38,7 +38,6 @@ app.controller('ConnectionController', function($scope, $http, $rootScope) {
 				}, 1000);
 			}
 		},function(fail){
-			console.log("http fail");
 			$scope.falseMessage="The Server is not able to response";
 			$('#init-failure-box').show();
 		})
