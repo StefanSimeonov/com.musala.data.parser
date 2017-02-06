@@ -1,0 +1,236 @@
+<html>
+	<head>
+	    <!-- Jasmine References -->
+	    <link  href="../jasmine/jasmine.min.css" rel="stylesheet" type="text/css">
+	    <script src="../jasmine/jasmine.min.js" type="text/javascript"></script>
+	    <script src="../jasmine/jasmine-html.min.js" type="text/javascript"></script>
+	    <script src="../jasmine/boot.min.js" type="text/javascript"></script>
+	    
+	    <!-- Angular and Angular Mock references -->
+	    <script src="../jasmine/angular.min.js.jasmine" type="text/javascript"></script>
+	    <script src="../js/lib/angular-mocks.js" type="text/javascript" ></script>
+		<script src="../js/lib/angular-route.js" type="text/javascript"></script>
+		<script src="Config.js"></script>
+		<script src="../js/controller/ConnectionController.js" type="text/javascript"></script>
+		<script src="../js/controller/SimpleQueryController.js" type="text/javascript"></script>
+		<script src="../js/controller/ExtendedQueryController.js" type="text/javascript"></script>
+	</head>
+	<body></body>
+	<script type="text/javascript">
+    	/* Test Code */
+   	 	describe('ControllersCheck', function () {
+			beforeEach(angular.mock.module('dataParser'));
+			var ourControllers;
+			beforeEach(angular.mock.inject(function($controller){
+			  ourControllers = $controller;
+			})); 
+		
+			describe('ConnectionController', function () {
+				it('Check the scopes default values', function () {
+					var ourScope = {};
+					var controller = ourControllers('ConnectionController', { $scope: ourScope});
+					expect(ourScope.serverName).toEqual("localhost");
+					expect(ourScope.databaseName).toEqual("schools");
+					expect(ourScope.userName).toEqual("root");
+					expect(ourScope.password).toEqual("");
+				});	
+			});
+			describe('ConnectionController', function () {
+				it('Successful connection to the DB is performed, TRUE operation is returned', function () {
+					  var ourScope = {};
+					  var controller = ourControllers('ConnectionController', { $scope: ourScope});			
+					  spyOn(ourScope, 'connect').and.callFake(function() {
+					  	  ourScope.trueMessage = 'true operation';
+					  });
+					  ourScope.connect();
+					  expect(typeof ourScope.falseMessage).toBe('undefined');
+					  expect(ourScope.trueMessage).toBe('true operation');
+				});	
+			});
+			describe('ConnectionController', function(){
+				it('Unsuccessful connection to the DB is performed, FALSE operation is returned', function () { 
+					var ourScope = {};
+				    var controller = ourControllers('ConnectionController', { $scope: ourScope});	
+				    spyOn(ourScope,'connect').and.callFake(function(){
+						ourScope.falseMessage='true operation';
+				    });
+				    ourScope.connect();
+					expect(typeof ourScope.trueMessage).toBe('undefined');
+					expect(ourScope.falseMessage).toBe('true operation');
+				});	
+			});
+			describe('ConnectionController', function(){
+				it('RootScope before connection', function () { 
+					var ourScope = {};
+					var ourRootScope = {};
+				    var controller = ourControllers('ConnectionController', { $scope: ourScope, $rootScope:ourRootScope});	
+					expect(ourRootScope.lastInvokedStep).toBe(undefined);
+				});	
+			});
+			describe('ConnectionController', function(){
+				it('RootScope after success connection', function () { 
+					var ourScope = {};
+					var ourRootScope = {};
+					var controller = ourControllers('ConnectionController', { $scope: ourScope, $rootScope:ourRootScope});	
+				    spyOn(ourScope,'connect').and.callFake(function(){
+						ourRootScope.lastInvokedStep='1';
+				 	});
+				  	ourScope.connect();
+				    expect(ourRootScope.lastInvokedStep).toBe('1');
+				});	
+			});
+			describe('ConnectionController', function(){
+				it('Check $scope.trueMessage', function () { 
+					var ourScope = {};
+					var controller = ourControllers('ConnectionController', { $scope: ourScope});	
+					spyOn(ourScope,'connect').and.callFake(function(){
+						ourScope.trueMessage='true operation';
+					});
+				    ourScope.connect();
+				    expect( ourScope.trueMessage).toBe('true operation');
+					});	
+			});
+			describe('ConnectionController', function(){
+				it('Check $scope.falseMessage', function () { 
+					var ourScope = {};
+				    var controller = ourControllers('ConnectionController', { $scope: ourScope});	
+				    spyOn(ourScope,'connect').and.callFake(function(){
+				   	    ourScope.falseMessage='false operation';
+				    });
+				    ourScope.connect();
+					expect(ourScope.falseMessage).toBe('false operation');
+				});	
+			});
+			describe('ConnectionController', function(){
+				it("Check changing scope's variables", function () { 
+					var ourScope = {};
+					var controller = ourControllers('ConnectionController', { $scope: ourScope});	
+				    ourScope.serverName = 'smth';
+					ourScope.databaseName = 'smth';
+					ourScope.userName = 'smth';
+					ourScope.password = 'smth';
+					expect(ourScope.serverName).toBe('smth');
+					expect(ourScope.databaseName).toBe('smth');
+					expect(ourScope.userName).toBe('smth');
+					expect(ourScope.password).toBe('smth');
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for rootScope existing", function () { 
+					var ourScope = {};
+					var ourRootScope={};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope,$rootScope:ourRootScope});
+					ourRootScope.lastInvokedStep=2;
+					expect(ourRootScope.lastInvokedStep).toBe(2);
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for queriesType undefined", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+					expect(ourScope.queriesType).toBe(undefined);
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for queriesType changing", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+				    ourScope.queriesType='getAllRecords';
+					expect(ourScope.queriesType).toBe('getAllRecords');
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for tableName undefined", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+					expect(ourScope.tableName).toBe(undefined);
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for tableName changing", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+				    ourScope.tableName='schools';
+					expect(ourScope.tableName).toBe('schools');
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for properties undefined", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+					expect(ourScope.properties).toBe(undefined);
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for properties changing", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+				    ourScope.properties='name age';
+					expect(ourScope.properties).toBe('name age');
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for properties changing", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+				    ourScope.properties='name age';
+					expect(ourScope.properties).toBe('name age');
+				});	
+			});
+			describe('SimpleQueryController', function(){
+				it("Check for connection method", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+				    spyOn(ourScope,'connect').and.callFake(function(){
+					   	ourScope.falseMessage='false operation';
+					});
+				    ourScope.connect();
+					expect(ourScope.falseMessage).toBe('false operation');
+					expect(ourScope.connect).toHaveBeenCalled();
+				});	
+			});
+			describe('ExtendedQueryController', function(){
+				it("Check for id undefined", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('ExtendedQueryController',{$scope: ourScope});
+					expect(ourScope.id).toBe(undefined);
+				});	
+			});
+			describe('ExtendedQueryController', function(){
+				it("Check for id changing", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('ExtendedQueryController',{$scope: ourScope});
+				    ourScope.id='1';
+					expect(ourScope.id).toBe('1');
+				});	
+			});
+			describe('ExtendedQueryController', function(){
+				it("Check for name undefined", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('ExtendedQueryController',{$scope: ourScope});
+					expect(ourScope.name).toBe(undefined);
+				});	
+			});
+			describe('ExtendedQueryController', function(){
+				it("Check for name changing", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('ExtendedQueryController',{$scope: ourScope});
+				    ourScope.name='Ivan';
+					expect(ourScope.name).toBe('Ivan');
+				});	
+			});
+			describe('ExtendedQueryController', function(){
+				it("Check for connection method", function () { 
+					var ourScope = {};
+				    var controller=ourControllers('SimpleQueryController',{$scope: ourScope});
+				    spyOn(ourScope,'connect').and.callFake(function(){
+					   	ourScope.falseMessage='false operation';
+					});
+				    ourScope.connect();
+					expect(ourScope.falseMessage).toBe('false operation');
+					expect(ourScope.connect).toHaveBeenCalled();
+				});	
+			});
+		});
+	</script>	
+</html>
