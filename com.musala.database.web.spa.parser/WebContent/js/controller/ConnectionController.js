@@ -20,7 +20,7 @@ app.controller('ConnectionController', function($scope, $http, $rootScope) {
 			},
 		}).then(function(response) {
 			// Logging response data status
-			console.log(response.data.status);
+			console.log(response.data);
 			if (response.data.status) {
 				$scope.trueMessage = response.data.status + ' operation';
 				$('#init-failure-box').hide();
@@ -38,6 +38,7 @@ app.controller('ConnectionController', function($scope, $http, $rootScope) {
 				}, 1000);
 			}
 		},function(fail){
+			console.log("http fail");
 			$scope.falseMessage="The Server is not able to response";
 			$('#init-failure-box').show();
 		})

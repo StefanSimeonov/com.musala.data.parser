@@ -1,5 +1,5 @@
 app.controller('ExtendedQueryController', function($scope, $http, $rootScope) {
-	if ($rootScope.lastInvokedStep != 3) {
+	if (typeof $rootScope.lastInvokedStep != 'undefined' && $rootScope.lastInvokedStep != 3) {
 		window.location.replace('index.html#');
 	}
 	$scope.connect = function() {

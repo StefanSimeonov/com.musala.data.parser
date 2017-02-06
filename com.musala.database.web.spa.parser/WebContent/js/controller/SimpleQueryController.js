@@ -1,5 +1,6 @@
 app.controller('SimpleQueryController', function($scope, $http, $rootScope) {
-	if ($rootScope.lastInvokedStep != 2) {
+	if (typeof $rootScope.lastInvokedStep != 'undefined' && $rootScope.lastInvokedStep != 2) {
+		console.log("redirecting to index.html");
 		window.location.replace('index.html#');
 	}
 	$scope.connect = function() {
