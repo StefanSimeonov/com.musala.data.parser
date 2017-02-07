@@ -10,4 +10,8 @@ A front-end validation is used for elude explicit connection to second and third
 All html views are ensured by AngularJs's mechanism for single page applications where all things happened in just one page with different views, depending on given user commands.<br/>
 All dependancies are injected by **Maven**.<br/>
 
+**Back-end tests** are accomplished with **mocking** the http request and response objects, provided by the Java Servlets. Mocking is a technique for set precisely defined behaviour of every mocked object. Using this "overrided" object we can skip creating objects, which depends our tested ones, also skip the incapabillity to creating them in some cases. </br>
+**Front-end tests** are accomplished with integration end-to-end tests using Protractor.</br>
+The approach needs nodejs platform. After that installing the protractor using `npm install -g protractor` and make sure **Selenium server** is updated and turned on with `webdriver-manager update`, `webdriver-manager start`. Protractor needs two files to run, a spec file and a configuration file. In the first one stays the logical code, but in the second one stays a configuration code with additional specifics. The tests have to be run pushing on the command-line the exact command: `protractor conf_file_name_.js` from the current configuration's diretory.
+
 **Pay Attention: Before using this program ensure that XAMPP MySQL and Tomcat servers are turned on and mysql connector jar file is referenced in the project library!**

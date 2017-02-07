@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("com.musala.database.web.spa.spring.parser.model.impl")
-@ComponentScan("com.musala.database.web.spa.spring.parser.requests")
+@ComponentScan("com.musala.database.web.spa.spring.parser.request")
 public class SpringAppRunner {
 
 	public static void main(String[] args) {
