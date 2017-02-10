@@ -42,4 +42,4 @@ The program read this data and after transfer it to <br /> java objects, represe
 
 
 <h3> How to build the executable jar </h3>
-Navigate to the project root folder, open a command prompt and type `mvn clean install` (it is required that you have Maven set up on your machine). The generated executable jar file will be located in the `target` folder and will bear the name `com.musala.xml.parser.executable-1.0.0-{SNAPSHOT}`, where `SNAPSHOT` will be replaced by the timestamp of the build.
+Navigate to the project root folder, open a command prompt and type `mvn clean install` (it is required that you have **Maven** set up on your machine).This's going to open the root pom, which have module in ../src, which have modules in ..src/main and ..src/test. Install command will cause cascade falling down from root pom to each child poms. In this latest childer pom's builds exist references to 'where to compiling and testing' commands setted in `<testSourceDirectory>` and `<sourceDirectory>`. The .class files is going to be created from all .java ones. The jar files are located in the `target` folders of the latest child poms (..src/main/test and ..src/main/java).
